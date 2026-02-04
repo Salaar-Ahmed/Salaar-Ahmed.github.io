@@ -3,1858 +3,383 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For Sara Khan | An Exquisite Valentine Moment</title>
+    <title>Sara Khan | Excellence in Love</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@100;200;300;400;500&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;800&family=Montserrat:wght@100;300;400&family=Playfair+Display:ital,wght@0,400;1,600&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         :root {
-            --champagne: #F7E7CE;
-            --blush-pink: #E8B4B8;
-            --dusty-rose: #D8A7B1;
-            --deep-burgundy: #6D2E46;
-            --black-velvet: #0A0A0A;
+            --royal-red: #4A0404;
+            --deep-burgundy: #2D0B0B;
             --gold: #D4AF37;
-            --platinum: #E5E4E2;
-            --shadow: rgba(109, 46, 70, 0.15);
+            --soft-gold: #F1D592;
+            --white-silk: #FFFCF9;
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            min-height: 100vh;
-            overflow-x: hidden;
-            color: var(--platinum);
-            background: var(--black-velvet);
-            position: relative;
-            cursor: none;
-            font-weight: 300;
-            letter-spacing: 0.3px;
-        }
-
-        /* Luxury Background */
-        .luxury-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
+            background-color: #000;
+            color: var(--white-silk);
+            font-family: 'Montserrat', sans-serif;
             overflow: hidden;
+            height: 100vh;
+            cursor: none;
         }
 
+        /* Premium Background Layers */
         .bg-gradient {
-            position: absolute;
-            width: 200%;
-            height: 200%;
-            top: -50%;
-            left: -50%;
-            background: 
-                radial-gradient(circle at 15% 25%, var(--deep-burgundy) 0%, transparent 35%),
-                radial-gradient(circle at 85% 15%, rgba(232, 180, 184, 0.3) 0%, transparent 30%),
-                radial-gradient(circle at 45% 75%, rgba(109, 46, 70, 0.4) 0%, transparent 40%),
-                radial-gradient(circle at 70% 85%, rgba(23, 23, 23, 0.9) 0%, transparent 45%),
-                linear-gradient(165deg, #000 0%, #1a0a0f 30%, #2d0f1a 70%, #000 100%);
-            animation: gradientFloat 30s ease-in-out infinite alternate;
-            filter: blur(30px);
-            opacity: 0.9;
-        }
-
-        .gold-filigree {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                radial-gradient(circle at 20% 80%, rgba(212, 175, 55, 0.03) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(212, 175, 55, 0.02) 0%, transparent 50%);
-            background-size: 400px 400px;
-            opacity: 0.4;
-        }
-
-        .particles-container {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-        }
-
-        .particle {
-            position: absolute;
-            background: radial-gradient(circle, var(--gold) 0%, transparent 70%);
-            border-radius: 50%;
-            opacity: 0;
-            animation: particleFloat 20s infinite linear;
-        }
-
-        /* Animations */
-        @keyframes gradientFloat {
-            0% { transform: translate(0%, 0%) rotate(0deg) scale(1); }
-            100% { transform: translate(1%, 1%) rotate(0.5deg) scale(1.02); }
-        }
-
-        @keyframes particleFloat {
-            0% { 
-                transform: translateY(0) translateX(0) rotate(0deg) scale(0);
-                opacity: 0;
-            }
-            10% { 
-                opacity: 0.1;
-                transform: scale(0.5);
-            }
-            90% { 
-                opacity: 0.1;
-            }
-            100% { 
-                transform: translateY(-100vh) translateX(20vw) rotate(180deg) scale(0);
-                opacity: 0;
-            }
-        }
-
-        @keyframes subtlePulse {
-            0%, 100% { opacity: 0.4; }
-            50% { opacity: 0.6; }
-        }
-
-        /* Premium Cursor */
-        .luxury-cursor {
-            width: 22px;
-            height: 22px;
-            border: 1.5px solid var(--gold);
-            border-radius: 50%;
             position: fixed;
-            pointer-events: none;
-            z-index: 9999;
-            transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1), 
-                       width 0.3s, 
-                       height 0.3s,
-                       border-color 0.3s;
-            mix-blend-mode: difference;
-            backdrop-filter: blur(2px);
+            inset: 0;
+            background: radial-gradient(circle at center, var(--royal-red) 0%, #000 100%);
+            z-index: -2;
         }
 
-        .cursor-glow {
+        .texture-overlay {
+            position: fixed;
+            inset: 0;
+            background-image: url('https://www.transparenttextures.com/patterns/black-paper.png');
+            opacity: 0.3;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Gold Silk Cursor */
+        #cursor-ring {
             position: fixed;
             width: 50px;
             height: 50px;
+            border: 1px solid var(--gold);
             border-radius: 50%;
-            background: radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, transparent 70%);
             pointer-events: none;
-            z-index: 9998;
-            filter: blur(10px);
-            transition: transform 0.2s, opacity 0.3s;
-            opacity: 0.3;
+            z-index: 9999;
+            transition: transform 0.2s ease-out;
+        }
+
+        #cursor-dot {
+            position: fixed;
+            width: 5px;
+            height: 5px;
+            background: var(--gold);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            box-shadow: 0 0 15px var(--gold);
         }
 
         /* Preloader */
         #preloader {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--black-velvet);
+            inset: 0;
+            background: #000;
+            z-index: 10000;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
-            z-index: 99999;
-            transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1), 
-                       visibility 1s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: opacity 2s cubic-bezier(0.19, 1, 0.22, 1);
         }
 
-        .luxury-loader {
-            width: 80px;
-            height: 80px;
-            position: relative;
-            margin-bottom: 40px;
-        }
-
-        .luxury-loader::before, .luxury-loader::after {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            border: 1.5px solid transparent;
-            border-radius: 50%;
-            border-top-color: var(--gold);
-            animation: luxurySpin 2.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-        }
-
-        .luxury-loader::after {
-            width: 70%;
-            height: 70%;
-            top: 15%;
-            left: 15%;
-            border-top-color: var(--dusty-rose);
-            animation-direction: reverse;
-            animation-duration: 1.8s;
-        }
-
-        @keyframes luxurySpin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        #preloader p {
-            color: var(--champagne);
-            font-size: 1.1rem;
-            letter-spacing: 3px;
+        .loader-content {
             text-align: center;
-            font-family: 'Cormorant Garamond', serif;
-            font-weight: 300;
-            opacity: 0.7;
-            margin-top: 30px;
-            text-transform: uppercase;
+            border-top: 1px solid var(--gold);
+            border-bottom: 1px solid var(--gold);
+            padding: 40px 60px;
+            animation: borderExpand 2s forwards;
+        }
+
+        @keyframes borderExpand {
+            from { width: 0; opacity: 0; }
+            to { width: 300px; opacity: 1; }
         }
 
         /* Main Container */
-        .container {
-            width: 100%;
-            max-width: 900px;
-            position: relative;
-            z-index: 2;
-            padding: 40px 20px;
-            margin: 0 auto;
-            min-height: 100vh;
+        .stage {
+            height: 100vh;
             display: flex;
-            align-items: center;
             justify-content: center;
+            align-items: center;
+            perspective: 1500px;
         }
 
-        /* Luxury Glass Card */
-        .luxury-card {
-            background: linear-gradient(135deg, 
-                rgba(255, 255, 255, 0.05) 0%, 
-                rgba(255, 255, 255, 0.02) 100%);
+        .glass-vault {
+            background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.01) 100%);
             backdrop-filter: blur(40px);
-            -webkit-backdrop-filter: blur(40px);
-            border-radius: 48px;
-            padding: 80px 70px;
-            box-shadow: 
-                0 25px 80px rgba(0, 0, 0, 0.4),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1),
-                inset 0 -1px 0 rgba(0, 0, 0, 0.3),
-                0 0 0 1.5px rgba(212, 175, 55, 0.05);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            border-radius: 2px;
+            padding: 60px 50px;
+            width: 90%;
+            max-width: 750px;
             text-align: center;
-            transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
-            overflow: hidden;
-            position: relative;
-            margin: 40px 0;
-            border: 1px solid rgba(212, 175, 55, 0.05);
-            width: 100%;
-        }
-
-        .luxury-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, 
-                transparent, 
-                rgba(212, 175, 55, 0.3), 
-                rgba(232, 180, 184, 0.3), 
-                rgba(212, 175, 55, 0.3), 
-                transparent);
-        }
-
-        .luxury-card::after {
-            content: '';
-            position: absolute;
-            top: 2px;
-            left: 2px;
-            right: 2px;
-            bottom: 2px;
-            border-radius: 46px;
-            background: linear-gradient(135deg, 
-                rgba(212, 175, 55, 0.03) 0%, 
-                transparent 50%);
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        /* Scene Transitions */
-        .scene {
             display: none;
             opacity: 0;
-            transform: translateY(40px) scale(0.98);
-            transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), 
-                       transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
-            width: 100%;
+            transform: scale(0.95) translateZ(0);
+            box-shadow: 0 50px 100px rgba(0,0,0,0.8);
         }
 
-        .scene.active {
+        .glass-vault.active {
             display: block;
             opacity: 1;
-            transform: translateY(0) scale(1);
+            transform: scale(1);
+            transition: all 1.8s cubic-bezier(0.19, 1, 0.22, 1);
         }
 
-        /* Premium Typography */
-        .main-title {
-            font-family: 'Playfair Display', serif;
-            color: var(--champagne);
-            font-size: 4rem;
-            font-weight: 400;
-            margin-bottom: 30px;
-            line-height: 1.1;
-            letter-spacing: -1px;
-            text-shadow: 0 2px 30px rgba(0, 0, 0, 0.3);
-            position: relative;
-        }
-
-        .main-title::after {
-            content: '';
-            display: block;
-            width: 100px;
-            height: 1px;
-            background: linear-gradient(90deg, 
-                transparent, 
-                var(--gold), 
-                transparent);
-            margin: 30px auto;
-            opacity: 0.5;
-        }
-
-        .elegant-title {
-            font-family: 'Cormorant Garamond', serif;
-            color: var(--champagne);
-            font-size: 2.2rem;
-            font-weight: 400;
-            margin-bottom: 20px;
-            line-height: 1.3;
-            letter-spacing: 0.5px;
-            font-style: italic;
-            opacity: 0.95;
+        h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 3rem;
+            color: var(--gold);
+            letter-spacing: 10px;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
         }
 
         .subtitle {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.6rem;
+            font-family: 'Montserrat', sans-serif;
             font-weight: 300;
-            color: rgba(247, 231, 206, 0.85);
-            margin-bottom: 20px;
-            letter-spacing: 0.8px;
-            line-height: 1.6;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            margin-bottom: 35px;
+            color: var(--soft-gold);
         }
 
-        p {
-            color: rgba(247, 231, 206, 0.75);
-            font-size: 1.2rem;
+        .message-body {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
             line-height: 1.8;
+            color: var(--white-silk);
             margin-bottom: 40px;
-            font-weight: 300;
-            max-width: 85%;
-            margin-left: auto;
-            margin-right: auto;
-            letter-spacing: 0.4px;
+            opacity: 0.95;
+            font-weight: 400;
         }
 
-        /* Lock Icon */
-        .luxury-lock {
-            font-size: 5.5rem;
+        strong {
             color: var(--gold);
-            margin: 60px 0;
-            display: inline-block;
-            filter: drop-shadow(0 5px 20px rgba(212, 175, 55, 0.2));
-            animation: lockFloat 7s ease-in-out infinite;
-            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        @keyframes lockFloat {
-            0%, 100% { 
-                transform: translateY(0) rotate(0deg) scale(1); 
-                filter: drop-shadow(0 5px 20px rgba(212, 175, 55, 0.2));
-            }
-            33% { 
-                transform: translateY(-20px) rotate(2deg) scale(1.05); 
-                filter: drop-shadow(0 10px 30px rgba(212, 175, 55, 0.3));
-            }
-            66% { 
-                transform: translateY(-10px) rotate(-1deg) scale(1.03); 
-                filter: drop-shadow(0 8px 25px rgba(212, 175, 55, 0.25));
-            }
+            font-weight: 600;
         }
 
         /* Premium Buttons */
-        .btn-container {
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-            margin-top: 60px;
+        .btn-luxury {
+            background: none;
+            border: 1px solid var(--gold);
+            padding: 16px 45px;
+            color: var(--gold);
+            font-family: 'Cinzel', serif;
+            font-weight: 600;
+            letter-spacing: 4px;
+            cursor: pointer;
+            transition: 0.6s cubic-bezier(0.19, 1, 0.22, 1);
             position: relative;
-            z-index: 5;
-            max-width: 500px;
-            margin-left: auto;
-            margin-right: auto;
+            text-transform: uppercase;
         }
 
-        .luxury-btn {
-            padding: 26px 50px;
-            border-radius: 70px;
-            border: none;
-            font-size: 1.3rem;
-            font-weight: 400;
-            cursor: none;
-            transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-            font-family: 'Inter', sans-serif;
-            letter-spacing: 1px;
-            z-index: 2;
-            background: transparent;
-            color: var(--champagne);
+        .btn-luxury:hover {
+            background: var(--gold);
+            color: #000;
+            box-shadow: 0 0 40px rgba(212, 175, 55, 0.4);
+            transform: translateY(-3px);
+        }
+
+        /* Audio Controller */
+        .audio-hub {
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            background: rgba(0,0,0,0.85);
             border: 1px solid rgba(212, 175, 55, 0.2);
+            padding: 10px 25px;
+            border-radius: 40px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
             backdrop-filter: blur(15px);
         }
 
-        .luxury-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, 
-                rgba(212, 175, 55, 0.1) 0%, 
-                rgba(232, 180, 184, 0.05) 100%);
-            z-index: -1;
-            transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .luxury-btn::after {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(135deg, 
-                var(--gold) 0%, 
-                var(--dusty-rose) 50%, 
-                var(--gold) 100%);
-            border-radius: 72px;
-            z-index: -2;
-            opacity: 0;
-            transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1);
-            background-size: 200% 200%;
-        }
-
-        .luxury-btn:hover {
-            transform: translateY(-6px);
-            color: var(--champagne);
-            border-color: transparent;
-            letter-spacing: 1.2px;
-        }
-
-        .luxury-btn:hover::before {
-            background: linear-gradient(135deg, 
-                rgba(212, 175, 55, 0.15) 0%, 
-                rgba(232, 180, 184, 0.08) 100%);
-        }
-
-        .luxury-btn:hover::after {
-            opacity: 0.3;
-            animation: gradientFlow 3s linear infinite;
-        }
-
-        @keyframes gradientFlow {
-            0% { background-position: 0% 50%; }
-            100% { background-position: 200% 50%; }
-        }
-
-        /* Date Display */
-        .date-display {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1rem;
-            color: rgba(247, 231, 206, 0.5);
-            margin-bottom: 50px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            padding-bottom: 20px;
-            width: fit-content;
-            margin-left: auto;
-            margin-right: auto;
-            position: relative;
-        }
-
-        .date-display::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 1px;
-            background: linear-gradient(90deg, 
-                transparent, 
-                rgba(212, 175, 55, 0.5), 
-                transparent);
-        }
-
-        /* Memory Gallery */
-        .memory-gallery {
-            width: 280px;
-            height: 280px;
+        .play-btn {
+            background: var(--gold);
+            width: 35px;
+            height: 35px;
             border-radius: 50%;
-            background: linear-gradient(135deg, 
-                rgba(212, 175, 55, 0.05) 0%, 
-                rgba(232, 180, 184, 0.03) 100%);
-            border: 1.5px dashed rgba(212, 175, 55, 0.15);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            margin: 50px auto;
-            transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+            border: none;
             cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .memory-gallery::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(135deg, 
-                var(--gold) 0%, 
-                transparent 50%);
-            border-radius: 50%;
-            opacity: 0;
-            transition: opacity 0.7s ease;
-        }
-
-        .memory-gallery:hover {
-            transform: scale(1.08);
-            border-color: rgba(212, 175, 55, 0.3);
-            background: linear-gradient(135deg, 
-                rgba(212, 175, 55, 0.08) 0%, 
-                rgba(232, 180, 184, 0.04) 100%);
-        }
-
-        .memory-gallery:hover::before {
-            opacity: 0.1;
-        }
-
-        .memory-gallery i {
-            font-size: 4rem;
-            color: var(--gold);
-            margin-bottom: 20px;
-            opacity: 0.8;
-            transition: all 0.7s ease;
-        }
-
-        .memory-gallery:hover i {
-            transform: scale(1.1);
-            opacity: 1;
-        }
-
-        .memory-gallery p {
-            font-size: 1rem;
-            color: rgba(247, 231, 206, 0.6);
-            margin: 0;
-            font-family: 'Cormorant Garamond', serif;
-            font-weight: 300;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-        }
-
-        /* Verification Text */
-        .verification-text {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 2.2rem;
-            color: var(--champagne);
-            margin: 50px 0;
-            min-height: 120px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: 400;
-            position: relative;
-        }
-
-        .verification-line {
-            opacity: 0;
-            transform: translateY(25px);
-            transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), 
-                       transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
-            position: absolute;
-            width: 100%;
-            text-align: center;
-            padding: 0 20px;
-        }
-
-        .verification-line.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Patience Animation */
-        .breathing-animation {
-            animation: gentleBreath 5s ease-in-out infinite;
-        }
-
-        @keyframes gentleBreath {
-            0%, 100% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.015); opacity: 0.98; }
-        }
-
-        /* Final Letter */
-        .letter-content {
-            text-align: center;
-            margin-top: 50px;
-        }
-
-        .letter-line {
-            margin-bottom: 35px;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 1.3s cubic-bezier(0.4, 0, 0.2, 1), 
-                       transform 1.3s cubic-bezier(0.4, 0, 0.2, 1);
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 2rem;
-            font-weight: 350;
-            line-height: 1.9;
-            color: var(--champagne);
-            text-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
-            padding: 0 10px;
-        }
-
-        .letter-line.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .signature {
-            margin-top: 70px;
-            text-align: center;
-            font-style: italic;
-            color: var(--champagne);
-            font-size: 1.8rem;
-            font-family: 'Cormorant Garamond', serif;
-            opacity: 0.9;
-            position: relative;
-            display: inline-block;
-            padding: 0 40px;
-        }
-
-        .signature::before, .signature::after {
-            content: '❦';
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--gold);
-            opacity: 0.4;
-            font-size: 1.4rem;
-        }
-
-        .signature::before { left: 0; }
-        .signature::after { right: 0; }
-
-        /* Micro Detail */
-        .micro-detail {
-            font-size: 0.9rem;
-            color: rgba(247, 231, 206, 0.4);
-            margin-top: 70px;
-            text-align: center;
-            opacity: 0;
-            animation: fadeInDetail 2.5s ease 2.5s forwards;
-            letter-spacing: 2.5px;
-            text-transform: uppercase;
-            font-weight: 300;
-            font-family: 'Inter', sans-serif;
-        }
-
-        @keyframes fadeInDetail {
-            to { opacity: 1; }
-        }
-
-        /* Teasing Text */
-        #teasingText {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.7rem;
-            color: var(--gold);
-            margin-top: 35px;
-            font-style: italic;
-            opacity: 0.9;
-            text-shadow: 0 2px 15px rgba(212, 175, 55, 0.2);
-        }
-
-        /* Luxury Audio Player */
-        .luxury-audio-player {
-            position: fixed;
-            bottom: 50px;
-            right: 50px;
-            background: linear-gradient(135deg, 
-                rgba(255, 255, 255, 0.05) 0%, 
-                rgba(255, 255, 255, 0.02) 100%);
-            backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
-            border-radius: 60px;
-            padding: 20px 35px;
-            display: flex;
-            align-items: center;
-            gap: 25px;
-            box-shadow: 
-                0 15px 50px rgba(0, 0, 0, 0.3),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1),
-                0 0 0 1px rgba(212, 175, 55, 0.05);
-            border: 1px solid rgba(212, 175, 55, 0.08);
-            opacity: 0;
-            transform: translateY(50px) scale(0.95);
-            transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: 100;
-            cursor: none;
-        }
-
-        .luxury-audio-player.active {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-        }
-
-        .audio-controls {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .audio-btn {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, 
-                rgba(212, 175, 55, 0.1) 0%, 
-                rgba(232, 180, 184, 0.05) 100%);
-            border: 1px solid rgba(212, 175, 55, 0.15);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .audio-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, 
-                rgba(212, 175, 55, 0.2) 0%, 
-                transparent 100%);
-            opacity: 0;
-            transition: opacity 0.5s ease;
-        }
-
-        .audio-btn:hover {
-            transform: scale(1.1);
-            border-color: rgba(212, 175, 55, 0.3);
-            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.1);
-        }
-
-        .audio-btn:hover::before {
-            opacity: 1;
-        }
-
-        .audio-btn i {
-            color: var(--gold);
-            font-size: 1.3rem;
-            transition: all 0.5s ease;
-        }
-
-        .audio-btn:hover i {
-            color: var(--champagne);
-        }
-
-        .audio-info {
-            font-size: 1rem;
-            color: rgba(247, 231, 206, 0.8);
-            font-weight: 300;
-            min-width: 200px;
-            font-family: 'Cormorant Garamond', serif;
-            letter-spacing: 0.5px;
+            color: #000;
         }
 
         .track-info {
-            display: block;
-            font-size: 0.9rem;
-            color: rgba(247, 231, 206, 0.6);
-            margin-top: 3px;
-            font-style: italic;
-        }
-
-        /* Magical Animation Elements */
-        .diamond-sparkle {
-            position: absolute;
-            width: 8px;
-            height: 8px;
-            background: radial-gradient(circle, var(--champagne) 0%, transparent 70%);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 1;
-            filter: blur(0.5px);
-        }
-
-        .gold-ripple {
-            position: absolute;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(212, 175, 55, 0.3) 0%, transparent 70%);
-            pointer-events: none;
-            z-index: 0;
-            filter: blur(12px);
-        }
-
-        .floating-word {
-            position: absolute;
-            font-family: 'Cormorant Garamond', serif;
-            font-weight: 500;
+            font-size: 0.65rem;
+            letter-spacing: 3px;
             color: var(--gold);
-            pointer-events: none;
-            z-index: 3;
-            opacity: 0;
-            text-shadow: 0 2px 15px rgba(212, 175, 55, 0.2);
-            font-size: 1.3rem;
+            font-weight: 600;
+            text-transform: uppercase;
         }
 
-        /* Color Morph Animation */
-        .color-morph {
-            animation: morphColors 2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-        }
-
-        @keyframes morphColors {
-            0% { 
-                border-color: rgba(212, 175, 55, 0.2);
-                color: var(--champagne);
-            }
-            25% { 
-                border-color: rgba(232, 180, 184, 0.4);
-                color: var(--blush-pink);
-            }
-            50% { 
-                border-color: rgba(212, 175, 55, 0.6);
-                color: var(--gold);
-            }
-            75% { 
-                border-color: rgba(232, 180, 184, 0.4);
-                color: var(--blush-pink);
-            }
-            100% { 
-                border-color: rgba(212, 175, 55, 0.2);
-                color: var(--champagne);
-            }
-        }
-
-        /* Confetti Container */
-        #confetti-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 999;
-            overflow: hidden;
-        }
-
-        .confetti {
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            background: var(--gold);
-            top: -20px;
-            opacity: 0;
-        }
-
-        /* Share Button */
-        .share-button {
-            position: fixed;
-            bottom: 50px;
-            left: 50px;
-            background: linear-gradient(135deg, 
-                rgba(255, 255, 255, 0.05) 0%, 
-                rgba(255, 255, 255, 0.02) 100%);
-            backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 
-                0 15px 50px rgba(0, 0, 0, 0.3),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1),
-                0 0 0 1px rgba(212, 175, 55, 0.05);
-            border: 1px solid rgba(212, 175, 55, 0.08);
-            opacity: 0;
-            transform: translateY(50px) scale(0.95);
-            transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: 100;
-            cursor: none;
-        }
-
-        .share-button.active {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-        }
-
-        .share-button i {
-            color: var(--gold);
-            font-size: 1.5rem;
-            transition: all 0.5s ease;
-        }
-
-        .share-button:hover i {
-            color: var(--champagne);
-            transform: scale(1.1);
-        }
-
-        /* Tooltip */
-        .tooltip {
-            position: absolute;
-            background: linear-gradient(135deg, 
-                rgba(0, 0, 0, 0.8) 0%, 
-                rgba(10, 10, 10, 0.9) 100%);
-            backdrop-filter: blur(10px);
-            color: var(--champagne);
-            padding: 10px 20px;
-            border-radius: 10px;
-            font-size: 0.9rem;
-            white-space: nowrap;
-            top: -50px;
-            left: 50%;
-            transform: translateX(-50%);
-            opacity: 0;
-            transition: opacity 0.4s ease;
-            pointer-events: none;
-            border: 1px solid rgba(212, 175, 55, 0.1);
-            font-family: 'Inter', sans-serif;
-            font-weight: 300;
-            letter-spacing: 1px;
-        }
-
-        .share-button:hover .tooltip {
-            opacity: 1;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 1100px) {
-            .container {
-                max-width: 90%;
-                padding: 30px 15px;
-            }
-            
-            .luxury-card {
-                padding: 70px 50px;
-                border-radius: 42px;
-            }
-            
-            .main-title {
-                font-size: 3.5rem;
-            }
-            
-            .elegant-title {
-                font-size: 2rem;
-            }
-            
-            .subtitle {
-                font-size: 1.5rem;
-            }
-            
-            p {
-                font-size: 1.15rem;
-                max-width: 90%;
-            }
-            
-            .luxury-btn {
-                padding: 24px 45px;
-                font-size: 1.2rem;
-            }
-            
-            .luxury-audio-player, .share-button {
-                bottom: 30px;
-            }
-            
-            .luxury-audio-player {
-                right: 30px;
-                padding: 18px 30px;
-            }
-            
-            .share-button {
-                left: 30px;
-            }
-            
-            .memory-gallery {
-                width: 250px;
-                height: 250px;
-            }
-            
-            .letter-line {
-                font-size: 1.8rem;
-            }
-        }
+        /* Floating Particles */
+        .particle { position: fixed; pointer-events: none; z-index: 50; }
 
         @media (max-width: 768px) {
-            .luxury-card {
-                padding: 60px 35px;
-                border-radius: 36px;
-            }
-            
-            .main-title {
-                font-size: 2.8rem;
-            }
-            
-            .elegant-title {
-                font-size: 1.8rem;
-            }
-            
-            .subtitle {
-                font-size: 1.3rem;
-            }
-            
-            .btn-container {
-                gap: 20px;
-            }
-            
-            .luxury-audio-player {
-                width: calc(100% - 60px);
-                right: 30px;
-                justify-content: center;
-            }
-            
-            .memory-gallery {
-                width: 220px;
-                height: 220px;
-            }
-            
-            .letter-line {
-                font-size: 1.6rem;
-                margin-bottom: 30px;
-            }
-            
-            .luxury-cursor, .cursor-glow {
-                display: none;
-            }
-            
-            body {
-                cursor: default;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .luxury-card {
-                padding: 50px 25px;
-                border-radius: 32px;
-            }
-            
-            .main-title {
-                font-size: 2.3rem;
-            }
-            
-            .elegant-title {
-                font-size: 1.6rem;
-            }
-            
-            .luxury-btn {
-                padding: 22px 40px;
-                font-size: 1.1rem;
-            }
-            
-            .memory-gallery {
-                width: 200px;
-                height: 200px;
-            }
-            
-            .memory-gallery i {
-                font-size: 3.5rem;
-            }
-            
-            .letter-line {
-                font-size: 1.4rem;
-            }
-            
-            .luxury-audio-player {
-                padding: 15px 25px;
-                gap: 15px;
-            }
-            
-            .audio-btn {
-                width: 45px;
-                height: 45px;
-            }
-            
-            .share-button {
-                width: 55px;
-                height: 55px;
-            }
-        }
-
-        @media (max-width: 360px) {
-            .main-title {
-                font-size: 2rem;
-            }
-            
-            .luxury-card {
-                padding: 40px 20px;
-            }
-            
-            .luxury-btn {
-                padding: 20px 35px;
-            }
-            
-            .memory-gallery {
-                width: 180px;
-                height: 180px;
-            }
+            h1 { font-size: 1.8rem; letter-spacing: 5px; }
+            .message-body { font-size: 1.1rem; line-height: 1.6; }
+            .glass-vault { padding: 40px 25px; width: 92%; }
         }
     </style>
 </head>
 <body>
-    <!-- Preloader -->
+
     <div id="preloader">
-        <div class="luxury-loader"></div>
-        <p>Curating an exquisite moment for Sara</p>
+        <div class="loader-content">
+            <h2 style="font-family:'Cinzel'; color:var(--gold); letter-spacing: 5px;">SARA KHAN</h2>
+            <p style="font-size: 0.6rem; letter-spacing: 4px; margin-top: 10px; opacity: 0.6;">OPENING A PRIVATE HEART...</p>
+        </div>
     </div>
 
-    <!-- Luxury Background -->
-    <div class="luxury-bg">
-        <div class="bg-gradient"></div>
-        <div class="gold-filigree"></div>
-        <div class="particles-container" id="particles"></div>
-    </div>
+    <div id="cursor-ring"></div>
+    <div id="cursor-dot"></div>
+    <div class="bg-gradient"></div>
+    <div class="texture-overlay"></div>
 
-    <!-- Premium Cursor -->
-    <div class="luxury-cursor" id="luxuryCursor"></div>
-    <div class="cursor-glow" id="cursorGlow"></div>
-
-    <!-- Main Container -->
-    <div class="container">
-        <!-- Scene 1: Sealed Intro -->
-        <div class="scene active" id="scene1">
-            <div class="luxury-card">
-                <div class="date-display" id="dateDisplay"></div>
-                <h1 class="main-title">A Sealed Moment</h1>
-                <p class="subtitle">An exquisite experience, crafted solely for you</p>
-                <div class="luxury-lock">
-                    <i class="fas fa-lock"></i>
-                </div>
-                <div class="btn-container">
-                    <button class="luxury-btn" id="unlockBtn">
-                        <i class="fas fa-gem" style="margin-right: 12px; font-size: 1.1rem;"></i>
-                        Unlock with Intent
-                    </button>
-                </div>
-            </div>
+    <div class="stage">
+        <div class="glass-vault active" id="scene1">
+            <div class="subtitle">A Private Dedication</div>
+            <h1>For Sara Khan</h1>
+            <p class="message-body">
+                Some moments are too beautiful for words, <br>
+                and some people are too precious for a single day. <br><br>
+                <span style="color: var(--gold); font-style: italic; font-size: 1.1rem;">Will you step into my heart for a moment?</span>
+            </p>
+            <button class="btn-luxury" onclick="goToScene(2)">Open My Heart</button>
         </div>
 
-        <!-- Scene 2: The Question -->
-        <div class="scene" id="scene2">
-            <div class="luxury-card">
-                <h2 class="elegant-title">Sara Khan</h2>
-                <p class="subtitle">Do you cherish being cared for, even in the most silent moments?</p>
+        <div class="glass-vault" id="scene2">
+            <h1>My Valentine</h1>
+            <p class="message-body">
+                In a world of temporary things, <strong>you are my forever</strong>. <br><br>
+                Sara, you are the poetry in a world of prose. 
+                You are the calm I never knew I needed and the 
+                clarity I can no longer live without. <br><br>
                 
-                <!-- Memory Gallery -->
-                <div class="memory-gallery" id="memoryGallery">
-                    <i class="fas fa-heart"></i>
-                    <p>A Treasured Memory</p>
-                </div>
-                
-                <div class="btn-container">
-                    <button class="luxury-btn" id="yesBtn">
-                        <i class="fas fa-check-circle" style="margin-right: 12px; font-size: 1.1rem;"></i>
-                        Yes, I deeply do
-                    </button>
-                    <button class="luxury-btn" id="noBtn">
-                        <i class="fas fa-playful" style="margin-right: 12px; font-size: 1.1rem;"></i>
-                        I'm playfully pretending otherwise
-                    </button>
-                </div>
-                <p id="teasingText" class="subtitle" style="display: none;">
-                    Quite alright. The care remains unwavering.
-                </p>
-            </div>
-        </div>
-
-        <!-- Scene 3: Verification -->
-        <div class="scene" id="scene3">
-            <div class="luxury-card">
-                <div class="luxury-lock">
-                    <i class="fas fa-lock"></i>
-                </div>
-                <div class="verification-text">
-                    <div id="verificationLine1" class="verification-line">Verifying your heartfelt response...</div>
-                    <div id="verificationLine2" class="verification-line" style="display: none;">Harmonizing emotional frequencies...</div>
-                    <div id="verificationLine3" class="verification-line" style="display: none;">Connection with Sara Khan · Established</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Scene 4: Patience Moment -->
-        <div class="scene" id="scene4">
-            <div class="luxury-card breathing-animation">
-                <h1 class="main-title">Elegance Unfolds with Time</h1>
-                <div class="luxury-lock">
-                    <i class="fas fa-unlock"></i>
-                </div>
-                <p class="subtitle">Curating this moment with precision and care</p>
-            </div>
-        </div>
-
-        <!-- Scene 5: Final Letter -->
-        <div class="scene" id="scene5">
-            <div class="luxury-card">
-                <h1 class="main-title">For Sara Khan</h1>
-                <div class="letter-content">
-                    <p class="letter-line" id="letterLine1">Happy Valentine's Day.</p>
-                    <p class="letter-line" id="letterLine2">This transcends a mere message.</p>
-                    <p class="letter-line" id="letterLine3">It is a delicate reminder that you are cherished,</p>
-                    <p class="letter-line" id="letterLine4">contemplated,</p>
-                    <p class="letter-line" id="letterLine5">and chosen — with quiet sincerity.</p>
-                    <p class="letter-line" id="letterLine6">Within a cacophonous world, you are my serenity.</p>
-                    <p class="letter-line" id="letterLine7">Amidst bustling days, you are my pause.</p>
-                    <p class="letter-line" id="letterLine8">Today, I simply wished for you to feel this truth.</p>
-                    <p class="letter-line" id="letterLine9">Happy Valentine's Day, Sara.</p>
-                    <p class="letter-line" id="letterLine10">Always.</p>
-                </div>
-                <div class="signature">With utmost care</div>
-                <div class="micro-detail">Exclusively unlocked for Sara Khan</div>
+                <span style="font-family: 'Cinzel'; color: var(--gold); font-size: 1rem; letter-spacing: 3px;">
+                    I don't just choose you today—I choose you in every version of tomorrow.
+                </span>
+                <br><br>
+                Happy Valentine's Day, my beautiful Sara.
+            </p>
+            <div class="subtitle" style="margin-top: 10px; border-top: 1px solid rgba(212,175,55,0.2); padding-top: 25px;">
+                Faithfully & Always Yours
             </div>
         </div>
     </div>
 
-    <!-- Confetti Container -->
-    <div id="confetti-container"></div>
-
-    <!-- Luxury Audio Player -->
-    <div class="luxury-audio-player" id="audioPlayer">
-        <div class="audio-controls">
-            <div class="audio-btn" id="playBtn">
-                <i class="fas fa-play"></i>
-            </div>
-            <div class="audio-btn" id="volumeBtn">
-                <i class="fas fa-volume-up"></i>
-            </div>
-        </div>
-        <div class="audio-info">
-            Now Playing
-            <span class="track-info">"Lady" by Avenoir</span>
-        </div>
+    <div class="audio-hub">
+        <button class="play-btn" id="audioToggle">
+            <i class="fas fa-play" id="playIcon"></i>
+        </button>
+        <div class="track-info">LADY — AVENOIR</div>
     </div>
 
-    <!-- Share Button -->
-    <div class="share-button" id="shareButton">
-        <i class="fas fa-share-alt"></i>
-        <div class="tooltip">Preserve this moment</div>
-    </div>
-
-    <!-- Audio Element -->
-    <audio id="luxuryAudio" preload="metadata">
-        <!-- Premium romantic track -->
+    <audio id="mainMusic" loop>
         <source src="https://assets.mixkit.co/music/preview/mixkit-romantic-sunset-687.mp3" type="audio/mpeg">
     </audio>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script>
-        // DOM elements
-        const scenes = document.querySelectorAll('.scene');
-        const preloader = document.getElementById('preloader');
-        const luxuryCursor = document.getElementById('luxuryCursor');
-        const cursorGlow = document.getElementById('cursorGlow');
-        const unlockBtn = document.getElementById('unlockBtn');
-        const yesBtn = document.getElementById('yesBtn');
-        const noBtn = document.getElementById('noBtn');
-        const teasingText = document.getElementById('teasingText');
-        const audioPlayer = document.getElementById('audioPlayer');
-        const playBtn = document.getElementById('playBtn');
-        const volumeBtn = document.getElementById('volumeBtn');
-        const shareButton = document.getElementById('shareButton');
-        const memoryGallery = document.getElementById('memoryGallery');
-        const dateDisplay = document.getElementById('dateDisplay');
-        const luxuryAudio = document.getElementById('luxuryAudio');
-        const confettiContainer = document.getElementById('confetti-container');
-        
-        // State variables
-        let currentScene = 1;
-        let isPlaying = false;
-        let isMuted = false;
-        
-        // Luxury words for animations
-        const luxuryWords = ["Cherished", "Adored", "Precious", "Revered", "Esteemed", "Venerated", "Beloved", "Treasured"];
-        
-        // Initialize date display
-        function initializeDate() {
-            const today = new Date();
-            const options = { 
-                weekday: 'long', 
-                year: 'numeric', 
-                month: 'long', 
-                day: 'numeric' 
-            };
-            const dateString = today.toLocaleDateString('en-US', options);
-            dateDisplay.textContent = dateString;
-        }
-        
-        // Create luxury background particles
-        function createLuxuryParticles() {
-            const particlesContainer = document.getElementById('particles');
-            const particleCount = window.innerWidth < 768 ? 15 : 25;
-            
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                
-                // Random properties
-                const size = 1 + Math.random() * 3;
-                const left = Math.random() * 100;
-                const top = 100 + Math.random() * 20;
-                const delay = Math.random() * 25;
-                const duration = 15 + Math.random() * 20;
-                
-                particle.style.width = `${size}px`;
-                particle.style.height = `${size}px`;
-                particle.style.left = `${left}%`;
-                particle.style.top = `${top}%`;
-                particle.style.animationDelay = `${delay}s`;
-                particle.style.animationDuration = `${duration}s`;
-                
-                particlesContainer.appendChild(particle);
-            }
-        }
-        
-        // Initialize luxury cursor
-        function initializeLuxuryCursor() {
-            document.addEventListener('mousemove', (e) => {
-                luxuryCursor.style.left = `${e.clientX}px`;
-                luxuryCursor.style.top = `${e.clientY}px`;
-                cursorGlow.style.left = `${e.clientX}px`;
-                cursorGlow.style.top = `${e.clientY}px`;
-                
-                // Enhanced hover effects
-                const target = e.target;
-                const isInteractive = target.classList.contains('luxury-btn') || 
-                                     target.classList.contains('audio-btn') ||
-                                     target.closest('.luxury-btn') ||
-                                     target.closest('.audio-btn') ||
-                                     target.closest('.memory-gallery') ||
-                                     target.closest('.share-button');
-                
-                if (isInteractive) {
-                    luxuryCursor.style.transform = 'scale(1.6)';
-                    luxuryCursor.style.borderColor = 'var(--gold)';
-                    luxuryCursor.style.borderWidth = '2px';
-                    cursorGlow.style.transform = 'scale(1.4)';
-                    cursorGlow.style.opacity = '0.5';
-                } else {
-                    luxuryCursor.style.transform = 'scale(1)';
-                    luxuryCursor.style.borderColor = 'var(--gold)';
-                    luxuryCursor.style.borderWidth = '1.5px';
-                    cursorGlow.style.transform = 'scale(1)';
-                    cursorGlow.style.opacity = '0.3';
-                }
-            });
-            
-            // Click animation
-            document.addEventListener('click', () => {
-                luxuryCursor.style.transform = 'scale(0.7)';
-                setTimeout(() => {
-                    const target = event?.target;
-                    const isInteractive = target?.classList.contains('luxury-btn') || 
-                                         target?.closest('.luxury-btn');
-                    luxuryCursor.style.transform = isInteractive ? 'scale(1.6)' : 'scale(1)';
-                }, 150);
-            });
-        }
-        
-        // Initialize preloader
-        function initializePreloader() {
-            setTimeout(() => {
-                preloader.style.opacity = '0';
-                preloader.style.visibility = 'hidden';
-            }, 2500);
-        }
-        
-        // Change scene with luxury transition
-        function changeScene(nextScene) {
-            const currentSceneElement = document.getElementById(`scene${currentScene}`);
-            currentSceneElement.classList.remove('active');
-            
-            setTimeout(() => {
-                const nextSceneElement = document.getElementById(`scene${nextScene}`);
-                nextSceneElement.classList.add('active');
-                currentScene = nextScene;
-                
-                // Scene-specific actions
-                switch (nextScene) {
-                    case 3:
-                        startLuxuryVerification();
-                        break;
-                    case 4:
-                        setTimeout(() => changeScene(5), 4000);
-                        break;
-                    case 5:
-                        startFinalLetter();
-                        setTimeout(() => {
-                            audioPlayer.classList.add('active');
-                            shareButton.classList.add('active');
-                            launchLuxuryConfetti();
-                        }, 1200);
-                        break;
-                }
-            }, 700);
-        }
-        
-        // Create diamond sparkle animation
-        function createDiamondSparkle(x, y, color = "var(--gold)") {
-            const sparkleCount = window.innerWidth < 768 ? 15 : 28;
-            const container = document.querySelector('.container');
-            
-            for (let i = 0; i < sparkleCount; i++) {
-                const sparkle = document.createElement('div');
-                sparkle.className = 'diamond-sparkle';
-                sparkle.style.left = `${x}px`;
-                sparkle.style.top = `${y}px`;
-                sparkle.style.background = `radial-gradient(circle, ${color} 0%, transparent 70%)`;
-                
-                // Luxury animation properties
-                const angle = Math.random() * Math.PI * 2;
-                const distance = 50 + Math.random() * 120;
-                const duration = 1 + Math.random() * 0.8;
-                const size = 4 + Math.random() * 8;
-                const blur = Math.random() > 0.5 ? 'blur(1px)' : 'blur(0.5px)';
-                
-                sparkle.style.width = `${size}px`;
-                sparkle.style.height = `${size}px`;
-                sparkle.style.filter = blur;
-                
-                container.appendChild(sparkle);
-                
-                // Animate with luxury timing
-                setTimeout(() => {
-                    sparkle.style.transition = `all ${duration}s cubic-bezier(0.4, 0, 0.2, 1)`;
-                    sparkle.style.transform = `translate(${Math.cos(angle) * distance}px, ${Math.sin(angle) * distance}px) scale(0.1)`;
-                    sparkle.style.opacity = '0';
-                    
-                    // Remove with delay
-                    setTimeout(() => {
-                        if (sparkle.parentNode) {
-                            sparkle.parentNode.removeChild(sparkle);
-                        }
-                    }, duration * 1100);
-                }, 10);
-            }
-        }
-        
-        // Create gold ripple effect
-        function createGoldRipple(x, y) {
-            const ripple = document.createElement('div');
-            ripple.className = 'gold-ripple';
-            ripple.style.left = `${x}px`;
-            ripple.style.top = `${y}px`;
-            ripple.style.width = '20px';
-            ripple.style.height = '20px';
-            ripple.style.background = 'radial-gradient(circle, rgba(212, 175, 55, 0.4) 0%, transparent 70%)';
-            
-            document.querySelector('.container').appendChild(ripple);
-            
-            setTimeout(() => {
-                ripple.style.transition = 'all 1.6s cubic-bezier(0.4, 0, 0.2, 1)';
-                ripple.style.transform = 'scale(60)';
-                ripple.style.opacity = '0';
-                
-                setTimeout(() => {
-                    if (ripple.parentNode) {
-                        ripple.parentNode.removeChild(ripple);
-                    }
-                }, 1600);
-            }, 10);
-        }
-        
-        // Create floating word animation
-        function createFloatingWord(x, y, word) {
-            const floatingWord = document.createElement('div');
-            floatingWord.className = 'floating-word';
-            floatingWord.textContent = word;
-            floatingWord.style.left = `${x}px`;
-            floatingWord.style.top = `${y}px`;
-            floatingWord.style.fontSize = `${1.2 + Math.random() * 0.6}rem`;
-            floatingWord.style.color = `hsl(${45 + Math.random() * 15}, 70%, 65%)`;
-            
-            document.querySelector('.container').appendChild(floatingWord);
-            
-            setTimeout(() => {
-                floatingWord.style.transition = 'all 3.2s cubic-bezier(0.4, 0, 0.2, 1)';
-                floatingWord.style.transform = `translateY(-${140 + Math.random() * 120}px) translateX(${(Math.random() - 0.5) * 100}px) rotate(${(Math.random() - 0.5) * 25}deg)`;
-                floatingWord.style.opacity = '0.9';
-                
-                setTimeout(() => {
-                    floatingWord.style.opacity = '0';
-                    setTimeout(() => {
-                        if (floatingWord.parentNode) {
-                            floatingWord.parentNode.removeChild(floatingWord);
-                        }
-                    }, 600);
-                }, 2800);
-            }, 10);
-        }
-        
-        // Apply luxury color morph
-        function applyLuxuryColorMorph(button) {
-            button.classList.add('color-morph');
-            setTimeout(() => {
-                button.classList.remove('color-morph');
-            }, 2000);
-        }
-        
-        // Handle luxury button click
-        function handleLuxuryButtonClick(button, event) {
-            const rect = button.getBoundingClientRect();
-            const x = rect.left + rect.width / 2;
-            const y = rect.top + rect.height / 2;
-            
-            // Luxury animations
-            createDiamondSparkle(x, y, "var(--gold)");
-            createGoldRipple(x, y);
-            applyLuxuryColorMorph(button);
-            
-            // Floating words
-            const wordCount = 2 + Math.floor(Math.random() * 3);
-            for (let i = 0; i < wordCount; i++) {
-                setTimeout(() => {
-                    const randomWord = luxuryWords[Math.floor(Math.random() * luxuryWords.length)];
-                    createFloatingWord(x, y, randomWord);
-                }, i * 450);
-            }
-            
-            // Button press animation
-            button.style.transform = 'scale(0.94)';
-            setTimeout(() => {
-                button.style.transform = '';
-            }, 220);
-            
-            return { x, y };
-        }
-        
-        // Start luxury verification
-        function startLuxuryVerification() {
-            const lines = [
-                document.getElementById('verificationLine1'),
-                document.getElementById('verificationLine2'),
-                document.getElementById('verificationLine3')
-            ];
-            
-            lines[0].classList.add('active');
-            
-            setTimeout(() => {
-                lines[0].style.display = 'none';
-                lines[1].style.display = 'block';
-                setTimeout(() => lines[1].classList.add('active'), 50);
-                
-                setTimeout(() => {
-                    lines[1].style.display = 'none';
-                    lines[2].style.display = 'block';
-                    setTimeout(() => lines[2].classList.add('active'), 50);
-                    
-                    setTimeout(() => {
-                        changeScene(4);
-                    }, 2200);
-                }, 2200);
-            }, 2200);
-        }
-        
-        // Animate final letter
-        function startFinalLetter() {
-            const letterLines = document.querySelectorAll('.letter-line');
-            
-            letterLines.forEach((line, index) => {
-                setTimeout(() => {
-                    line.classList.add('active');
-                    
-                    // Add diamond sparkles on specific lines
-                    if (index % 3 === 0) {
-                        const rect = line.getBoundingClientRect();
-                        createDiamondSparkle(
-                            rect.left + rect.width / 2,
-                            rect.top + rect.height / 2,
-                            "var(--champagne)"
-                        );
-                    }
-                }, index * 1250);
-            });
-        }
-        
-        // Launch luxury confetti
-        function launchLuxuryConfetti() {
-            const confettiCount = 180;
-            const colors = ['var(--gold)', 'var(--blush-pink)', 'var(--champagne)', 'var(--dusty-rose)', '#FFFFFF'];
-            
-            for (let i = 0; i < confettiCount; i++) {
-                const confetti = document.createElement('div');
-                confetti.className = 'confetti';
-                confetti.style.left = `${Math.random() * 100}%`;
-                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                confetti.style.borderRadius = Math.random() > 0.6 ? '50%' : '2px';
-                confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
-                confetti.style.width = `${6 + Math.random() * 12}px`;
-                confetti.style.height = `${6 + Math.random() * 12}px`;
-                
-                confettiContainer.appendChild(confetti);
-                
-                const animationDuration = 2.5 + Math.random() * 3;
-                setTimeout(() => {
-                    confetti.style.transition = `all ${animationDuration}s cubic-bezier(0.4, 0, 0.2, 1)`;
-                    confetti.style.opacity = '0.9';
-                    confetti.style.top = `${100 + Math.random() * 25}%`;
-                    confetti.style.transform = `rotate(${Math.random() * 1080}deg) translateX(${(Math.random() - 0.5) * 250}px)`;
-                    
-                    setTimeout(() => {
-                        confetti.style.opacity = '0';
-                        setTimeout(() => {
-                            if (confetti.parentNode) {
-                                confetti.parentNode.removeChild(confetti);
-                            }
-                        }, 600);
-                    }, animationDuration * 900);
-                }, i * 25);
-            }
-        }
-        
-        // Event Listeners
-        unlockBtn.addEventListener('click', (e) => {
-            handleLuxuryButtonClick(unlockBtn, e);
-            setTimeout(() => changeScene(2), 1100);
+        const ring = document.getElementById('cursor-ring');
+        const dot = document.getElementById('cursor-dot');
+
+        window.addEventListener('mousemove', (e) => {
+            gsap.to(ring, { x: e.clientX - 25, y: e.clientY - 25, duration: 0.4 });
+            gsap.to(dot, { x: e.clientX - 2, y: e.clientY - 2, duration: 0.1 });
         });
-        
-        yesBtn.addEventListener('click', (e) => {
-            handleLuxuryButtonClick(yesBtn, e);
-            setTimeout(() => changeScene(3), 1100);
+
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('preloader').style.opacity = '0';
+                setTimeout(() => document.getElementById('preloader').remove(), 2000);
+            }, 3000);
         });
-        
-        noBtn.addEventListener('click', (e) => {
-            const { x, y } = handleLuxuryButtonClick(noBtn, e);
-            
-            // Luxury tilt effect
-            const scene2Card = document.querySelector('#scene2 .luxury-card');
-            scene2Card.style.transform = 'perspective(1200px) rotateY(12deg)';
-            
-            // Show teasing text
-            teasingText.style.display = 'block';
-            setTimeout(() => {
-                teasingText.style.opacity = '1';
-            }, 50);
-            
-            // Extra sparkles
-            setTimeout(() => {
-                const textRect = teasingText.getBoundingClientRect();
-                createDiamondSparkle(
-                    textRect.left + textRect.width / 2,
-                    textRect.top + textRect.height / 2,
-                    "var(--gold)"
-                );
-            }, 500);
-            
-            // Return to normal
-            setTimeout(() => {
-                scene2Card.style.transform = '';
-            }, 1400);
-            
-            // Hide teasing text
-            setTimeout(() => {
-                teasingText.style.opacity = '0';
-                setTimeout(() => {
-                    teasingText.style.display = 'none';
-                }, 700);
-            }, 3800);
-        });
-        
-        // Memory gallery interaction
-        memoryGallery.addEventListener('click', () => {
-            const rect = memoryGallery.getBoundingClientRect();
-            const centerX = rect.left + rect.width / 2;
-            const centerY = rect.top + rect.height / 2;
-            
-            createDiamondSparkle(centerX, centerY, "var(--gold)");
-            
-            // Create floating hearts
-            for (let i = 0; i < 10; i++) {
-                setTimeout(() => {
-                    const heart = document.createElement('div');
-                    heart.innerHTML = '<i class="fas fa-heart"></i>';
-                    heart.style.position = 'absolute';
-                    heart.style.left = `${centerX}px`;
-                    heart.style.top = `${centerY}px`;
-                    heart.style.color = 'var(--gold)';
-                    heart.style.fontSize = `${1.2 + Math.random() * 1.8}rem`;
-                    heart.style.opacity = '0';
-                    heart.style.zIndex = '10';
-                    heart.style.pointerEvents = 'none';
-                    heart.style.filter = 'drop-shadow(0 2px 8px rgba(212, 175, 55, 0.3))';
-                    
-                    document.querySelector('.container').appendChild(heart);
-                    
-                    setTimeout(() => {
-                        heart.style.transition = 'all 2.5s cubic-bezier(0.4, 0, 0.2, 1)';
-                        heart.style.opacity = '0.9';
-                        heart.style.transform = `
-                            translate(${(Math.random() - 0.5) * 180}px, -${120 + Math.random() * 140}px) 
-                            scale(${0.6 + Math.random() * 0.6})
-                            rotate(${Math.random() * 360}deg)
-                        `;
-                        
-                        setTimeout(() => {
-                            heart.style.opacity = '0';
-                            setTimeout(() => {
-                                if (heart.parentNode) {
-                                    heart.parentNode.removeChild(heart);
-                                }
-                            }, 600);
-                        }, 2200);
-                    }, 10);
-                }, i * 180);
-            }
-        });
-        
-        // Audio player controls
-        playBtn.addEventListener('click', () => {
-            const icon = playBtn.querySelector('i');
-            
-            if (isPlaying) {
-                luxuryAudio.pause();
-                icon.classList.remove('fa-pause');
-                icon.classList.add('fa-play');
+
+        function goToScene(id) {
+            const current = document.querySelector('.glass-vault.active');
+            gsap.to(current, { opacity: 0, y: -20, scale: 0.95, duration: 1, onComplete: () => {
+                current.classList.remove('active');
+                const next = document.getElementById(`scene${id}`);
+                next.classList.add('active');
+                gsap.fromTo(next, {opacity: 0, y: 30, scale: 0.95}, {opacity: 1, y: 0, scale: 1, duration: 1.5});
+                if(id === 2) launchPetals();
+            }});
+        }
+
+        const music = document.getElementById('mainMusic');
+        const audioBtn = document.getElementById('audioToggle');
+        const icon = document.getElementById('playIcon');
+        let playing = false;
+
+        audioBtn.addEventListener('click', () => {
+            if(!playing) {
+                music.play();
+                icon.className = 'fas fa-pause';
             } else {
-                luxuryAudio.play().catch(e => {
-                    console.log("Audio playback requires interaction");
-                    playBtn.style.background = 'linear-gradient(135deg, rgba(212, 175, 55, 0.2) 0%, rgba(232, 180, 184, 0.1) 100%)';
-                    setTimeout(() => {
-                        playBtn.style.background = '';
-                    }, 1200);
+                music.pause();
+                icon.className = 'fas fa-play';
+            }
+            playing = !playing;
+        });
+
+        function launchPetals() {
+            for(let i=0; i<45; i++) {
+                setTimeout(createPetal, i * 120);
+            }
+        }
+
+        function createPetal() {
+            const petal = document.createElement('div');
+            petal.className = 'particle';
+            const isGold = Math.random() > 0.7;
+            petal.style.width = (Math.random() * 8 + 4) + 'px';
+            petal.style.height = petal.style.width;
+            petal.style.background = isGold ? 'var(--gold)' : '#630a0a';
+            petal.style.borderRadius = '50% 0 50% 50%';
+            petal.style.left = Math.random() * 100 + 'vw';
+            petal.style.top = '-5vh';
+            petal.style.opacity = Math.random();
+            document.body.appendChild(petal);
+
+            gsap.to(petal, {
+                y: '110vh',
+                x: (Math.random() - 0.5) * 500,
+                rotation: 720,
+                duration: 7 + Math.random() * 5,
+                ease: "none",
+                onComplete: () => petal.remove()
+            });
+        }
+
+        window.addEventListener('mousedown', (e) => {
+            for(let i=0; i<8; i++) {
+                const spark = document.createElement('div');
+                spark.style.position = 'fixed';
+                spark.style.left = e.clientX + 'px';
+                spark.style.top = e.clientY + 'px';
+                spark.style.width = '2px';
+                spark.style.height = '12px';
+                spark.style.background = 'var(--gold)';
+                spark.style.pointerEvents = 'none';
+                document.body.appendChild(spark);
+
+                const angle = (i / 8) * Math.PI * 2;
+                gsap.to(spark, {
+                    x: Math.cos(angle) * 120,
+                    y: Math.sin(angle) * 120,
+                    rotation: angle * 100,
+                    opacity: 0,
+                    duration: 1.2,
+                    onComplete: () => spark.remove()
                 });
-                icon.classList.remove('fa-play');
-                icon.classList.add('fa-pause');
             }
-            isPlaying = !isPlaying;
         });
-        
-        // Volume control
-        volumeBtn.addEventListener('click', () => {
-            const icon = volumeBtn.querySelector('i');
-            
-            if (isMuted) {
-                luxuryAudio.volume = 0.5;
-                icon.classList.remove('fa-volume-mute');
-                icon.classList.add('fa-volume-up');
-            } else {
-                luxuryAudio.volume = 0;
-                icon.classList.remove('fa-volume-up');
-                icon.classList.add('fa-volume-mute');
-            }
-            isMuted = !isMuted;
-        });
-        
-        // Share button functionality
-        shareButton.addEventListener('click', () => {
-            const originalFilter = document.querySelector('.luxury-bg').style.filter;
-            document.querySelector('.luxury-bg').style.filter = 'brightness(1.15)';
-            
-            const rect = shareButton.getBoundingClientRect();
-            createDiamondSparkle(
-                rect.left + rect.width / 2,
-                rect.top + rect.height / 2,
-                "#FFFFFF"
-            );
-            
-            // Luxury message
-            const message = document.createElement('div');
-            message.textContent = 'This moment is eternally preserved ♡';
-            message.style.position = 'fixed';
-            message.style.top = '50%';
-            message.style.left = '50%';
-            message.style.transform = 'translate(-50%, -50%)';
-            message.style.background = 'linear-gradient(135deg, rgba(0, 0, 0, 0.85) 0%, rgba(10, 10, 10, 0.9) 100%)';
-            message.style.color = 'var(--champagne)';
-            message.style.padding = '25px 50px';
-            message.style.borderRadius = '24px';
-            message.style.zIndex = '10000';
-            message.style.fontFamily = "'Cormorant Garamond', serif";
-            message.style.fontSize = '1.6rem';
-            message.style.textAlign = 'center';
-            message.style.backdropFilter = 'blur(15px)';
-            message.style.border = '1px solid rgba(212, 175, 55, 0.15)';
-            message.style.opacity = '0';
-            message.style.transition = 'opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
-            message.style.boxShadow = '0 20px 60px rgba(0, 0, 0, 0.4)';
-            
-            document.body.appendChild(message);
-            
-            setTimeout(() => {
-                message.style.opacity = '1';
-            }, 10);
-            
-            setTimeout(() => {
-                message.style.opacity = '0';
-                setTimeout(() => {
-                    if (message.parentNode) {
-                        document.body.removeChild(message);
-                    }
-                    document.querySelector('.luxury-bg').style.filter = originalFilter;
-                }, 700);
-            }, 2500);
-        });
-        
-        // Initialize everything
-        function initializeLuxuryExperience() {
-            initializeDate();
-            createLuxuryParticles();
-            initializeLuxuryCursor();
-            initializePreloader();
-            
-            // Set audio volume
-            luxuryAudio.volume = 0.5;
-            
-            // Continuous ambient sparkles
-            setInterval(() => {
-                if (currentScene === 1 || currentScene === 5) {
-                    const x = Math.random() * window.innerWidth;
-                    const y = Math.random() * window.innerHeight;
-                    if (Math.random() > 0.85) {
-                        createDiamondSparkle(x, y, "rgba(247, 231, 206, 0.7)");
-                    }
-                }
-            }, 1500);
-            
-            // Interactive background
-            document.addEventListener('mousemove', (e) => {
-                const bgGradient = document.querySelector('.bg-gradient');
-                const x = e.clientX / window.innerWidth;
-                const y = e.clientY / window.innerHeight;
-                
-                bgGradient.style.transform = `
-                    translate(${x * 30 - 15}px, ${y * 30 - 15}px) 
-                    rotate(${x * 8}deg) 
-                    scale(1.03)
-                `;
-            });
-        }
-        
-        // Start the luxury experience
-        window.addEventListener('load', initializeLuxuryExperience);
-        
-        // Prevent context menu
-        document.addEventListener('contextmenu', (e) => e.preventDefault());
     </script>
 </body>
 </html>
