@@ -662,4 +662,947 @@
                 border-color: rgba(209, 77, 114, 0.5);
                 color: #FFD1DC;
             }
-       
+            75% { 
+                border-color: rgba(255, 182, 193, 0.4);
+                color: var(--primary-pink);
+            }
+            100% { 
+                border-color: rgba(255, 255, 255, 0.1);
+                color: var(--cream);
+            }
+        }
+
+        /* Confetti container */
+        #confetti-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 999;
+            overflow: hidden;
+        }
+
+        .confetti {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: var(--primary-pink);
+            top: -20px;
+            opacity: 0;
+        }
+
+        /* Share button */
+        .share-button {
+            position: fixed;
+            bottom: 35px;
+            left: 35px;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 1s cubic-bezier(0.19, 1, 0.22, 1);
+            z-index: 100;
+            cursor: none;
+        }
+
+        .share-button.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .share-button i {
+            color: var(--primary-pink);
+            font-size: 1.4rem;
+            transition: all 0.3s ease;
+        }
+
+        .share-button:hover i {
+            color: var(--glow-pink);
+            transform: scale(1.1);
+        }
+
+        /* Tooltip */
+        .tooltip {
+            position: absolute;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            color: var(--cream);
+            padding: 8px 15px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            white-space: nowrap;
+            top: -45px;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .share-button:hover .tooltip {
+            opacity: 1;
+        }
+
+        /* Responsive design */
+        @media (max-width: 900px) {
+            .container {
+                max-width: 95%;
+                padding: 15px;
+            }
+            
+            .glass-card {
+                padding: 50px 35px;
+                border-radius: 35px;
+            }
+            
+            h1 {
+                font-size: 2.8rem;
+            }
+            
+            .subtitle {
+                font-size: 1.6rem;
+            }
+            
+            p {
+                font-size: 1.2rem;
+                max-width: 100%;
+            }
+            
+            .btn {
+                padding: 22px 40px;
+                font-size: 1.2rem;
+            }
+            
+            .audio-player, .share-button {
+                bottom: 25px;
+            }
+            
+            .audio-player {
+                right: 25px;
+                padding: 15px 22px;
+            }
+            
+            .share-button {
+                left: 25px;
+            }
+            
+            .memory-placeholder {
+                width: 200px;
+                height: 200px;
+            }
+            
+            .letter-line {
+                font-size: 1.6rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .glass-card {
+                padding: 40px 25px;
+                border-radius: 30px;
+            }
+            
+            h1 {
+                font-size: 2.4rem;
+            }
+            
+            .subtitle {
+                font-size: 1.4rem;
+            }
+            
+            .btn-container {
+                gap: 15px;
+            }
+            
+            .audio-player {
+                width: calc(100% - 50px);
+                justify-content: center;
+                right: 25px;
+            }
+            
+            .memory-placeholder {
+                width: 180px;
+                height: 180px;
+            }
+            
+            .letter-line {
+                font-size: 1.4rem;
+                margin-bottom: 25px;
+            }
+            
+            body {
+                cursor: default;
+            }
+            
+            .custom-cursor, .cursor-glow {
+                display: none;
+            }
+        }
+
+        @media (max-width: 400px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .glass-card {
+                padding: 35px 20px;
+            }
+            
+            .btn {
+                padding: 20px 35px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="loader-sparkle"></div>
+        <p>Preparing something special for Sara...</p>
+    </div>
+
+    <!-- Enhanced glowing background -->
+    <div class="background-wrapper">
+        <div class="gradient-bg"></div>
+        <div class="pink-glow"></div>
+        <div class="particles" id="particles"></div>
+    </div>
+
+    <!-- Custom cursor -->
+    <div class="custom-cursor" id="customCursor"></div>
+    <div class="cursor-glow" id="cursorGlow"></div>
+
+    <!-- Main container -->
+    <div class="container">
+        <!-- Scene 1: Locked Intro -->
+        <div class="scene active" id="scene1">
+            <div class="glass-card">
+                <div class="date-display" id="dateDisplay"></div>
+                <h1>This Moment is Sealed</h1>
+                <p class="subtitle">Something crafted with care, exclusively for you</p>
+                <div class="lock-icon">
+                    <i class="fas fa-lock"></i>
+                </div>
+                <div class="btn-container">
+                    <button class="btn" id="unlockBtn">Unlock with a Touch</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scene 2: The Question -->
+        <div class="scene" id="scene2">
+            <div class="glass-card">
+                <h1>Sara Khan</h1>
+                <p class="subtitle">Do you appreciate being cared for, even in the quietest moments?</p>
+                
+                <!-- Memory placeholder -->
+                <div class="memory-placeholder" id="memoryPlaceholder">
+                    <i class="fas fa-heart"></i>
+                    <p>A memory worth keeping</p>
+                </div>
+                
+                <div class="btn-container">
+                    <button class="btn" id="yesBtn">Yes, I truly do</button>
+                    <button class="btn" id="noBtn">I'm pretending not to</button>
+                </div>
+                <p id="teasingText" class="subtitle" style="display: none;">
+                    That's perfectly alright. The care remains.
+                </p>
+            </div>
+        </div>
+
+        <!-- Scene 3: Verification -->
+        <div class="scene" id="scene3">
+            <div class="glass-card">
+                <div class="lock-icon">
+                    <i class="fas fa-lock"></i>
+                </div>
+                <div class="verification-text">
+                    <div id="verificationLine1" class="verification-line">Verifying your heartfelt answer...</div>
+                    <div id="verificationLine2" class="verification-line" style="display: none;">Aligning emotions and frequencies...</div>
+                    <div id="verificationLine3" class="verification-line" style="display: none;">Connection with Sara Khan confirmed.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scene 4: Patience Moment -->
+        <div class="scene" id="scene4">
+            <div class="glass-card breathing-animation">
+                <h1>Beautiful things unfold with time, Sara</h1>
+                <div class="lock-icon">
+                    <i class="fas fa-unlock"></i>
+                </div>
+                <p class="subtitle">Curating this moment just for you</p>
+            </div>
+        </div>
+
+        <!-- Scene 5: Final Letter -->
+        <div class="scene" id="scene5">
+            <div class="glass-card">
+                <h1>For Sara Khan</h1>
+                <div class="letter-content">
+                    <p class="letter-line" id="letterLine1">Happy Valentine's Day.</p>
+                    <p class="letter-line" id="letterLine2">This isn't merely a message.</p>
+                    <p class="letter-line" id="letterLine3">It's a gentle reminder that you are cared for,</p>
+                    <p class="letter-line" id="letterLine4">thought of,</p>
+                    <p class="letter-line" id="letterLine5">and chosen — quietly and sincerely.</p>
+                    <p class="letter-line" id="letterLine6">In a loud world, you are my calm.</p>
+                    <p class="letter-line" id="letterLine7">In busy days, you are my pause.</p>
+                    <p class="letter-line" id="letterLine8">And today, I simply wanted you to feel that.</p>
+                    <p class="letter-line" id="letterLine9">Happy Valentine's Day, Sara.</p>
+                    <p class="letter-line" id="letterLine10">Always.</p>
+                </div>
+                <div class="signature">With care</div>
+                <div class="micro-detail">Unlocked only once, for Sara Khan</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confetti container -->
+    <div id="confetti-container"></div>
+
+    <!-- Audio player -->
+    <div class="audio-player" id="audioPlayer">
+        <i class="fas fa-play" id="playBtn"></i>
+        <div class="audio-info">"Lady" by Avenoir • Ready</div>
+        <i class="fas fa-volume-up" id="volumeBtn"></i>
+    </div>
+
+    <!-- Share button -->
+    <div class="share-button" id="shareButton">
+        <i class="fas fa-share-alt"></i>
+        <div class="tooltip">Save this moment</div>
+    </div>
+
+    <!-- Fallback audio -->
+    <audio id="fallbackAudio" preload="auto" loop>
+        <!-- Fallback romantic music if Spotify doesn't work -->
+        <source src="https://assets.mixkit.co/music/preview/mixkit-romantic-sunset-687.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Spotify Embed (hidden, as backup) -->
+    <div style="display: none;">
+        <iframe id="spotifyEmbed" src="https://open.spotify.com/embed/track/1aeRSlCn1EF7f5q7b5l6uu?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    </div>
+
+    <script>
+        // DOM elements
+        const scenes = document.querySelectorAll('.scene');
+        const preloader = document.getElementById('preloader');
+        const customCursor = document.getElementById('customCursor');
+        const cursorGlow = document.getElementById('cursorGlow');
+        const unlockBtn = document.getElementById('unlockBtn');
+        const yesBtn = document.getElementById('yesBtn');
+        const noBtn = document.getElementById('noBtn');
+        const teasingText = document.getElementById('teasingText');
+        const audioPlayer = document.getElementById('audioPlayer');
+        const playBtn = document.getElementById('playBtn');
+        const volumeBtn = document.getElementById('volumeBtn');
+        const shareButton = document.getElementById('shareButton');
+        const memoryPlaceholder = document.getElementById('memoryPlaceholder');
+        const dateDisplay = document.getElementById('dateDisplay');
+        const fallbackAudio = document.getElementById('fallbackAudio');
+        const confettiContainer = document.getElementById('confetti-container');
+        
+        // Current scene index
+        let currentScene = 1;
+        let isPlaying = false;
+        let isMuted = false;
+        
+        // Magical words for floating animation
+        const magicalWords = ["Loved", "Cherished", "Adored", "Treasured", "Special", "Unique", "Beautiful", "Precious"];
+        
+        // Initialize date display
+        function initializeDate() {
+            const today = new Date();
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const dateString = today.toLocaleDateString('en-US', options);
+            dateDisplay.textContent = dateString;
+        }
+        
+        // Create background particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = window.innerWidth < 768 ? 12 : 20;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                // Random size and position
+                const size = 50 + Math.random() * 200;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                
+                // Random animation delay and duration
+                particle.style.animationDelay = `${Math.random() * 20}s`;
+                particle.style.animationDuration = `${15 + Math.random() * 15}s`;
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+        
+        // Custom cursor
+        function initializeCustomCursor() {
+            document.addEventListener('mousemove', (e) => {
+                customCursor.style.left = `${e.clientX}px`;
+                customCursor.style.top = `${e.clientY}px`;
+                cursorGlow.style.left = `${e.clientX}px`;
+                cursorGlow.style.top = `${e.clientY}px`;
+                
+                // Cursor size change on hover over buttons
+                const target = e.target;
+                if (target.classList.contains('btn') || target.closest('.btn')) {
+                    customCursor.style.transform = 'scale(1.8)';
+                    customCursor.style.borderColor = 'rgba(255, 182, 193, 1)';
+                    cursorGlow.style.transform = 'scale(1.5)';
+                    cursorGlow.style.opacity = '0.6';
+                } else {
+                    customCursor.style.transform = 'scale(1)';
+                    customCursor.style.borderColor = 'rgba(255, 182, 193, 0.8)';
+                    cursorGlow.style.transform = 'scale(1)';
+                    cursorGlow.style.opacity = '0.4';
+                }
+            });
+            
+            // Click animation
+            document.addEventListener('click', () => {
+                customCursor.style.transform = 'scale(0.8)';
+                setTimeout(() => {
+                    customCursor.style.transform = 'scale(1)';
+                }, 150);
+            });
+        }
+        
+        // Preloader
+        function initializePreloader() {
+            // Simulate loading time
+            setTimeout(() => {
+                preloader.style.opacity = '0';
+                preloader.style.visibility = 'hidden';
+                
+                // Start background music (with user interaction fallback)
+                setTimeout(() => {
+                    try {
+                        // Try to play fallback audio (has better autoplay support)
+                        fallbackAudio.volume = 0.4;
+                        fallbackAudio.play().then(() => {
+                            isPlaying = true;
+                            playBtn.classList.remove('fa-play');
+                            playBtn.classList.add('fa-pause');
+                        }).catch(e => {
+                            console.log("Autoplay prevented, will require user interaction");
+                        });
+                    } catch(e) {
+                        console.log("Audio error:", e);
+                    }
+                }, 1000);
+                
+            }, 2000);
+        }
+        
+        // Change scene with smooth transition
+        function changeScene(nextScene) {
+            // Hide current scene
+            document.getElementById(`scene${currentScene}`).classList.remove('active');
+            
+            // Show next scene
+            setTimeout(() => {
+                document.getElementById(`scene${nextScene}`).classList.add('active');
+                currentScene = nextScene;
+                
+                // Trigger specific scene animations
+                if (nextScene === 3) {
+                    startVerification();
+                } else if (nextScene === 4) {
+                    setTimeout(() => changeScene(5), 3500);
+                } else if (nextScene === 5) {
+                    startFinalLetter();
+                    setTimeout(() => {
+                        audioPlayer.classList.add('active');
+                        shareButton.classList.add('active');
+                        launchConfetti();
+                    }, 1000);
+                }
+            }, 600);
+        }
+        
+        // Create sparkle animation
+        function createSparkleAnimation(x, y, color = "#FFB6C1") {
+            const sparkleCount = window.innerWidth < 768 ? 12 : 22;
+            const container = document.querySelector('.container');
+            
+            for (let i = 0; i < sparkleCount; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                sparkle.style.left = `${x}px`;
+                sparkle.style.top = `${y}px`;
+                sparkle.style.background = `radial-gradient(circle, ${color} 0%, transparent 70%)`;
+                
+                // Random direction and distance
+                const angle = Math.random() * Math.PI * 2;
+                const distance = 40 + Math.random() * 100;
+                const duration = 0.9 + Math.random() * 0.7;
+                const size = 5 + Math.random() * 10;
+                
+                sparkle.style.width = `${size}px`;
+                sparkle.style.height = `${size}px`;
+                
+                // Add to container
+                container.appendChild(sparkle);
+                
+                // Animate sparkle
+                setTimeout(() => {
+                    sparkle.style.transition = `all ${duration}s cubic-bezier(0.19, 1, 0.22, 1)`;
+                    sparkle.style.transform = `translate(${Math.cos(angle) * distance}px, ${Math.sin(angle) * distance}px) scale(0.1)`;
+                    sparkle.style.opacity = '0';
+                    
+                    // Remove after animation
+                    setTimeout(() => {
+                        if (sparkle.parentNode) {
+                            sparkle.parentNode.removeChild(sparkle);
+                        }
+                    }, duration * 1000);
+                }, 10);
+            }
+        }
+        
+        // Create liquid ripple effect
+        function createRippleEffect(x, y, color = "rgba(255, 182, 193, 0.4)") {
+            const ripple = document.createElement('div');
+            ripple.className = 'liquid-ripple';
+            ripple.style.left = `${x}px`;
+            ripple.style.top = `${y}px`;
+            ripple.style.width = '15px';
+            ripple.style.height = '15px';
+            ripple.style.background = color;
+            
+            // Add to container
+            document.querySelector('.container').appendChild(ripple);
+            
+            // Animate ripple
+            setTimeout(() => {
+                ripple.style.transition = 'all 1.4s cubic-bezier(0.19, 1, 0.22, 1)';
+                ripple.style.transform = 'scale(50)';
+                ripple.style.opacity = '0';
+                
+                // Remove after animation
+                setTimeout(() => {
+                    if (ripple.parentNode) {
+                        ripple.parentNode.removeChild(ripple);
+                    }
+                }, 1400);
+            }, 10);
+        }
+        
+        // Create floating word animation
+        function createFloatingWord(x, y, word) {
+            const floatingWord = document.createElement('div');
+            floatingWord.className = 'floating-word';
+            floatingWord.textContent = word;
+            floatingWord.style.left = `${x}px`;
+            floatingWord.style.top = `${y}px`;
+            floatingWord.style.fontSize = `${1.1 + Math.random() * 0.7}rem`;
+            floatingWord.style.color = `hsl(${330 + Math.random() * 30}, 70%, 75%)`;
+            
+            // Add to container
+            document.querySelector('.container').appendChild(floatingWord);
+            
+            // Animate word
+            setTimeout(() => {
+                floatingWord.style.transition = 'all 3s cubic-bezier(0.19, 1, 0.22, 1)';
+                floatingWord.style.transform = `translateY(-${120 + Math.random() * 100}px) translateX(${(Math.random() - 0.5) * 80}px) rotate(${(Math.random() - 0.5) * 30}deg)`;
+                floatingWord.style.opacity = '0.9';
+                
+                // Fade out
+                setTimeout(() => {
+                    floatingWord.style.opacity = '0';
+                    
+                    // Remove after animation
+                    setTimeout(() => {
+                        if (floatingWord.parentNode) {
+                            floatingWord.parentNode.removeChild(floatingWord);
+                        }
+                    }, 500);
+                }, 2500);
+            }, 10);
+        }
+        
+        // Apply color morph animation to button
+        function applyColorMorph(button) {
+            button.classList.add('color-morph');
+            setTimeout(() => {
+                button.classList.remove('color-morph');
+            }, 1800);
+        }
+        
+        // Handle button click with magical animations
+        function handleButtonClick(button, event) {
+            // Get button position
+            const rect = button.getBoundingClientRect();
+            const x = rect.left + rect.width / 2;
+            const y = rect.top + rect.height / 2;
+            
+            // Apply all magical animations
+            createSparkleAnimation(x, y, "#FFB6C1");
+            createRippleEffect(x, y, "radial-gradient(circle, rgba(255,182,193,0.5) 0%, transparent 70%)");
+            applyColorMorph(button);
+            
+            // Create 2-3 floating words
+            const wordCount = 2 + Math.floor(Math.random() * 3);
+            for (let i = 0; i < wordCount; i++) {
+                setTimeout(() => {
+                    const randomWord = magicalWords[Math.floor(Math.random() * magicalWords.length)];
+                    createFloatingWord(x, y, randomWord);
+                }, i * 400);
+            }
+            
+            // Button press animation
+            button.style.transform = 'scale(0.92)';
+            setTimeout(() => {
+                button.style.transform = 'scale(1)';
+            }, 200);
+            
+            return {x, y};
+        }
+        
+        // Start verification sequence
+        function startVerification() {
+            const line1 = document.getElementById('verificationLine1');
+            const line2 = document.getElementById('verificationLine2');
+            const line3 = document.getElementById('verificationLine3');
+            
+            line1.classList.add('active');
+            
+            setTimeout(() => {
+                line1.style.display = 'none';
+                line2.style.display = 'block';
+                setTimeout(() => line2.classList.add('active'), 50);
+                
+                setTimeout(() => {
+                    line2.style.display = 'none';
+                    line3.style.display = 'block';
+                    setTimeout(() => line3.classList.add('active'), 50);
+                    
+                    setTimeout(() => {
+                        changeScene(4);
+                    }, 2000);
+                }, 2000);
+            }, 2000);
+        }
+        
+        // Animate final letter line by line
+        function startFinalLetter() {
+            const letterLines = document.querySelectorAll('.letter-line');
+            
+            letterLines.forEach((line, index) => {
+                setTimeout(() => {
+                    line.classList.add('active');
+                    
+                    // Add subtle sparkles on each line reveal
+                    if (index % 2 === 0) {
+                        const rect = line.getBoundingClientRect();
+                        createSparkleAnimation(rect.left + rect.width/2, rect.top + rect.height/2, "rgba(255, 255, 255, 0.8)");
+                    }
+                }, index * 1100);
+            });
+        }
+        
+        // Launch confetti celebration
+        function launchConfetti() {
+            const confettiCount = 150;
+            const colors = ['#FFB6C1', '#D14D72', '#FF69B4', '#FFD1DC', '#FFFFFF'];
+            
+            for (let i = 0; i < confettiCount; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = `${Math.random() * 100}%`;
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+                confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+                confetti.style.width = `${8 + Math.random() * 10}px`;
+                confetti.style.height = `${8 + Math.random() * 10}px`;
+                
+                confettiContainer.appendChild(confetti);
+                
+                // Animate confetti
+                const animationDuration = 2 + Math.random() * 3;
+                setTimeout(() => {
+                    confetti.style.transition = `all ${animationDuration}s cubic-bezier(0.1, 0.8, 0.3, 1)`;
+                    confetti.style.opacity = '0.9';
+                    confetti.style.top = `${100 + Math.random() * 20}%`;
+                    confetti.style.transform = `rotate(${Math.random() * 720}deg) translateX(${(Math.random() - 0.5) * 200}px)`;
+                    
+                    // Remove after animation
+                    setTimeout(() => {
+                        confetti.style.opacity = '0';
+                        setTimeout(() => {
+                            if (confetti.parentNode) {
+                                confetti.parentNode.removeChild(confetti);
+                            }
+                        }, 500);
+                    }, animationDuration * 900);
+                }, i * 20);
+            }
+            
+            // Continuous subtle confetti
+            setInterval(() => {
+                if (currentScene === 5 && Math.random() > 0.7) {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = `${Math.random() * 100}%`;
+                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.top = '-20px';
+                    confetti.style.opacity = '0.7';
+                    
+                    confettiContainer.appendChild(confetti);
+                    
+                    const animationDuration = 3 + Math.random() * 2;
+                    setTimeout(() => {
+                        confetti.style.transition = `all ${animationDuration}s ease-out`;
+                        confetti.style.opacity = '0.9';
+                        confetti.style.top = `${100 + Math.random() * 20}%`;
+                        confetti.style.transform = `translateX(${(Math.random() - 0.5) * 100}px) rotate(${Math.random() * 360}deg)`;
+                        
+                        setTimeout(() => {
+                            confetti.style.opacity = '0';
+                            setTimeout(() => {
+                                if (confetti.parentNode) {
+                                    confetti.parentNode.removeChild(confetti);
+                                }
+                            }, 500);
+                        }, animationDuration * 900);
+                    }, 10);
+                }
+            }, 1000);
+        }
+        
+        // Event Listeners
+        unlockBtn.addEventListener('click', (e) => {
+            handleButtonClick(unlockBtn, e);
+            setTimeout(() => {
+                changeScene(2);
+            }, 1000);
+        });
+        
+        yesBtn.addEventListener('click', (e) => {
+            handleButtonClick(yesBtn, e);
+            setTimeout(() => {
+                changeScene(3);
+            }, 1000);
+        });
+        
+        noBtn.addEventListener('click', (e) => {
+            const {x, y} = handleButtonClick(noBtn, e);
+            
+            // Tilt the card for teasing effect
+            const scene2Card = document.querySelector('#scene2 .glass-card');
+            scene2Card.style.transform = 'perspective(1000px) rotateY(10deg)';
+            
+            // Show teasing text with animation
+            teasingText.style.display = 'block';
+            setTimeout(() => {
+                teasingText.style.opacity = '1';
+                teasingText.style.transform = 'translateY(0)';
+            }, 50);
+            
+            // Create extra sparkles near the teasing text
+            setTimeout(() => {
+                const textRect = teasingText.getBoundingClientRect();
+                createSparkleAnimation(textRect.left + textRect.width/2, textRect.top + textRect.height/2, "#D14D72");
+            }, 400);
+            
+            // Return card to original position
+            setTimeout(() => {
+                scene2Card.style.transform = 'perspective(1000px) rotateY(0deg)';
+            }, 1200);
+            
+            // Hide teasing text after a moment
+            setTimeout(() => {
+                teasingText.style.opacity = '0';
+                setTimeout(() => {
+                    teasingText.style.display = 'none';
+                }, 600);
+            }, 3500);
+        });
+        
+        // Memory placeholder click
+        memoryPlaceholder.addEventListener('click', () => {
+            createSparkleAnimation(
+                memoryPlaceholder.getBoundingClientRect().left + memoryPlaceholder.offsetWidth/2,
+                memoryPlaceholder.getBoundingClientRect().top + memoryPlaceholder.offsetHeight/2,
+                "#FF69B4"
+            );
+            
+            // Create floating hearts
+            for (let i = 0; i < 8; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.innerHTML = '<i class="fas fa-heart"></i>';
+                    heart.style.position = 'absolute';
+                    heart.style.left = `${memoryPlaceholder.getBoundingClientRect().left + memoryPlaceholder.offsetWidth/2}px`;
+                    heart.style.top = `${memoryPlaceholder.getBoundingClientRect().top + memoryPlaceholder.offsetHeight/2}px`;
+                    heart.style.color = '#FFB6C1';
+                    heart.style.fontSize = `${1 + Math.random() * 1.5}rem`;
+                    heart.style.opacity = '0';
+                    heart.style.zIndex = '10';
+                    heart.style.pointerEvents = 'none';
+                    
+                    document.querySelector('.container').appendChild(heart);
+                    
+                    setTimeout(() => {
+                        heart.style.transition = 'all 2s cubic-bezier(0.19, 1, 0.22, 1)';
+                        heart.style.opacity = '0.9';
+                        heart.style.transform = `translate(${(Math.random() - 0.5) * 150}px, -${100 + Math.random() * 100}px) scale(${0.5 + Math.random()})`;
+                        
+                        setTimeout(() => {
+                            heart.style.opacity = '0';
+                            setTimeout(() => {
+                                if (heart.parentNode) {
+                                    heart.parentNode.removeChild(heart);
+                                }
+                            }, 500);
+                        }, 1800);
+                    }, 10);
+                }, i * 150);
+            }
+        });
+        
+        // Audio player controls
+        playBtn.addEventListener('click', () => {
+            if (isPlaying) {
+                fallbackAudio.pause();
+                playBtn.classList.remove('fa-pause');
+                playBtn.classList.add('fa-play');
+            } else {
+                fallbackAudio.play().catch(e => {
+                    console.log("Playback requires user interaction");
+                    // Show a subtle prompt
+                    audioPlayer.style.background = 'rgba(209, 77, 114, 0.2)';
+                    setTimeout(() => {
+                        audioPlayer.style.background = '';
+                    }, 1000);
+                });
+                playBtn.classList.remove('fa-play');
+                playBtn.classList.add('fa-pause');
+            }
+            isPlaying = !isPlaying;
+        });
+        
+        volumeBtn.addEventListener('click', () => {
+            if (isMuted) {
+                fallbackAudio.volume = 0.4;
+                volumeBtn.classList.remove('fa-volume-mute');
+                volumeBtn.classList.add('fa-volume-up');
+            } else {
+                fallbackAudio.volume = 0;
+                volumeBtn.classList.remove('fa-volume-up');
+                volumeBtn.classList.add('fa-volume-mute');
+            }
+            isMuted = !isMuted;
+        });
+        
+        // Share button functionality
+        shareButton.addEventListener('click', () => {
+            // Create a screenshot-like share experience
+            const originalBackground = document.querySelector('.background-wrapper').style.filter;
+            document.querySelector('.background-wrapper').style.filter = 'brightness(1.1)';
+            
+            createSparkleAnimation(
+                shareButton.getBoundingClientRect().left + shareButton.offsetWidth/2,
+                shareButton.getBoundingClientRect().top + shareButton.offsetHeight/2,
+                "#FFFFFF"
+            );
+            
+            // Show a temporary message
+            const message = document.createElement('div');
+            message.textContent = 'This moment is saved in your heart ♡';
+            message.style.position = 'fixed';
+            message.style.top = '50%';
+            message.style.left = '50%';
+            message.style.transform = 'translate(-50%, -50%)';
+            message.style.background = 'rgba(0, 0, 0, 0.8)';
+            message.style.color = '#FFB6C1';
+            message.style.padding = '20px 40px';
+            message.style.borderRadius = '20px';
+            message.style.zIndex = '10000';
+            message.style.fontFamily = "'Cormorant Garamond', serif";
+            message.style.fontSize = '1.5rem';
+            message.style.textAlign = 'center';
+            message.style.backdropFilter = 'blur(10px)';
+            message.style.border = '1px solid rgba(255, 182, 193, 0.2)';
+            message.style.opacity = '0';
+            message.style.transition = 'opacity 0.5s ease';
+            
+            document.body.appendChild(message);
+            
+            setTimeout(() => {
+                message.style.opacity = '1';
+            }, 10);
+            
+            setTimeout(() => {
+                message.style.opacity = '0';
+                setTimeout(() => {
+                    if (message.parentNode) {
+                        document.body.removeChild(message);
+                    }
+                    document.querySelector('.background-wrapper').style.filter = originalBackground;
+                }, 500);
+            }, 2000);
+            
+            // In a real implementation, this would:
+            // 1. Capture a screenshot of the current scene
+            // 2. Generate a shareable image
+            // 3. Use the Web Share API if available
+        });
+        
+        // Initialize everything
+        function initializeExperience() {
+            initializeDate();
+            createParticles();
+            initializeCustomCursor();
+            initializePreloader();
+            
+            // Add continuous ambient sparkles
+            setInterval(() => {
+                if (currentScene === 1 || currentScene === 5) {
+                    const x = Math.random() * window.innerWidth;
+                    const y = Math.random() * window.innerHeight;
+                    if (Math.random() > 0.8) {
+                        createSparkleAnimation(x, y, "rgba(255, 255, 255, 0.6)");
+                    }
+                }
+            }, 1200);
+            
+            // Make background interactive with mouse
+            document.addEventListener('mousemove', (e) => {
+                const bgGradient = document.querySelector('.gradient-bg');
+                const x = e.clientX / window.innerWidth;
+                const y = e.clientY / window.innerHeight;
+                
+                bgGradient.style.transform = `translate(${x * 40 - 20}px, ${y * 40 - 20}px) rotate(${x * 10}deg) scale(1.05)`;
+            });
+        }
+        
+        // Start the experience when page loads
+        window.addEventListener('load', initializeExperience);
+        
+        // Prevent context menu
+        document.addEventListener('contextmenu', (e) => e.preventDefault());
+    </script>
+</body>
+</html>
