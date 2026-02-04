@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For Sara Khan | A Valentine's Moment</title>
+    <title>For Sara Khan | An Exquisite Valentine Moment</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;350;400;450&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@100;200;300;400;500&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -16,13 +16,14 @@
         }
 
         :root {
-            --primary-pink: #FFB6C1;
-            --dark-pink: #D14D72;
-            --deep-pink: #B03A5B;
-            --glow-pink: #FF69B4;
-            --cream: #FFF3E8;
-            --text-dark: #2E2E2E;
-            --text-light: #6B5E5E;
+            --champagne: #F7E7CE;
+            --blush-pink: #E8B4B8;
+            --dusty-rose: #D8A7B1;
+            --deep-burgundy: #6D2E46;
+            --black-velvet: #0A0A0A;
+            --gold: #D4AF37;
+            --platinum: #E5E4E2;
+            --shadow: rgba(109, 46, 70, 0.15);
         }
 
         html {
@@ -33,14 +34,16 @@
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             min-height: 100vh;
             overflow-x: hidden;
-            color: var(--text-dark);
-            background: #000;
+            color: var(--platinum);
+            background: var(--black-velvet);
             position: relative;
             cursor: none;
+            font-weight: 300;
+            letter-spacing: 0.3px;
         }
 
-        /* Enhanced glowing animated background */
-        .background-wrapper {
+        /* Luxury Background */
+        .luxury-bg {
             position: fixed;
             top: 0;
             left: 0;
@@ -50,24 +53,35 @@
             overflow: hidden;
         }
 
-        .gradient-bg {
+        .bg-gradient {
             position: absolute;
             width: 200%;
             height: 200%;
             top: -50%;
             left: -50%;
             background: 
-                radial-gradient(circle at 20% 30%, var(--dark-pink) 0%, transparent 40%),
-                radial-gradient(circle at 80% 20%, #D14D72 0%, transparent 35%),
-                radial-gradient(circle at 40% 70%, #B03A5B 0%, transparent 45%),
-                radial-gradient(circle at 60% 80%, #8A2C58 0%, transparent 50%),
-                linear-gradient(135deg, #000 0%, #1a0a0f 100%);
-            animation: gradientShift 25s ease-in-out infinite alternate;
-            filter: blur(40px);
-            opacity: 0.7;
+                radial-gradient(circle at 15% 25%, var(--deep-burgundy) 0%, transparent 35%),
+                radial-gradient(circle at 85% 15%, rgba(232, 180, 184, 0.3) 0%, transparent 30%),
+                radial-gradient(circle at 45% 75%, rgba(109, 46, 70, 0.4) 0%, transparent 40%),
+                radial-gradient(circle at 70% 85%, rgba(23, 23, 23, 0.9) 0%, transparent 45%),
+                linear-gradient(165deg, #000 0%, #1a0a0f 30%, #2d0f1a 70%, #000 100%);
+            animation: gradientFloat 30s ease-in-out infinite alternate;
+            filter: blur(30px);
+            opacity: 0.9;
         }
 
-        .particles {
+        .gold-filigree {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 80%, rgba(212, 175, 55, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(212, 175, 55, 0.02) 0%, transparent 50%);
+            background-size: 400px 400px;
+            opacity: 0.4;
+        }
+
+        .particles-container {
             position: absolute;
             width: 100%;
             height: 100%;
@@ -75,68 +89,69 @@
 
         .particle {
             position: absolute;
-            background: radial-gradient(circle, var(--glow-pink) 0%, transparent 70%);
+            background: radial-gradient(circle, var(--gold) 0%, transparent 70%);
             border-radius: 50%;
-            animation: floatParticle 20s infinite linear;
-            opacity: 0.3;
-            filter: blur(5px);
-        }
-
-        .pink-glow {
-            position: absolute;
-            width: 800px;
-            height: 800px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(255, 105, 180, 0.4) 0%, transparent 70%);
-            filter: blur(80px);
-            animation: glowPulse 8s ease-in-out infinite alternate;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            opacity: 0.6;
+            opacity: 0;
+            animation: particleFloat 20s infinite linear;
         }
 
         /* Animations */
-        @keyframes gradientShift {
-            0% { transform: translate(0%, 0%) rotate(0deg); }
-            100% { transform: translate(2%, 2%) rotate(2deg) scale(1.1); }
+        @keyframes gradientFloat {
+            0% { transform: translate(0%, 0%) rotate(0deg) scale(1); }
+            100% { transform: translate(1%, 1%) rotate(0.5deg) scale(1.02); }
         }
 
-        @keyframes floatParticle {
-            0% { transform: translateY(0) translateX(0) rotate(0deg); }
-            33% { transform: translateY(-30vh) translateX(20vw) rotate(120deg); }
-            66% { transform: translateY(20vh) translateX(-15vw) rotate(240deg); }
-            100% { transform: translateY(0) translateX(0) rotate(360deg); }
+        @keyframes particleFloat {
+            0% { 
+                transform: translateY(0) translateX(0) rotate(0deg) scale(0);
+                opacity: 0;
+            }
+            10% { 
+                opacity: 0.1;
+                transform: scale(0.5);
+            }
+            90% { 
+                opacity: 0.1;
+            }
+            100% { 
+                transform: translateY(-100vh) translateX(20vw) rotate(180deg) scale(0);
+                opacity: 0;
+            }
         }
 
-        @keyframes glowPulse {
-            0% { transform: translate(-50%, -50%) scale(0.8); opacity: 0.4; }
-            100% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.7; }
+        @keyframes subtlePulse {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 0.6; }
         }
 
-        /* Premium cursor */
-        .custom-cursor {
-            width: 24px;
-            height: 24px;
-            border: 2px solid rgba(255, 182, 193, 0.8);
+        /* Premium Cursor */
+        .luxury-cursor {
+            width: 22px;
+            height: 22px;
+            border: 1.5px solid var(--gold);
             border-radius: 50%;
             position: fixed;
             pointer-events: none;
             z-index: 9999;
-            transition: transform 0.1s, width 0.3s, height 0.3s;
+            transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1), 
+                       width 0.3s, 
+                       height 0.3s,
+                       border-color 0.3s;
             mix-blend-mode: difference;
+            backdrop-filter: blur(2px);
         }
 
         .cursor-glow {
             position: fixed;
-            width: 60px;
-            height: 60px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
-            background: radial-gradient(circle, rgba(255, 105, 180, 0.3) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, transparent 70%);
             pointer-events: none;
             z-index: 9998;
-            filter: blur(15px);
-            transition: transform 0.2s;
+            filter: blur(10px);
+            transition: transform 0.2s, opacity 0.3s;
+            opacity: 0.3;
         }
 
         /* Preloader */
@@ -146,65 +161,68 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: #000;
+            background: var(--black-velvet);
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             z-index: 99999;
-            transition: opacity 0.8s ease, visibility 0.8s ease;
+            transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1), 
+                       visibility 1s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .loader-sparkle {
-            width: 60px;
-            height: 60px;
+        .luxury-loader {
+            width: 80px;
+            height: 80px;
             position: relative;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
         }
 
-        .loader-sparkle::before, .loader-sparkle::after {
+        .luxury-loader::before, .luxury-loader::after {
             content: '';
             position: absolute;
             width: 100%;
             height: 100%;
-            border: 2px solid transparent;
+            border: 1.5px solid transparent;
             border-radius: 50%;
-            border-top-color: var(--primary-pink);
-            animation: spin 1.5s linear infinite;
+            border-top-color: var(--gold);
+            animation: luxurySpin 2.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
         }
 
-        .loader-sparkle::after {
-            width: 80%;
-            height: 80%;
-            top: 10%;
-            left: 10%;
-            border-top-color: var(--glow-pink);
+        .luxury-loader::after {
+            width: 70%;
+            height: 70%;
+            top: 15%;
+            left: 15%;
+            border-top-color: var(--dusty-rose);
             animation-direction: reverse;
-            animation-duration: 1s;
+            animation-duration: 1.8s;
         }
 
-        @keyframes spin {
+        @keyframes luxurySpin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
 
         #preloader p {
-            color: var(--cream);
-            font-size: 1.2rem;
-            letter-spacing: 2px;
+            color: var(--champagne);
+            font-size: 1.1rem;
+            letter-spacing: 3px;
             text-align: center;
             font-family: 'Cormorant Garamond', serif;
-            opacity: 0.8;
-            margin-top: 20px;
+            font-weight: 300;
+            opacity: 0.7;
+            margin-top: 30px;
+            text-transform: uppercase;
         }
 
-        /* Main container */
+        /* Main Container */
         .container {
             width: 100%;
-            max-width: 800px;
+            max-width: 900px;
             position: relative;
             z-index: 2;
-            padding: 20px;
+            padding: 40px 20px;
             margin: 0 auto;
             min-height: 100vh;
             display: flex;
@@ -212,44 +230,66 @@
             justify-content: center;
         }
 
-        /* Premium glass card */
-        .glass-card {
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(30px);
-            -webkit-backdrop-filter: blur(30px);
-            border-radius: 40px;
-            padding: 60px 50px;
+        /* Luxury Glass Card */
+        .luxury-card {
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.05) 0%, 
+                rgba(255, 255, 255, 0.02) 100%);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            border-radius: 48px;
+            padding: 80px 70px;
             box-shadow: 
-                0 20px 60px rgba(0, 0, 0, 0.3),
-                inset 0 1px 0 rgba(255, 255, 255, 0.2),
-                inset 0 -1px 0 rgba(0, 0, 0, 0.2),
-                0 0 0 1px rgba(255, 255, 255, 0.05);
+                0 25px 80px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.3),
+                0 0 0 1.5px rgba(212, 175, 55, 0.05);
             text-align: center;
-            transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+            transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
             overflow: hidden;
             position: relative;
-            margin: 30px 0;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            margin: 40px 0;
+            border: 1px solid rgba(212, 175, 55, 0.05);
             width: 100%;
         }
 
-        .glass-card::before {
+        .luxury-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(212, 175, 55, 0.3), 
+                rgba(232, 180, 184, 0.3), 
+                rgba(212, 175, 55, 0.3), 
+                transparent);
         }
 
-        /* Scene transitions */
+        .luxury-card::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            right: 2px;
+            bottom: 2px;
+            border-radius: 46px;
+            background: linear-gradient(135deg, 
+                rgba(212, 175, 55, 0.03) 0%, 
+                transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* Scene Transitions */
         .scene {
             display: none;
             opacity: 0;
-            transform: translateY(30px) scale(0.98);
-            transition: opacity 1s cubic-bezier(0.19, 1, 0.22, 1), 
-                       transform 1s cubic-bezier(0.19, 1, 0.22, 1);
+            transform: translateY(40px) scale(0.98);
+            transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), 
+                       transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
             width: 100%;
         }
 
@@ -259,204 +299,285 @@
             transform: translateY(0) scale(1);
         }
 
-        /* Premium typography */
-        h1 {
-            font-family: 'Cormorant Garamond', serif;
-            color: var(--cream);
-            font-size: 3.5rem;
+        /* Premium Typography */
+        .main-title {
+            font-family: 'Playfair Display', serif;
+            color: var(--champagne);
+            font-size: 4rem;
             font-weight: 400;
-            margin-bottom: 25px;
-            line-height: 1.2;
-            letter-spacing: -0.5px;
-            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+            margin-bottom: 30px;
+            line-height: 1.1;
+            letter-spacing: -1px;
+            text-shadow: 0 2px 30px rgba(0, 0, 0, 0.3);
             position: relative;
         }
 
-        h1::after {
+        .main-title::after {
             content: '';
             display: block;
-            width: 80px;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--primary-pink), transparent);
-            margin: 25px auto;
+            width: 100px;
+            height: 1px;
+            background: linear-gradient(90deg, 
+                transparent, 
+                var(--gold), 
+                transparent);
+            margin: 30px auto;
             opacity: 0.5;
+        }
+
+        .elegant-title {
+            font-family: 'Cormorant Garamond', serif;
+            color: var(--champagne);
+            font-size: 2.2rem;
+            font-weight: 400;
+            margin-bottom: 20px;
+            line-height: 1.3;
+            letter-spacing: 0.5px;
+            font-style: italic;
+            opacity: 0.95;
         }
 
         .subtitle {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             font-weight: 300;
-            color: rgba(255, 243, 232, 0.9);
-            margin-bottom: 15px;
-            letter-spacing: 0.5px;
-            line-height: 1.5;
+            color: rgba(247, 231, 206, 0.85);
+            margin-bottom: 20px;
+            letter-spacing: 0.8px;
+            line-height: 1.6;
         }
 
         p {
-            color: rgba(255, 243, 232, 0.8);
-            font-size: 1.3rem;
+            color: rgba(247, 231, 206, 0.75);
+            font-size: 1.2rem;
             line-height: 1.8;
-            margin-bottom: 35px;
-            font-weight: 350;
-            max-width: 90%;
+            margin-bottom: 40px;
+            font-weight: 300;
+            max-width: 85%;
+            margin-left: auto;
+            margin-right: auto;
+            letter-spacing: 0.4px;
+        }
+
+        /* Lock Icon */
+        .luxury-lock {
+            font-size: 5.5rem;
+            color: var(--gold);
+            margin: 60px 0;
+            display: inline-block;
+            filter: drop-shadow(0 5px 20px rgba(212, 175, 55, 0.2));
+            animation: lockFloat 7s ease-in-out infinite;
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @keyframes lockFloat {
+            0%, 100% { 
+                transform: translateY(0) rotate(0deg) scale(1); 
+                filter: drop-shadow(0 5px 20px rgba(212, 175, 55, 0.2));
+            }
+            33% { 
+                transform: translateY(-20px) rotate(2deg) scale(1.05); 
+                filter: drop-shadow(0 10px 30px rgba(212, 175, 55, 0.3));
+            }
+            66% { 
+                transform: translateY(-10px) rotate(-1deg) scale(1.03); 
+                filter: drop-shadow(0 8px 25px rgba(212, 175, 55, 0.25));
+            }
+        }
+
+        /* Premium Buttons */
+        .btn-container {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            margin-top: 60px;
+            position: relative;
+            z-index: 5;
+            max-width: 500px;
             margin-left: auto;
             margin-right: auto;
         }
 
-        /* Lock icon */
-        .lock-icon {
-            font-size: 5rem;
-            color: var(--primary-pink);
-            margin: 50px 0;
-            display: inline-block;
-            filter: drop-shadow(0 5px 15px rgba(255, 105, 180, 0.3));
-            animation: floatLock 6s ease-in-out infinite;
-            transition: all 0.5s ease;
-        }
-
-        @keyframes floatLock {
-            0%, 100% { 
-                transform: translateY(0) rotate(0deg) scale(1); 
-                filter: drop-shadow(0 5px 15px rgba(255, 105, 180, 0.3));
-            }
-            50% { 
-                transform: translateY(-25px) rotate(5deg) scale(1.1); 
-                filter: drop-shadow(0 10px 25px rgba(255, 105, 180, 0.5));
-            }
-        }
-
-        /* Premium buttons */
-        .btn-container {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            margin-top: 50px;
-            position: relative;
-            z-index: 5;
-        }
-
-        .btn {
-            padding: 24px 45px;
-            border-radius: 65px;
+        .luxury-btn {
+            padding: 26px 50px;
+            border-radius: 70px;
             border: none;
             font-size: 1.3rem;
-            font-weight: 450;
+            font-weight: 400;
             cursor: none;
-            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
             font-family: 'Inter', sans-serif;
-            letter-spacing: 0.5px;
+            letter-spacing: 1px;
             z-index: 2;
             background: transparent;
-            color: var(--cream);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
+            color: var(--champagne);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            backdrop-filter: blur(15px);
         }
 
-        .btn::before {
+        .luxury-btn::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, rgba(255, 182, 193, 0.2), rgba(209, 77, 114, 0.1));
+            background: linear-gradient(135deg, 
+                rgba(212, 175, 55, 0.1) 0%, 
+                rgba(232, 180, 184, 0.05) 100%);
             z-index: -1;
-            transition: all 0.6s ease;
+            transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .btn::after {
+        .luxury-btn::after {
             content: '';
             position: absolute;
             top: -2px;
             left: -2px;
             right: -2px;
             bottom: -2px;
-            background: linear-gradient(135deg, var(--primary-pink), var(--dark-pink), var(--primary-pink));
-            border-radius: 67px;
+            background: linear-gradient(135deg, 
+                var(--gold) 0%, 
+                var(--dusty-rose) 50%, 
+                var(--gold) 100%);
+            border-radius: 72px;
             z-index: -2;
             opacity: 0;
-            transition: opacity 0.6s ease;
+            transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+            background-size: 200% 200%;
         }
 
-        .btn:hover {
-            transform: translateY(-5px);
-            color: var(--cream);
+        .luxury-btn:hover {
+            transform: translateY(-6px);
+            color: var(--champagne);
             border-color: transparent;
+            letter-spacing: 1.2px;
         }
 
-        .btn:hover::before {
-            background: linear-gradient(135deg, rgba(255, 182, 193, 0.3), rgba(209, 77, 114, 0.2));
+        .luxury-btn:hover::before {
+            background: linear-gradient(135deg, 
+                rgba(212, 175, 55, 0.15) 0%, 
+                rgba(232, 180, 184, 0.08) 100%);
         }
 
-        .btn:hover::after {
-            opacity: 0.5;
-            animation: gradientMove 2s linear infinite;
+        .luxury-btn:hover::after {
+            opacity: 0.3;
+            animation: gradientFlow 3s linear infinite;
         }
 
-        @keyframes gradientMove {
+        @keyframes gradientFlow {
             0% { background-position: 0% 50%; }
             100% { background-position: 200% 50%; }
         }
 
-        /* Date display */
+        /* Date Display */
         .date-display {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.1rem;
-            color: rgba(255, 243, 232, 0.6);
-            margin-bottom: 40px;
-            letter-spacing: 1.5px;
+            font-size: 1rem;
+            color: rgba(247, 231, 206, 0.5);
+            margin-bottom: 50px;
+            letter-spacing: 2px;
             text-transform: uppercase;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            padding-bottom: 15px;
+            padding-bottom: 20px;
             width: fit-content;
             margin-left: auto;
             margin-right: auto;
+            position: relative;
         }
 
-        /* Memory placeholder */
-        .memory-placeholder {
-            width: 220px;
-            height: 220px;
+        .date-display::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 1px;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(212, 175, 55, 0.5), 
+                transparent);
+        }
+
+        /* Memory Gallery */
+        .memory-gallery {
+            width: 280px;
+            height: 280px;
             border-radius: 50%;
-            background: linear-gradient(135deg, rgba(255, 182, 193, 0.1), rgba(209, 77, 114, 0.05));
-            border: 2px dashed rgba(255, 255, 255, 0.1);
+            background: linear-gradient(135deg, 
+                rgba(212, 175, 55, 0.05) 0%, 
+                rgba(232, 180, 184, 0.03) 100%);
+            border: 1.5px dashed rgba(212, 175, 55, 0.15);
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            margin: 40px auto;
-            transition: all 0.5s ease;
+            margin: 50px auto;
+            transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
+            position: relative;
+            overflow: hidden;
         }
 
-        .memory-placeholder:hover {
-            transform: scale(1.05);
-            border-color: rgba(255, 182, 193, 0.3);
-            background: linear-gradient(135deg, rgba(255, 182, 193, 0.15), rgba(209, 77, 114, 0.08));
+        .memory-gallery::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(135deg, 
+                var(--gold) 0%, 
+                transparent 50%);
+            border-radius: 50%;
+            opacity: 0;
+            transition: opacity 0.7s ease;
         }
 
-        .memory-placeholder i {
-            font-size: 3.5rem;
-            color: var(--primary-pink);
-            margin-bottom: 15px;
-            opacity: 0.7;
+        .memory-gallery:hover {
+            transform: scale(1.08);
+            border-color: rgba(212, 175, 55, 0.3);
+            background: linear-gradient(135deg, 
+                rgba(212, 175, 55, 0.08) 0%, 
+                rgba(232, 180, 184, 0.04) 100%);
         }
 
-        .memory-placeholder p {
+        .memory-gallery:hover::before {
+            opacity: 0.1;
+        }
+
+        .memory-gallery i {
+            font-size: 4rem;
+            color: var(--gold);
+            margin-bottom: 20px;
+            opacity: 0.8;
+            transition: all 0.7s ease;
+        }
+
+        .memory-gallery:hover i {
+            transform: scale(1.1);
+            opacity: 1;
+        }
+
+        .memory-gallery p {
             font-size: 1rem;
-            color: rgba(255, 243, 232, 0.6);
+            color: rgba(247, 231, 206, 0.6);
             margin: 0;
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 300;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
         }
 
-        /* Verification text */
+        /* Verification Text */
         .verification-text {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 2rem;
-            color: var(--cream);
-            margin: 40px 0;
-            min-height: 100px;
+            font-size: 2.2rem;
+            color: var(--champagne);
+            margin: 50px 0;
+            min-height: 120px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -466,10 +587,13 @@
 
         .verification-line {
             opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 1s ease, transform 1s ease;
+            transform: translateY(25px);
+            transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), 
+                       transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
             position: absolute;
             width: 100%;
+            text-align: center;
+            padding: 0 20px;
         }
 
         .verification-line.active {
@@ -477,33 +601,35 @@
             transform: translateY(0);
         }
 
-        /* Patience animation */
+        /* Patience Animation */
         .breathing-animation {
-            animation: gentleBreath 4s ease-in-out infinite;
+            animation: gentleBreath 5s ease-in-out infinite;
         }
 
         @keyframes gentleBreath {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.02); }
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.015); opacity: 0.98; }
         }
 
-        /* Final letter */
+        /* Final Letter */
         .letter-content {
             text-align: center;
-            margin-top: 40px;
+            margin-top: 50px;
         }
 
         .letter-line {
-            margin-bottom: 32px;
+            margin-bottom: 35px;
             opacity: 0;
-            transform: translateY(25px);
-            transition: opacity 1.2s ease, transform 1.2s ease;
+            transform: translateY(30px);
+            transition: opacity 1.3s cubic-bezier(0.4, 0, 0.2, 1), 
+                       transform 1.3s cubic-bezier(0.4, 0, 0.2, 1);
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.8rem;
+            font-size: 2rem;
             font-weight: 350;
             line-height: 1.9;
-            color: var(--cream);
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            color: var(--champagne);
+            text-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
+            padding: 0 10px;
         }
 
         .letter-line.active {
@@ -512,167 +638,228 @@
         }
 
         .signature {
-            margin-top: 60px;
+            margin-top: 70px;
             text-align: center;
             font-style: italic;
-            color: var(--cream);
-            font-size: 1.6rem;
+            color: var(--champagne);
+            font-size: 1.8rem;
             font-family: 'Cormorant Garamond', serif;
             opacity: 0.9;
             position: relative;
             display: inline-block;
-            padding: 0 30px;
+            padding: 0 40px;
         }
 
         .signature::before, .signature::after {
-            content: '✻';
+            content: '❦';
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            color: var(--primary-pink);
-            opacity: 0.5;
-            font-size: 1.2rem;
+            color: var(--gold);
+            opacity: 0.4;
+            font-size: 1.4rem;
         }
 
         .signature::before { left: 0; }
         .signature::after { right: 0; }
 
-        /* Micro detail */
+        /* Micro Detail */
         .micro-detail {
-            font-size: 0.95rem;
-            color: rgba(255, 243, 232, 0.5);
-            margin-top: 60px;
+            font-size: 0.9rem;
+            color: rgba(247, 231, 206, 0.4);
+            margin-top: 70px;
             text-align: center;
             opacity: 0;
-            animation: fadeInDetail 2s ease 2s forwards;
-            letter-spacing: 2px;
+            animation: fadeInDetail 2.5s ease 2.5s forwards;
+            letter-spacing: 2.5px;
             text-transform: uppercase;
             font-weight: 300;
+            font-family: 'Inter', sans-serif;
         }
 
         @keyframes fadeInDetail {
             to { opacity: 1; }
         }
 
-        /* Teasing text */
+        /* Teasing Text */
         #teasingText {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.6rem;
-            color: var(--primary-pink);
-            margin-top: 30px;
+            font-size: 1.7rem;
+            color: var(--gold);
+            margin-top: 35px;
             font-style: italic;
             opacity: 0.9;
-            text-shadow: 0 2px 10px rgba(255, 105, 180, 0.2);
+            text-shadow: 0 2px 15px rgba(212, 175, 55, 0.2);
         }
 
-        /* Audio player */
-        .audio-player {
+        /* Luxury Audio Player */
+        .luxury-audio-player {
             position: fixed;
-            bottom: 35px;
-            right: 35px;
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-radius: 55px;
-            padding: 18px 28px;
+            bottom: 50px;
+            right: 50px;
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.05) 0%, 
+                rgba(255, 255, 255, 0.02) 100%);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border-radius: 60px;
+            padding: 20px 35px;
             display: flex;
             align-items: center;
-            gap: 18px;
-            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            gap: 25px;
+            box-shadow: 
+                0 15px 50px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1),
+                0 0 0 1px rgba(212, 175, 55, 0.05);
+            border: 1px solid rgba(212, 175, 55, 0.08);
             opacity: 0;
-            transform: translateY(40px);
-            transition: all 1s cubic-bezier(0.19, 1, 0.22, 1);
+            transform: translateY(50px) scale(0.95);
+            transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
             z-index: 100;
             cursor: none;
         }
 
-        .audio-player.active {
+        .luxury-audio-player.active {
             opacity: 1;
-            transform: translateY(0);
+            transform: translateY(0) scale(1);
         }
 
-        .audio-player i {
-            color: var(--primary-pink);
-            font-size: 1.5rem;
+        .audio-controls {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .audio-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, 
+                rgba(212, 175, 55, 0.1) 0%, 
+                rgba(232, 180, 184, 0.05) 100%);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
         }
 
-        .audio-player i:hover {
-            color: var(--glow-pink);
+        .audio-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, 
+                rgba(212, 175, 55, 0.2) 0%, 
+                transparent 100%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .audio-btn:hover {
             transform: scale(1.1);
+            border-color: rgba(212, 175, 55, 0.3);
+            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.1);
+        }
+
+        .audio-btn:hover::before {
+            opacity: 1;
+        }
+
+        .audio-btn i {
+            color: var(--gold);
+            font-size: 1.3rem;
+            transition: all 0.5s ease;
+        }
+
+        .audio-btn:hover i {
+            color: var(--champagne);
         }
 
         .audio-info {
             font-size: 1rem;
-            color: rgba(255, 243, 232, 0.8);
-            font-weight: 400;
-            min-width: 180px;
+            color: rgba(247, 231, 206, 0.8);
+            font-weight: 300;
+            min-width: 200px;
+            font-family: 'Cormorant Garamond', serif;
+            letter-spacing: 0.5px;
         }
 
-        /* Magical animation elements */
-        .sparkle {
+        .track-info {
+            display: block;
+            font-size: 0.9rem;
+            color: rgba(247, 231, 206, 0.6);
+            margin-top: 3px;
+            font-style: italic;
+        }
+
+        /* Magical Animation Elements */
+        .diamond-sparkle {
             position: absolute;
-            width: 10px;
-            height: 10px;
-            background: radial-gradient(circle, var(--cream) 0%, transparent 70%);
+            width: 8px;
+            height: 8px;
+            background: radial-gradient(circle, var(--champagne) 0%, transparent 70%);
             border-radius: 50%;
             pointer-events: none;
             z-index: 1;
-            filter: blur(1px);
+            filter: blur(0.5px);
         }
 
-        .liquid-ripple {
+        .gold-ripple {
             position: absolute;
             border-radius: 50%;
-            background: radial-gradient(circle, rgba(255, 182, 193, 0.4) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.3) 0%, transparent 70%);
             pointer-events: none;
             z-index: 0;
-            filter: blur(10px);
+            filter: blur(12px);
         }
 
         .floating-word {
             position: absolute;
             font-family: 'Cormorant Garamond', serif;
             font-weight: 500;
-            color: var(--cream);
+            color: var(--gold);
             pointer-events: none;
             z-index: 3;
             opacity: 0;
-            text-shadow: 0 2px 10px rgba(255, 105, 180, 0.3);
-            font-size: 1.2rem;
+            text-shadow: 0 2px 15px rgba(212, 175, 55, 0.2);
+            font-size: 1.3rem;
         }
 
-        /* Color morph animation */
+        /* Color Morph Animation */
         .color-morph {
-            animation: morphColors 1.8s ease forwards;
+            animation: morphColors 2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
         }
 
         @keyframes morphColors {
             0% { 
-                border-color: rgba(255, 255, 255, 0.1);
-                color: var(--cream);
+                border-color: rgba(212, 175, 55, 0.2);
+                color: var(--champagne);
             }
             25% { 
-                border-color: rgba(255, 182, 193, 0.4);
-                color: var(--primary-pink);
+                border-color: rgba(232, 180, 184, 0.4);
+                color: var(--blush-pink);
             }
             50% { 
-                border-color: rgba(209, 77, 114, 0.5);
-                color: #FFD1DC;
+                border-color: rgba(212, 175, 55, 0.6);
+                color: var(--gold);
             }
             75% { 
-                border-color: rgba(255, 182, 193, 0.4);
-                color: var(--primary-pink);
+                border-color: rgba(232, 180, 184, 0.4);
+                color: var(--blush-pink);
             }
             100% { 
-                border-color: rgba(255, 255, 255, 0.1);
-                color: var(--cream);
+                border-color: rgba(212, 175, 55, 0.2);
+                color: var(--champagne);
             }
         }
 
-        /* Confetti container */
+        /* Confetti Container */
         #confetti-container {
             position: fixed;
             top: 0;
@@ -686,182 +873,253 @@
 
         .confetti {
             position: absolute;
-            width: 12px;
-            height: 12px;
-            background: var(--primary-pink);
+            width: 10px;
+            height: 10px;
+            background: var(--gold);
             top: -20px;
             opacity: 0;
         }
 
-        /* Share button */
+        /* Share Button */
         .share-button {
             position: fixed;
-            bottom: 35px;
-            left: 35px;
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            width: 55px;
-            height: 55px;
+            bottom: 50px;
+            left: 50px;
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.05) 0%, 
+                rgba(255, 255, 255, 0.02) 100%);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 
+                0 15px 50px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1),
+                0 0 0 1px rgba(212, 175, 55, 0.05);
+            border: 1px solid rgba(212, 175, 55, 0.08);
             opacity: 0;
-            transform: translateY(40px);
-            transition: all 1s cubic-bezier(0.19, 1, 0.22, 1);
+            transform: translateY(50px) scale(0.95);
+            transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
             z-index: 100;
             cursor: none;
         }
 
         .share-button.active {
             opacity: 1;
-            transform: translateY(0);
+            transform: translateY(0) scale(1);
         }
 
         .share-button i {
-            color: var(--primary-pink);
-            font-size: 1.4rem;
-            transition: all 0.3s ease;
+            color: var(--gold);
+            font-size: 1.5rem;
+            transition: all 0.5s ease;
         }
 
         .share-button:hover i {
-            color: var(--glow-pink);
+            color: var(--champagne);
             transform: scale(1.1);
         }
 
         /* Tooltip */
         .tooltip {
             position: absolute;
-            background: rgba(0, 0, 0, 0.7);
+            background: linear-gradient(135deg, 
+                rgba(0, 0, 0, 0.8) 0%, 
+                rgba(10, 10, 10, 0.9) 100%);
             backdrop-filter: blur(10px);
-            color: var(--cream);
-            padding: 8px 15px;
-            border-radius: 8px;
+            color: var(--champagne);
+            padding: 10px 20px;
+            border-radius: 10px;
             font-size: 0.9rem;
             white-space: nowrap;
-            top: -45px;
+            top: -50px;
             left: 50%;
             transform: translateX(-50%);
             opacity: 0;
-            transition: opacity 0.3s ease;
+            transition: opacity 0.4s ease;
             pointer-events: none;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            font-family: 'Inter', sans-serif;
+            font-weight: 300;
+            letter-spacing: 1px;
         }
 
         .share-button:hover .tooltip {
             opacity: 1;
         }
 
-        /* Responsive design */
-        @media (max-width: 900px) {
+        /* Responsive Design */
+        @media (max-width: 1100px) {
             .container {
-                max-width: 95%;
-                padding: 15px;
+                max-width: 90%;
+                padding: 30px 15px;
             }
             
-            .glass-card {
-                padding: 50px 35px;
-                border-radius: 35px;
+            .luxury-card {
+                padding: 70px 50px;
+                border-radius: 42px;
             }
             
-            h1 {
-                font-size: 2.8rem;
+            .main-title {
+                font-size: 3.5rem;
+            }
+            
+            .elegant-title {
+                font-size: 2rem;
             }
             
             .subtitle {
-                font-size: 1.6rem;
+                font-size: 1.5rem;
             }
             
             p {
+                font-size: 1.15rem;
+                max-width: 90%;
+            }
+            
+            .luxury-btn {
+                padding: 24px 45px;
                 font-size: 1.2rem;
-                max-width: 100%;
             }
             
-            .btn {
-                padding: 22px 40px;
-                font-size: 1.2rem;
+            .luxury-audio-player, .share-button {
+                bottom: 30px;
             }
             
-            .audio-player, .share-button {
-                bottom: 25px;
-            }
-            
-            .audio-player {
-                right: 25px;
-                padding: 15px 22px;
+            .luxury-audio-player {
+                right: 30px;
+                padding: 18px 30px;
             }
             
             .share-button {
-                left: 25px;
+                left: 30px;
             }
             
-            .memory-placeholder {
-                width: 200px;
-                height: 200px;
+            .memory-gallery {
+                width: 250px;
+                height: 250px;
+            }
+            
+            .letter-line {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .luxury-card {
+                padding: 60px 35px;
+                border-radius: 36px;
+            }
+            
+            .main-title {
+                font-size: 2.8rem;
+            }
+            
+            .elegant-title {
+                font-size: 1.8rem;
+            }
+            
+            .subtitle {
+                font-size: 1.3rem;
+            }
+            
+            .btn-container {
+                gap: 20px;
+            }
+            
+            .luxury-audio-player {
+                width: calc(100% - 60px);
+                right: 30px;
+                justify-content: center;
+            }
+            
+            .memory-gallery {
+                width: 220px;
+                height: 220px;
             }
             
             .letter-line {
                 font-size: 1.6rem;
-            }
-        }
-
-        @media (max-width: 600px) {
-            .glass-card {
-                padding: 40px 25px;
-                border-radius: 30px;
+                margin-bottom: 30px;
             }
             
-            h1 {
-                font-size: 2.4rem;
-            }
-            
-            .subtitle {
-                font-size: 1.4rem;
-            }
-            
-            .btn-container {
-                gap: 15px;
-            }
-            
-            .audio-player {
-                width: calc(100% - 50px);
-                justify-content: center;
-                right: 25px;
-            }
-            
-            .memory-placeholder {
-                width: 180px;
-                height: 180px;
-            }
-            
-            .letter-line {
-                font-size: 1.4rem;
-                margin-bottom: 25px;
+            .luxury-cursor, .cursor-glow {
+                display: none;
             }
             
             body {
                 cursor: default;
             }
+        }
+
+        @media (max-width: 480px) {
+            .luxury-card {
+                padding: 50px 25px;
+                border-radius: 32px;
+            }
             
-            .custom-cursor, .cursor-glow {
-                display: none;
+            .main-title {
+                font-size: 2.3rem;
+            }
+            
+            .elegant-title {
+                font-size: 1.6rem;
+            }
+            
+            .luxury-btn {
+                padding: 22px 40px;
+                font-size: 1.1rem;
+            }
+            
+            .memory-gallery {
+                width: 200px;
+                height: 200px;
+            }
+            
+            .memory-gallery i {
+                font-size: 3.5rem;
+            }
+            
+            .letter-line {
+                font-size: 1.4rem;
+            }
+            
+            .luxury-audio-player {
+                padding: 15px 25px;
+                gap: 15px;
+            }
+            
+            .audio-btn {
+                width: 45px;
+                height: 45px;
+            }
+            
+            .share-button {
+                width: 55px;
+                height: 55px;
             }
         }
 
-        @media (max-width: 400px) {
-            h1 {
+        @media (max-width: 360px) {
+            .main-title {
                 font-size: 2rem;
             }
             
-            .glass-card {
-                padding: 35px 20px;
+            .luxury-card {
+                padding: 40px 20px;
             }
             
-            .btn {
+            .luxury-btn {
                 padding: 20px 35px;
+            }
+            
+            .memory-gallery {
+                width: 180px;
+                height: 180px;
             }
         }
     </style>
@@ -869,139 +1127,152 @@
 <body>
     <!-- Preloader -->
     <div id="preloader">
-        <div class="loader-sparkle"></div>
-        <p>Preparing something special for Sara...</p>
+        <div class="luxury-loader"></div>
+        <p>Curating an exquisite moment for Sara</p>
     </div>
 
-    <!-- Enhanced glowing background -->
-    <div class="background-wrapper">
-        <div class="gradient-bg"></div>
-        <div class="pink-glow"></div>
-        <div class="particles" id="particles"></div>
+    <!-- Luxury Background -->
+    <div class="luxury-bg">
+        <div class="bg-gradient"></div>
+        <div class="gold-filigree"></div>
+        <div class="particles-container" id="particles"></div>
     </div>
 
-    <!-- Custom cursor -->
-    <div class="custom-cursor" id="customCursor"></div>
+    <!-- Premium Cursor -->
+    <div class="luxury-cursor" id="luxuryCursor"></div>
     <div class="cursor-glow" id="cursorGlow"></div>
 
-    <!-- Main container -->
+    <!-- Main Container -->
     <div class="container">
-        <!-- Scene 1: Locked Intro -->
+        <!-- Scene 1: Sealed Intro -->
         <div class="scene active" id="scene1">
-            <div class="glass-card">
+            <div class="luxury-card">
                 <div class="date-display" id="dateDisplay"></div>
-                <h1>This Moment is Sealed</h1>
-                <p class="subtitle">Something crafted with care, exclusively for you</p>
-                <div class="lock-icon">
+                <h1 class="main-title">A Sealed Moment</h1>
+                <p class="subtitle">An exquisite experience, crafted solely for you</p>
+                <div class="luxury-lock">
                     <i class="fas fa-lock"></i>
                 </div>
                 <div class="btn-container">
-                    <button class="btn" id="unlockBtn">Unlock with a Touch</button>
+                    <button class="luxury-btn" id="unlockBtn">
+                        <i class="fas fa-gem" style="margin-right: 12px; font-size: 1.1rem;"></i>
+                        Unlock with Intent
+                    </button>
                 </div>
             </div>
         </div>
 
         <!-- Scene 2: The Question -->
         <div class="scene" id="scene2">
-            <div class="glass-card">
-                <h1>Sara Khan</h1>
-                <p class="subtitle">Do you appreciate being cared for, even in the quietest moments?</p>
+            <div class="luxury-card">
+                <h2 class="elegant-title">Sara Khan</h2>
+                <p class="subtitle">Do you cherish being cared for, even in the most silent moments?</p>
                 
-                <!-- Memory placeholder -->
-                <div class="memory-placeholder" id="memoryPlaceholder">
+                <!-- Memory Gallery -->
+                <div class="memory-gallery" id="memoryGallery">
                     <i class="fas fa-heart"></i>
-                    <p>A memory worth keeping</p>
+                    <p>A Treasured Memory</p>
                 </div>
                 
                 <div class="btn-container">
-                    <button class="btn" id="yesBtn">Yes, I truly do</button>
-                    <button class="btn" id="noBtn">I'm pretending not to</button>
+                    <button class="luxury-btn" id="yesBtn">
+                        <i class="fas fa-check-circle" style="margin-right: 12px; font-size: 1.1rem;"></i>
+                        Yes, I deeply do
+                    </button>
+                    <button class="luxury-btn" id="noBtn">
+                        <i class="fas fa-playful" style="margin-right: 12px; font-size: 1.1rem;"></i>
+                        I'm playfully pretending otherwise
+                    </button>
                 </div>
                 <p id="teasingText" class="subtitle" style="display: none;">
-                    That's perfectly alright. The care remains.
+                    Quite alright. The care remains unwavering.
                 </p>
             </div>
         </div>
 
         <!-- Scene 3: Verification -->
         <div class="scene" id="scene3">
-            <div class="glass-card">
-                <div class="lock-icon">
+            <div class="luxury-card">
+                <div class="luxury-lock">
                     <i class="fas fa-lock"></i>
                 </div>
                 <div class="verification-text">
-                    <div id="verificationLine1" class="verification-line">Verifying your heartfelt answer...</div>
-                    <div id="verificationLine2" class="verification-line" style="display: none;">Aligning emotions and frequencies...</div>
-                    <div id="verificationLine3" class="verification-line" style="display: none;">Connection with Sara Khan confirmed.</div>
+                    <div id="verificationLine1" class="verification-line">Verifying your heartfelt response...</div>
+                    <div id="verificationLine2" class="verification-line" style="display: none;">Harmonizing emotional frequencies...</div>
+                    <div id="verificationLine3" class="verification-line" style="display: none;">Connection with Sara Khan · Established</div>
                 </div>
             </div>
         </div>
 
         <!-- Scene 4: Patience Moment -->
         <div class="scene" id="scene4">
-            <div class="glass-card breathing-animation">
-                <h1>Beautiful things unfold with time, Sara</h1>
-                <div class="lock-icon">
+            <div class="luxury-card breathing-animation">
+                <h1 class="main-title">Elegance Unfolds with Time</h1>
+                <div class="luxury-lock">
                     <i class="fas fa-unlock"></i>
                 </div>
-                <p class="subtitle">Curating this moment just for you</p>
+                <p class="subtitle">Curating this moment with precision and care</p>
             </div>
         </div>
 
         <!-- Scene 5: Final Letter -->
         <div class="scene" id="scene5">
-            <div class="glass-card">
-                <h1>For Sara Khan</h1>
+            <div class="luxury-card">
+                <h1 class="main-title">For Sara Khan</h1>
                 <div class="letter-content">
                     <p class="letter-line" id="letterLine1">Happy Valentine's Day.</p>
-                    <p class="letter-line" id="letterLine2">This isn't merely a message.</p>
-                    <p class="letter-line" id="letterLine3">It's a gentle reminder that you are cared for,</p>
-                    <p class="letter-line" id="letterLine4">thought of,</p>
-                    <p class="letter-line" id="letterLine5">and chosen — quietly and sincerely.</p>
-                    <p class="letter-line" id="letterLine6">In a loud world, you are my calm.</p>
-                    <p class="letter-line" id="letterLine7">In busy days, you are my pause.</p>
-                    <p class="letter-line" id="letterLine8">And today, I simply wanted you to feel that.</p>
+                    <p class="letter-line" id="letterLine2">This transcends a mere message.</p>
+                    <p class="letter-line" id="letterLine3">It is a delicate reminder that you are cherished,</p>
+                    <p class="letter-line" id="letterLine4">contemplated,</p>
+                    <p class="letter-line" id="letterLine5">and chosen — with quiet sincerity.</p>
+                    <p class="letter-line" id="letterLine6">Within a cacophonous world, you are my serenity.</p>
+                    <p class="letter-line" id="letterLine7">Amidst bustling days, you are my pause.</p>
+                    <p class="letter-line" id="letterLine8">Today, I simply wished for you to feel this truth.</p>
                     <p class="letter-line" id="letterLine9">Happy Valentine's Day, Sara.</p>
                     <p class="letter-line" id="letterLine10">Always.</p>
                 </div>
-                <div class="signature">With care</div>
-                <div class="micro-detail">Unlocked only once, for Sara Khan</div>
+                <div class="signature">With utmost care</div>
+                <div class="micro-detail">Exclusively unlocked for Sara Khan</div>
             </div>
         </div>
     </div>
 
-    <!-- Confetti container -->
+    <!-- Confetti Container -->
     <div id="confetti-container"></div>
 
-    <!-- Audio player -->
-    <div class="audio-player" id="audioPlayer">
-        <i class="fas fa-play" id="playBtn"></i>
-        <div class="audio-info">"Lady" by Avenoir • Ready</div>
-        <i class="fas fa-volume-up" id="volumeBtn"></i>
+    <!-- Luxury Audio Player -->
+    <div class="luxury-audio-player" id="audioPlayer">
+        <div class="audio-controls">
+            <div class="audio-btn" id="playBtn">
+                <i class="fas fa-play"></i>
+            </div>
+            <div class="audio-btn" id="volumeBtn">
+                <i class="fas fa-volume-up"></i>
+            </div>
+        </div>
+        <div class="audio-info">
+            Now Playing
+            <span class="track-info">"Lady" by Avenoir</span>
+        </div>
     </div>
 
-    <!-- Share button -->
+    <!-- Share Button -->
     <div class="share-button" id="shareButton">
         <i class="fas fa-share-alt"></i>
-        <div class="tooltip">Save this moment</div>
+        <div class="tooltip">Preserve this moment</div>
     </div>
 
-    <!-- Fallback audio -->
-    <audio id="fallbackAudio" preload="auto" loop>
-        <!-- Fallback romantic music if Spotify doesn't work -->
+    <!-- Audio Element -->
+    <audio id="luxuryAudio" preload="metadata">
+        <!-- Premium romantic track -->
         <source src="https://assets.mixkit.co/music/preview/mixkit-romantic-sunset-687.mp3" type="audio/mpeg">
     </audio>
-
-    <!-- Spotify Embed (hidden, as backup) -->
-    <div style="display: none;">
-        <iframe id="spotifyEmbed" src="https://open.spotify.com/embed/track/1aeRSlCn1EF7f5q7b5l6uu?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-    </div>
 
     <script>
         // DOM elements
         const scenes = document.querySelectorAll('.scene');
         const preloader = document.getElementById('preloader');
-        const customCursor = document.getElementById('customCursor');
+        const luxuryCursor = document.getElementById('luxuryCursor');
         const cursorGlow = document.getElementById('cursorGlow');
         const unlockBtn = document.getElementById('unlockBtn');
         const yesBtn = document.getElementById('yesBtn');
@@ -1011,201 +1282,204 @@
         const playBtn = document.getElementById('playBtn');
         const volumeBtn = document.getElementById('volumeBtn');
         const shareButton = document.getElementById('shareButton');
-        const memoryPlaceholder = document.getElementById('memoryPlaceholder');
+        const memoryGallery = document.getElementById('memoryGallery');
         const dateDisplay = document.getElementById('dateDisplay');
-        const fallbackAudio = document.getElementById('fallbackAudio');
+        const luxuryAudio = document.getElementById('luxuryAudio');
         const confettiContainer = document.getElementById('confetti-container');
         
-        // Current scene index
+        // State variables
         let currentScene = 1;
         let isPlaying = false;
         let isMuted = false;
         
-        // Magical words for floating animation
-        const magicalWords = ["Loved", "Cherished", "Adored", "Treasured", "Special", "Unique", "Beautiful", "Precious"];
+        // Luxury words for animations
+        const luxuryWords = ["Cherished", "Adored", "Precious", "Revered", "Esteemed", "Venerated", "Beloved", "Treasured"];
         
         // Initialize date display
         function initializeDate() {
             const today = new Date();
-            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const options = { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            };
             const dateString = today.toLocaleDateString('en-US', options);
             dateDisplay.textContent = dateString;
         }
         
-        // Create background particles
-        function createParticles() {
+        // Create luxury background particles
+        function createLuxuryParticles() {
             const particlesContainer = document.getElementById('particles');
-            const particleCount = window.innerWidth < 768 ? 12 : 20;
+            const particleCount = window.innerWidth < 768 ? 15 : 25;
             
             for (let i = 0; i < particleCount; i++) {
                 const particle = document.createElement('div');
                 particle.className = 'particle';
                 
-                // Random size and position
-                const size = 50 + Math.random() * 200;
+                // Random properties
+                const size = 1 + Math.random() * 3;
+                const left = Math.random() * 100;
+                const top = 100 + Math.random() * 20;
+                const delay = Math.random() * 25;
+                const duration = 15 + Math.random() * 20;
+                
                 particle.style.width = `${size}px`;
                 particle.style.height = `${size}px`;
-                particle.style.left = `${Math.random() * 100}%`;
-                particle.style.top = `${Math.random() * 100}%`;
-                
-                // Random animation delay and duration
-                particle.style.animationDelay = `${Math.random() * 20}s`;
-                particle.style.animationDuration = `${15 + Math.random() * 15}s`;
+                particle.style.left = `${left}%`;
+                particle.style.top = `${top}%`;
+                particle.style.animationDelay = `${delay}s`;
+                particle.style.animationDuration = `${duration}s`;
                 
                 particlesContainer.appendChild(particle);
             }
         }
         
-        // Custom cursor
-        function initializeCustomCursor() {
+        // Initialize luxury cursor
+        function initializeLuxuryCursor() {
             document.addEventListener('mousemove', (e) => {
-                customCursor.style.left = `${e.clientX}px`;
-                customCursor.style.top = `${e.clientY}px`;
+                luxuryCursor.style.left = `${e.clientX}px`;
+                luxuryCursor.style.top = `${e.clientY}px`;
                 cursorGlow.style.left = `${e.clientX}px`;
                 cursorGlow.style.top = `${e.clientY}px`;
                 
-                // Cursor size change on hover over buttons
+                // Enhanced hover effects
                 const target = e.target;
-                if (target.classList.contains('btn') || target.closest('.btn')) {
-                    customCursor.style.transform = 'scale(1.8)';
-                    customCursor.style.borderColor = 'rgba(255, 182, 193, 1)';
-                    cursorGlow.style.transform = 'scale(1.5)';
-                    cursorGlow.style.opacity = '0.6';
+                const isInteractive = target.classList.contains('luxury-btn') || 
+                                     target.classList.contains('audio-btn') ||
+                                     target.closest('.luxury-btn') ||
+                                     target.closest('.audio-btn') ||
+                                     target.closest('.memory-gallery') ||
+                                     target.closest('.share-button');
+                
+                if (isInteractive) {
+                    luxuryCursor.style.transform = 'scale(1.6)';
+                    luxuryCursor.style.borderColor = 'var(--gold)';
+                    luxuryCursor.style.borderWidth = '2px';
+                    cursorGlow.style.transform = 'scale(1.4)';
+                    cursorGlow.style.opacity = '0.5';
                 } else {
-                    customCursor.style.transform = 'scale(1)';
-                    customCursor.style.borderColor = 'rgba(255, 182, 193, 0.8)';
+                    luxuryCursor.style.transform = 'scale(1)';
+                    luxuryCursor.style.borderColor = 'var(--gold)';
+                    luxuryCursor.style.borderWidth = '1.5px';
                     cursorGlow.style.transform = 'scale(1)';
-                    cursorGlow.style.opacity = '0.4';
+                    cursorGlow.style.opacity = '0.3';
                 }
             });
             
             // Click animation
             document.addEventListener('click', () => {
-                customCursor.style.transform = 'scale(0.8)';
+                luxuryCursor.style.transform = 'scale(0.7)';
                 setTimeout(() => {
-                    customCursor.style.transform = 'scale(1)';
+                    const target = event?.target;
+                    const isInteractive = target?.classList.contains('luxury-btn') || 
+                                         target?.closest('.luxury-btn');
+                    luxuryCursor.style.transform = isInteractive ? 'scale(1.6)' : 'scale(1)';
                 }, 150);
             });
         }
         
-        // Preloader
+        // Initialize preloader
         function initializePreloader() {
-            // Simulate loading time
             setTimeout(() => {
                 preloader.style.opacity = '0';
                 preloader.style.visibility = 'hidden';
-                
-                // Start background music (with user interaction fallback)
-                setTimeout(() => {
-                    try {
-                        // Try to play fallback audio (has better autoplay support)
-                        fallbackAudio.volume = 0.4;
-                        fallbackAudio.play().then(() => {
-                            isPlaying = true;
-                            playBtn.classList.remove('fa-play');
-                            playBtn.classList.add('fa-pause');
-                        }).catch(e => {
-                            console.log("Autoplay prevented, will require user interaction");
-                        });
-                    } catch(e) {
-                        console.log("Audio error:", e);
-                    }
-                }, 1000);
-                
-            }, 2000);
+            }, 2500);
         }
         
-        // Change scene with smooth transition
+        // Change scene with luxury transition
         function changeScene(nextScene) {
-            // Hide current scene
-            document.getElementById(`scene${currentScene}`).classList.remove('active');
+            const currentSceneElement = document.getElementById(`scene${currentScene}`);
+            currentSceneElement.classList.remove('active');
             
-            // Show next scene
             setTimeout(() => {
-                document.getElementById(`scene${nextScene}`).classList.add('active');
+                const nextSceneElement = document.getElementById(`scene${nextScene}`);
+                nextSceneElement.classList.add('active');
                 currentScene = nextScene;
                 
-                // Trigger specific scene animations
-                if (nextScene === 3) {
-                    startVerification();
-                } else if (nextScene === 4) {
-                    setTimeout(() => changeScene(5), 3500);
-                } else if (nextScene === 5) {
-                    startFinalLetter();
-                    setTimeout(() => {
-                        audioPlayer.classList.add('active');
-                        shareButton.classList.add('active');
-                        launchConfetti();
-                    }, 1000);
+                // Scene-specific actions
+                switch (nextScene) {
+                    case 3:
+                        startLuxuryVerification();
+                        break;
+                    case 4:
+                        setTimeout(() => changeScene(5), 4000);
+                        break;
+                    case 5:
+                        startFinalLetter();
+                        setTimeout(() => {
+                            audioPlayer.classList.add('active');
+                            shareButton.classList.add('active');
+                            launchLuxuryConfetti();
+                        }, 1200);
+                        break;
                 }
-            }, 600);
+            }, 700);
         }
         
-        // Create sparkle animation
-        function createSparkleAnimation(x, y, color = "#FFB6C1") {
-            const sparkleCount = window.innerWidth < 768 ? 12 : 22;
+        // Create diamond sparkle animation
+        function createDiamondSparkle(x, y, color = "var(--gold)") {
+            const sparkleCount = window.innerWidth < 768 ? 15 : 28;
             const container = document.querySelector('.container');
             
             for (let i = 0; i < sparkleCount; i++) {
                 const sparkle = document.createElement('div');
-                sparkle.className = 'sparkle';
+                sparkle.className = 'diamond-sparkle';
                 sparkle.style.left = `${x}px`;
                 sparkle.style.top = `${y}px`;
                 sparkle.style.background = `radial-gradient(circle, ${color} 0%, transparent 70%)`;
                 
-                // Random direction and distance
+                // Luxury animation properties
                 const angle = Math.random() * Math.PI * 2;
-                const distance = 40 + Math.random() * 100;
-                const duration = 0.9 + Math.random() * 0.7;
-                const size = 5 + Math.random() * 10;
+                const distance = 50 + Math.random() * 120;
+                const duration = 1 + Math.random() * 0.8;
+                const size = 4 + Math.random() * 8;
+                const blur = Math.random() > 0.5 ? 'blur(1px)' : 'blur(0.5px)';
                 
                 sparkle.style.width = `${size}px`;
                 sparkle.style.height = `${size}px`;
+                sparkle.style.filter = blur;
                 
-                // Add to container
                 container.appendChild(sparkle);
                 
-                // Animate sparkle
+                // Animate with luxury timing
                 setTimeout(() => {
-                    sparkle.style.transition = `all ${duration}s cubic-bezier(0.19, 1, 0.22, 1)`;
+                    sparkle.style.transition = `all ${duration}s cubic-bezier(0.4, 0, 0.2, 1)`;
                     sparkle.style.transform = `translate(${Math.cos(angle) * distance}px, ${Math.sin(angle) * distance}px) scale(0.1)`;
                     sparkle.style.opacity = '0';
                     
-                    // Remove after animation
+                    // Remove with delay
                     setTimeout(() => {
                         if (sparkle.parentNode) {
                             sparkle.parentNode.removeChild(sparkle);
                         }
-                    }, duration * 1000);
+                    }, duration * 1100);
                 }, 10);
             }
         }
         
-        // Create liquid ripple effect
-        function createRippleEffect(x, y, color = "rgba(255, 182, 193, 0.4)") {
+        // Create gold ripple effect
+        function createGoldRipple(x, y) {
             const ripple = document.createElement('div');
-            ripple.className = 'liquid-ripple';
+            ripple.className = 'gold-ripple';
             ripple.style.left = `${x}px`;
             ripple.style.top = `${y}px`;
-            ripple.style.width = '15px';
-            ripple.style.height = '15px';
-            ripple.style.background = color;
+            ripple.style.width = '20px';
+            ripple.style.height = '20px';
+            ripple.style.background = 'radial-gradient(circle, rgba(212, 175, 55, 0.4) 0%, transparent 70%)';
             
-            // Add to container
             document.querySelector('.container').appendChild(ripple);
             
-            // Animate ripple
             setTimeout(() => {
-                ripple.style.transition = 'all 1.4s cubic-bezier(0.19, 1, 0.22, 1)';
-                ripple.style.transform = 'scale(50)';
+                ripple.style.transition = 'all 1.6s cubic-bezier(0.4, 0, 0.2, 1)';
+                ripple.style.transform = 'scale(60)';
                 ripple.style.opacity = '0';
                 
-                // Remove after animation
                 setTimeout(() => {
                     if (ripple.parentNode) {
                         ripple.parentNode.removeChild(ripple);
                     }
-                }, 1400);
+                }, 1600);
             }, 10);
         }
         
@@ -1216,96 +1490,92 @@
             floatingWord.textContent = word;
             floatingWord.style.left = `${x}px`;
             floatingWord.style.top = `${y}px`;
-            floatingWord.style.fontSize = `${1.1 + Math.random() * 0.7}rem`;
-            floatingWord.style.color = `hsl(${330 + Math.random() * 30}, 70%, 75%)`;
+            floatingWord.style.fontSize = `${1.2 + Math.random() * 0.6}rem`;
+            floatingWord.style.color = `hsl(${45 + Math.random() * 15}, 70%, 65%)`;
             
-            // Add to container
             document.querySelector('.container').appendChild(floatingWord);
             
-            // Animate word
             setTimeout(() => {
-                floatingWord.style.transition = 'all 3s cubic-bezier(0.19, 1, 0.22, 1)';
-                floatingWord.style.transform = `translateY(-${120 + Math.random() * 100}px) translateX(${(Math.random() - 0.5) * 80}px) rotate(${(Math.random() - 0.5) * 30}deg)`;
+                floatingWord.style.transition = 'all 3.2s cubic-bezier(0.4, 0, 0.2, 1)';
+                floatingWord.style.transform = `translateY(-${140 + Math.random() * 120}px) translateX(${(Math.random() - 0.5) * 100}px) rotate(${(Math.random() - 0.5) * 25}deg)`;
                 floatingWord.style.opacity = '0.9';
                 
-                // Fade out
                 setTimeout(() => {
                     floatingWord.style.opacity = '0';
-                    
-                    // Remove after animation
                     setTimeout(() => {
                         if (floatingWord.parentNode) {
                             floatingWord.parentNode.removeChild(floatingWord);
                         }
-                    }, 500);
-                }, 2500);
+                    }, 600);
+                }, 2800);
             }, 10);
         }
         
-        // Apply color morph animation to button
-        function applyColorMorph(button) {
+        // Apply luxury color morph
+        function applyLuxuryColorMorph(button) {
             button.classList.add('color-morph');
             setTimeout(() => {
                 button.classList.remove('color-morph');
-            }, 1800);
+            }, 2000);
         }
         
-        // Handle button click with magical animations
-        function handleButtonClick(button, event) {
-            // Get button position
+        // Handle luxury button click
+        function handleLuxuryButtonClick(button, event) {
             const rect = button.getBoundingClientRect();
             const x = rect.left + rect.width / 2;
             const y = rect.top + rect.height / 2;
             
-            // Apply all magical animations
-            createSparkleAnimation(x, y, "#FFB6C1");
-            createRippleEffect(x, y, "radial-gradient(circle, rgba(255,182,193,0.5) 0%, transparent 70%)");
-            applyColorMorph(button);
+            // Luxury animations
+            createDiamondSparkle(x, y, "var(--gold)");
+            createGoldRipple(x, y);
+            applyLuxuryColorMorph(button);
             
-            // Create 2-3 floating words
+            // Floating words
             const wordCount = 2 + Math.floor(Math.random() * 3);
             for (let i = 0; i < wordCount; i++) {
                 setTimeout(() => {
-                    const randomWord = magicalWords[Math.floor(Math.random() * magicalWords.length)];
+                    const randomWord = luxuryWords[Math.floor(Math.random() * luxuryWords.length)];
                     createFloatingWord(x, y, randomWord);
-                }, i * 400);
+                }, i * 450);
             }
             
             // Button press animation
-            button.style.transform = 'scale(0.92)';
+            button.style.transform = 'scale(0.94)';
             setTimeout(() => {
-                button.style.transform = 'scale(1)';
-            }, 200);
+                button.style.transform = '';
+            }, 220);
             
-            return {x, y};
+            return { x, y };
         }
         
-        // Start verification sequence
-        function startVerification() {
-            const line1 = document.getElementById('verificationLine1');
-            const line2 = document.getElementById('verificationLine2');
-            const line3 = document.getElementById('verificationLine3');
+        // Start luxury verification
+        function startLuxuryVerification() {
+            const lines = [
+                document.getElementById('verificationLine1'),
+                document.getElementById('verificationLine2'),
+                document.getElementById('verificationLine3')
+            ];
             
-            line1.classList.add('active');
+            lines[0].classList.add('active');
             
             setTimeout(() => {
-                line1.style.display = 'none';
-                line2.style.display = 'block';
-                setTimeout(() => line2.classList.add('active'), 50);
+                lines[0].style.display = 'none';
+                lines[1].style.display = 'block';
+                setTimeout(() => lines[1].classList.add('active'), 50);
                 
                 setTimeout(() => {
-                    line2.style.display = 'none';
-                    line3.style.display = 'block';
-                    setTimeout(() => line3.classList.add('active'), 50);
+                    lines[1].style.display = 'none';
+                    lines[2].style.display = 'block';
+                    setTimeout(() => lines[2].classList.add('active'), 50);
                     
                     setTimeout(() => {
                         changeScene(4);
-                    }, 2000);
-                }, 2000);
-            }, 2000);
+                    }, 2200);
+                }, 2200);
+            }, 2200);
         }
         
-        // Animate final letter line by line
+        // Animate final letter
         function startFinalLetter() {
             const letterLines = document.querySelectorAll('.letter-line');
             
@@ -1313,161 +1583,136 @@
                 setTimeout(() => {
                     line.classList.add('active');
                     
-                    // Add subtle sparkles on each line reveal
-                    if (index % 2 === 0) {
+                    // Add diamond sparkles on specific lines
+                    if (index % 3 === 0) {
                         const rect = line.getBoundingClientRect();
-                        createSparkleAnimation(rect.left + rect.width/2, rect.top + rect.height/2, "rgba(255, 255, 255, 0.8)");
+                        createDiamondSparkle(
+                            rect.left + rect.width / 2,
+                            rect.top + rect.height / 2,
+                            "var(--champagne)"
+                        );
                     }
-                }, index * 1100);
+                }, index * 1250);
             });
         }
         
-        // Launch confetti celebration
-        function launchConfetti() {
-            const confettiCount = 150;
-            const colors = ['#FFB6C1', '#D14D72', '#FF69B4', '#FFD1DC', '#FFFFFF'];
+        // Launch luxury confetti
+        function launchLuxuryConfetti() {
+            const confettiCount = 180;
+            const colors = ['var(--gold)', 'var(--blush-pink)', 'var(--champagne)', 'var(--dusty-rose)', '#FFFFFF'];
             
             for (let i = 0; i < confettiCount; i++) {
                 const confetti = document.createElement('div');
                 confetti.className = 'confetti';
                 confetti.style.left = `${Math.random() * 100}%`;
                 confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+                confetti.style.borderRadius = Math.random() > 0.6 ? '50%' : '2px';
                 confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
-                confetti.style.width = `${8 + Math.random() * 10}px`;
-                confetti.style.height = `${8 + Math.random() * 10}px`;
+                confetti.style.width = `${6 + Math.random() * 12}px`;
+                confetti.style.height = `${6 + Math.random() * 12}px`;
                 
                 confettiContainer.appendChild(confetti);
                 
-                // Animate confetti
-                const animationDuration = 2 + Math.random() * 3;
+                const animationDuration = 2.5 + Math.random() * 3;
                 setTimeout(() => {
-                    confetti.style.transition = `all ${animationDuration}s cubic-bezier(0.1, 0.8, 0.3, 1)`;
+                    confetti.style.transition = `all ${animationDuration}s cubic-bezier(0.4, 0, 0.2, 1)`;
                     confetti.style.opacity = '0.9';
-                    confetti.style.top = `${100 + Math.random() * 20}%`;
-                    confetti.style.transform = `rotate(${Math.random() * 720}deg) translateX(${(Math.random() - 0.5) * 200}px)`;
+                    confetti.style.top = `${100 + Math.random() * 25}%`;
+                    confetti.style.transform = `rotate(${Math.random() * 1080}deg) translateX(${(Math.random() - 0.5) * 250}px)`;
                     
-                    // Remove after animation
                     setTimeout(() => {
                         confetti.style.opacity = '0';
                         setTimeout(() => {
                             if (confetti.parentNode) {
                                 confetti.parentNode.removeChild(confetti);
                             }
-                        }, 500);
+                        }, 600);
                     }, animationDuration * 900);
-                }, i * 20);
+                }, i * 25);
             }
-            
-            // Continuous subtle confetti
-            setInterval(() => {
-                if (currentScene === 5 && Math.random() > 0.7) {
-                    const confetti = document.createElement('div');
-                    confetti.className = 'confetti';
-                    confetti.style.left = `${Math.random() * 100}%`;
-                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                    confetti.style.top = '-20px';
-                    confetti.style.opacity = '0.7';
-                    
-                    confettiContainer.appendChild(confetti);
-                    
-                    const animationDuration = 3 + Math.random() * 2;
-                    setTimeout(() => {
-                        confetti.style.transition = `all ${animationDuration}s ease-out`;
-                        confetti.style.opacity = '0.9';
-                        confetti.style.top = `${100 + Math.random() * 20}%`;
-                        confetti.style.transform = `translateX(${(Math.random() - 0.5) * 100}px) rotate(${Math.random() * 360}deg)`;
-                        
-                        setTimeout(() => {
-                            confetti.style.opacity = '0';
-                            setTimeout(() => {
-                                if (confetti.parentNode) {
-                                    confetti.parentNode.removeChild(confetti);
-                                }
-                            }, 500);
-                        }, animationDuration * 900);
-                    }, 10);
-                }
-            }, 1000);
         }
         
         // Event Listeners
         unlockBtn.addEventListener('click', (e) => {
-            handleButtonClick(unlockBtn, e);
-            setTimeout(() => {
-                changeScene(2);
-            }, 1000);
+            handleLuxuryButtonClick(unlockBtn, e);
+            setTimeout(() => changeScene(2), 1100);
         });
         
         yesBtn.addEventListener('click', (e) => {
-            handleButtonClick(yesBtn, e);
-            setTimeout(() => {
-                changeScene(3);
-            }, 1000);
+            handleLuxuryButtonClick(yesBtn, e);
+            setTimeout(() => changeScene(3), 1100);
         });
         
         noBtn.addEventListener('click', (e) => {
-            const {x, y} = handleButtonClick(noBtn, e);
+            const { x, y } = handleLuxuryButtonClick(noBtn, e);
             
-            // Tilt the card for teasing effect
-            const scene2Card = document.querySelector('#scene2 .glass-card');
-            scene2Card.style.transform = 'perspective(1000px) rotateY(10deg)';
+            // Luxury tilt effect
+            const scene2Card = document.querySelector('#scene2 .luxury-card');
+            scene2Card.style.transform = 'perspective(1200px) rotateY(12deg)';
             
-            // Show teasing text with animation
+            // Show teasing text
             teasingText.style.display = 'block';
             setTimeout(() => {
                 teasingText.style.opacity = '1';
-                teasingText.style.transform = 'translateY(0)';
             }, 50);
             
-            // Create extra sparkles near the teasing text
+            // Extra sparkles
             setTimeout(() => {
                 const textRect = teasingText.getBoundingClientRect();
-                createSparkleAnimation(textRect.left + textRect.width/2, textRect.top + textRect.height/2, "#D14D72");
-            }, 400);
+                createDiamondSparkle(
+                    textRect.left + textRect.width / 2,
+                    textRect.top + textRect.height / 2,
+                    "var(--gold)"
+                );
+            }, 500);
             
-            // Return card to original position
+            // Return to normal
             setTimeout(() => {
-                scene2Card.style.transform = 'perspective(1000px) rotateY(0deg)';
-            }, 1200);
+                scene2Card.style.transform = '';
+            }, 1400);
             
-            // Hide teasing text after a moment
+            // Hide teasing text
             setTimeout(() => {
                 teasingText.style.opacity = '0';
                 setTimeout(() => {
                     teasingText.style.display = 'none';
-                }, 600);
-            }, 3500);
+                }, 700);
+            }, 3800);
         });
         
-        // Memory placeholder click
-        memoryPlaceholder.addEventListener('click', () => {
-            createSparkleAnimation(
-                memoryPlaceholder.getBoundingClientRect().left + memoryPlaceholder.offsetWidth/2,
-                memoryPlaceholder.getBoundingClientRect().top + memoryPlaceholder.offsetHeight/2,
-                "#FF69B4"
-            );
+        // Memory gallery interaction
+        memoryGallery.addEventListener('click', () => {
+            const rect = memoryGallery.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+            
+            createDiamondSparkle(centerX, centerY, "var(--gold)");
             
             // Create floating hearts
-            for (let i = 0; i < 8; i++) {
+            for (let i = 0; i < 10; i++) {
                 setTimeout(() => {
                     const heart = document.createElement('div');
                     heart.innerHTML = '<i class="fas fa-heart"></i>';
                     heart.style.position = 'absolute';
-                    heart.style.left = `${memoryPlaceholder.getBoundingClientRect().left + memoryPlaceholder.offsetWidth/2}px`;
-                    heart.style.top = `${memoryPlaceholder.getBoundingClientRect().top + memoryPlaceholder.offsetHeight/2}px`;
-                    heart.style.color = '#FFB6C1';
-                    heart.style.fontSize = `${1 + Math.random() * 1.5}rem`;
+                    heart.style.left = `${centerX}px`;
+                    heart.style.top = `${centerY}px`;
+                    heart.style.color = 'var(--gold)';
+                    heart.style.fontSize = `${1.2 + Math.random() * 1.8}rem`;
                     heart.style.opacity = '0';
                     heart.style.zIndex = '10';
                     heart.style.pointerEvents = 'none';
+                    heart.style.filter = 'drop-shadow(0 2px 8px rgba(212, 175, 55, 0.3))';
                     
                     document.querySelector('.container').appendChild(heart);
                     
                     setTimeout(() => {
-                        heart.style.transition = 'all 2s cubic-bezier(0.19, 1, 0.22, 1)';
+                        heart.style.transition = 'all 2.5s cubic-bezier(0.4, 0, 0.2, 1)';
                         heart.style.opacity = '0.9';
-                        heart.style.transform = `translate(${(Math.random() - 0.5) * 150}px, -${100 + Math.random() * 100}px) scale(${0.5 + Math.random()})`;
+                        heart.style.transform = `
+                            translate(${(Math.random() - 0.5) * 180}px, -${120 + Math.random() * 140}px) 
+                            scale(${0.6 + Math.random() * 0.6})
+                            rotate(${Math.random() * 360}deg)
+                        `;
                         
                         setTimeout(() => {
                             heart.style.opacity = '0';
@@ -1475,78 +1720,83 @@
                                 if (heart.parentNode) {
                                     heart.parentNode.removeChild(heart);
                                 }
-                            }, 500);
-                        }, 1800);
+                            }, 600);
+                        }, 2200);
                     }, 10);
-                }, i * 150);
+                }, i * 180);
             }
         });
         
         // Audio player controls
         playBtn.addEventListener('click', () => {
+            const icon = playBtn.querySelector('i');
+            
             if (isPlaying) {
-                fallbackAudio.pause();
-                playBtn.classList.remove('fa-pause');
-                playBtn.classList.add('fa-play');
+                luxuryAudio.pause();
+                icon.classList.remove('fa-pause');
+                icon.classList.add('fa-play');
             } else {
-                fallbackAudio.play().catch(e => {
-                    console.log("Playback requires user interaction");
-                    // Show a subtle prompt
-                    audioPlayer.style.background = 'rgba(209, 77, 114, 0.2)';
+                luxuryAudio.play().catch(e => {
+                    console.log("Audio playback requires interaction");
+                    playBtn.style.background = 'linear-gradient(135deg, rgba(212, 175, 55, 0.2) 0%, rgba(232, 180, 184, 0.1) 100%)';
                     setTimeout(() => {
-                        audioPlayer.style.background = '';
-                    }, 1000);
+                        playBtn.style.background = '';
+                    }, 1200);
                 });
-                playBtn.classList.remove('fa-play');
-                playBtn.classList.add('fa-pause');
+                icon.classList.remove('fa-play');
+                icon.classList.add('fa-pause');
             }
             isPlaying = !isPlaying;
         });
         
+        // Volume control
         volumeBtn.addEventListener('click', () => {
+            const icon = volumeBtn.querySelector('i');
+            
             if (isMuted) {
-                fallbackAudio.volume = 0.4;
-                volumeBtn.classList.remove('fa-volume-mute');
-                volumeBtn.classList.add('fa-volume-up');
+                luxuryAudio.volume = 0.5;
+                icon.classList.remove('fa-volume-mute');
+                icon.classList.add('fa-volume-up');
             } else {
-                fallbackAudio.volume = 0;
-                volumeBtn.classList.remove('fa-volume-up');
-                volumeBtn.classList.add('fa-volume-mute');
+                luxuryAudio.volume = 0;
+                icon.classList.remove('fa-volume-up');
+                icon.classList.add('fa-volume-mute');
             }
             isMuted = !isMuted;
         });
         
         // Share button functionality
         shareButton.addEventListener('click', () => {
-            // Create a screenshot-like share experience
-            const originalBackground = document.querySelector('.background-wrapper').style.filter;
-            document.querySelector('.background-wrapper').style.filter = 'brightness(1.1)';
+            const originalFilter = document.querySelector('.luxury-bg').style.filter;
+            document.querySelector('.luxury-bg').style.filter = 'brightness(1.15)';
             
-            createSparkleAnimation(
-                shareButton.getBoundingClientRect().left + shareButton.offsetWidth/2,
-                shareButton.getBoundingClientRect().top + shareButton.offsetHeight/2,
+            const rect = shareButton.getBoundingClientRect();
+            createDiamondSparkle(
+                rect.left + rect.width / 2,
+                rect.top + rect.height / 2,
                 "#FFFFFF"
             );
             
-            // Show a temporary message
+            // Luxury message
             const message = document.createElement('div');
-            message.textContent = 'This moment is saved in your heart ♡';
+            message.textContent = 'This moment is eternally preserved ♡';
             message.style.position = 'fixed';
             message.style.top = '50%';
             message.style.left = '50%';
             message.style.transform = 'translate(-50%, -50%)';
-            message.style.background = 'rgba(0, 0, 0, 0.8)';
-            message.style.color = '#FFB6C1';
-            message.style.padding = '20px 40px';
-            message.style.borderRadius = '20px';
+            message.style.background = 'linear-gradient(135deg, rgba(0, 0, 0, 0.85) 0%, rgba(10, 10, 10, 0.9) 100%)';
+            message.style.color = 'var(--champagne)';
+            message.style.padding = '25px 50px';
+            message.style.borderRadius = '24px';
             message.style.zIndex = '10000';
             message.style.fontFamily = "'Cormorant Garamond', serif";
-            message.style.fontSize = '1.5rem';
+            message.style.fontSize = '1.6rem';
             message.style.textAlign = 'center';
-            message.style.backdropFilter = 'blur(10px)';
-            message.style.border = '1px solid rgba(255, 182, 193, 0.2)';
+            message.style.backdropFilter = 'blur(15px)';
+            message.style.border = '1px solid rgba(212, 175, 55, 0.15)';
             message.style.opacity = '0';
-            message.style.transition = 'opacity 0.5s ease';
+            message.style.transition = 'opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+            message.style.boxShadow = '0 20px 60px rgba(0, 0, 0, 0.4)';
             
             document.body.appendChild(message);
             
@@ -1560,46 +1810,48 @@
                     if (message.parentNode) {
                         document.body.removeChild(message);
                     }
-                    document.querySelector('.background-wrapper').style.filter = originalBackground;
-                }, 500);
-            }, 2000);
-            
-            // In a real implementation, this would:
-            // 1. Capture a screenshot of the current scene
-            // 2. Generate a shareable image
-            // 3. Use the Web Share API if available
+                    document.querySelector('.luxury-bg').style.filter = originalFilter;
+                }, 700);
+            }, 2500);
         });
         
         // Initialize everything
-        function initializeExperience() {
+        function initializeLuxuryExperience() {
             initializeDate();
-            createParticles();
-            initializeCustomCursor();
+            createLuxuryParticles();
+            initializeLuxuryCursor();
             initializePreloader();
             
-            // Add continuous ambient sparkles
+            // Set audio volume
+            luxuryAudio.volume = 0.5;
+            
+            // Continuous ambient sparkles
             setInterval(() => {
                 if (currentScene === 1 || currentScene === 5) {
                     const x = Math.random() * window.innerWidth;
                     const y = Math.random() * window.innerHeight;
-                    if (Math.random() > 0.8) {
-                        createSparkleAnimation(x, y, "rgba(255, 255, 255, 0.6)");
+                    if (Math.random() > 0.85) {
+                        createDiamondSparkle(x, y, "rgba(247, 231, 206, 0.7)");
                     }
                 }
-            }, 1200);
+            }, 1500);
             
-            // Make background interactive with mouse
+            // Interactive background
             document.addEventListener('mousemove', (e) => {
-                const bgGradient = document.querySelector('.gradient-bg');
+                const bgGradient = document.querySelector('.bg-gradient');
                 const x = e.clientX / window.innerWidth;
                 const y = e.clientY / window.innerHeight;
                 
-                bgGradient.style.transform = `translate(${x * 40 - 20}px, ${y * 40 - 20}px) rotate(${x * 10}deg) scale(1.05)`;
+                bgGradient.style.transform = `
+                    translate(${x * 30 - 15}px, ${y * 30 - 15}px) 
+                    rotate(${x * 8}deg) 
+                    scale(1.03)
+                `;
             });
         }
         
-        // Start the experience when page loads
-        window.addEventListener('load', initializeExperience);
+        // Start the luxury experience
+        window.addEventListener('load', initializeLuxuryExperience);
         
         // Prevent context menu
         document.addEventListener('contextmenu', (e) => e.preventDefault());
