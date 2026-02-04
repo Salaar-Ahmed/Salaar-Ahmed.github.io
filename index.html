@@ -3,382 +3,681 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sara Khan | Excellence in Love</title>
+    <title>For Sara Khan | A Private Message</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;800&family=Montserrat:wght@100;300;400&family=Playfair+Display:ital,wght@0,400;1,600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
     <style>
-        :root {
-            --royal-red: #4A0404;
-            --deep-burgundy: #2D0B0B;
-            --gold: #D4AF37;
-            --soft-gold: #F1D592;
-            --white-silk: #FFFCF9;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            user-select: none;
         }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            background-color: #000;
-            color: var(--white-silk);
-            font-family: 'Montserrat', sans-serif;
-            overflow: hidden;
-            height: 100vh;
-            cursor: none;
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #F6D1DC 0%, #FFF3E8 100%);
+            background-size: 400% 400%;
+            color: #2E2E2E;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+            position: relative;
         }
 
-        /* Premium Background Layers */
-        .bg-gradient {
+        body::before {
+            content: '';
             position: fixed;
-            inset: 0;
-            background: radial-gradient(circle at center, var(--royal-red) 0%, #000 100%);
-            z-index: -2;
-        }
-
-        .texture-overlay {
-            position: fixed;
-            inset: 0;
-            background-image: url('https://www.transparenttextures.com/patterns/black-paper.png');
-            opacity: 0.3;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIj48ZmlsdGVyIGlkPSJhIiB4PSIwIiB5PSIwIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iLjc0IiBzdGl0Y2hUaWxlcz0ic3RpdGNoIiB+PSIyMDAiPjwvZmVUdXJidWxlbmNlPjxmZUNvbG9yTWF0cml4IHR5cGU9InNhdHVyYXRlIiB2YWx1ZXM9IjAiPjwvZmVDb2xvck1hdHJpeD48L2ZpbHRlcj48cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgZmlsdGVyPSJ1cmwoI2EpIiBvcGFjaXR5PSIwLjAyIj48L3JlY3Q+PC9zdmc+');
+            opacity: 0.2;
             z-index: -1;
             pointer-events: none;
         }
 
-        /* Gold Silk Cursor */
-        #cursor-ring {
-            position: fixed;
-            width: 50px;
-            height: 50px;
-            border: 1px solid var(--gold);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9999;
-            transition: transform 0.2s ease-out;
+        .container {
+            width: 100%;
+            max-width: 500px;
+            perspective: 1000px;
         }
 
-        #cursor-dot {
-            position: fixed;
-            width: 5px;
-            height: 5px;
-            background: var(--gold);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9999;
-            box-shadow: 0 0 15px var(--gold);
-        }
-
-        /* Preloader */
-        #preloader {
-            position: fixed;
-            inset: 0;
-            background: #000;
-            z-index: 10000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: opacity 2s cubic-bezier(0.19, 1, 0.22, 1);
-        }
-
-        .loader-content {
-            text-align: center;
-            border-top: 1px solid var(--gold);
-            border-bottom: 1px solid var(--gold);
-            padding: 40px 60px;
-            animation: borderExpand 2s forwards;
-        }
-
-        @keyframes borderExpand {
-            from { width: 0; opacity: 0; }
-            to { width: 300px; opacity: 1; }
-        }
-
-        /* Main Container */
-        .stage {
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            perspective: 1500px;
-        }
-
-        .glass-vault {
-            background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.01) 100%);
-            backdrop-filter: blur(40px);
-            border: 1px solid rgba(212, 175, 55, 0.15);
-            border-radius: 2px;
-            padding: 60px 50px;
-            width: 90%;
-            max-width: 750px;
-            text-align: center;
+        .scene {
             display: none;
             opacity: 0;
-            transform: scale(0.95) translateZ(0);
-            box-shadow: 0 50px 100px rgba(0,0,0,0.8);
         }
 
-        .glass-vault.active {
+        .scene.active {
             display: block;
             opacity: 1;
-            transform: scale(1);
-            transition: all 1.8s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(22px) saturate(180%);
+            -webkit-backdrop-filter: blur(22px) saturate(180%);
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 40px 35px;
+            text-align: center;
+            box-shadow: 
+                0 15px 35px rgba(0, 0, 0, 0.05),
+                0 5px 15px rgba(255, 255, 255, 0.5) inset,
+                0 -5px 15px rgba(255, 255, 255, 0.3) inset;
+            margin-bottom: 25px;
+            transform-style: preserve-3d;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                rgba(255, 255, 255, 0.1) 0%,
+                rgba(255, 255, 255, 0) 50%,
+                rgba(255, 255, 255, 0.05) 100%
+            );
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .lock-icon {
+            font-size: 48px;
+            color: #D8A7B1;
+            margin-bottom: 25px;
+            display: inline-block;
         }
 
         h1 {
-            font-family: 'Cinzel', serif;
-            font-size: 3rem;
-            color: var(--gold);
-            letter-spacing: 10px;
-            margin-bottom: 25px;
-            text-transform: uppercase;
-            text-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
-        }
-
-        .subtitle {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 300;
-            letter-spacing: 6px;
-            text-transform: uppercase;
-            font-size: 0.75rem;
-            margin-bottom: 35px;
-            color: var(--soft-gold);
-        }
-
-        .message-body {
             font-family: 'Playfair Display', serif;
-            font-size: 1.4rem;
-            line-height: 1.8;
-            color: var(--white-silk);
-            margin-bottom: 40px;
-            opacity: 0.95;
-            font-weight: 400;
-        }
-
-        strong {
-            color: var(--gold);
+            font-size: 2.4rem;
             font-weight: 600;
+            margin-bottom: 15px;
+            line-height: 1.3;
+            color: #2E2E2E;
         }
 
-        /* Premium Buttons */
-        .btn-luxury {
-            background: none;
-            border: 1px solid var(--gold);
-            padding: 16px 45px;
-            color: var(--gold);
-            font-family: 'Cinzel', serif;
-            font-weight: 600;
-            letter-spacing: 4px;
-            cursor: pointer;
-            transition: 0.6s cubic-bezier(0.19, 1, 0.22, 1);
-            position: relative;
-            text-transform: uppercase;
+        .subtext {
+            font-size: 1.1rem;
+            color: #6B5E5E;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            font-weight: 300;
         }
 
-        .btn-luxury:hover {
-            background: var(--gold);
-            color: #000;
-            box-shadow: 0 0 40px rgba(212, 175, 55, 0.4);
-            transform: translateY(-3px);
+        .text-line {
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            color: #2E2E2E;
+            opacity: 0;
+            transform: translateY(10px);
         }
 
-        /* Audio Controller */
-        .audio-hub {
-            position: fixed;
-            bottom: 40px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 1000;
-            background: rgba(0,0,0,0.85);
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            padding: 10px 25px;
-            border-radius: 40px;
+        .btn-container {
             display: flex;
-            align-items: center;
+            flex-direction: column;
             gap: 15px;
-            backdrop-filter: blur(15px);
+            margin-top: 25px;
         }
 
-        .play-btn {
-            background: var(--gold);
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
+        .btn {
+            padding: 18px 30px;
+            border-radius: 50px;
             border: none;
+            font-family: 'Inter', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 500;
             cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+            position: relative;
+            overflow: hidden;
+            outline: none;
+        }
+
+        .btn-yes {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            color: #2E2E2E;
+        }
+
+        .btn-tease {
+            background: rgba(216, 167, 177, 0.15);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(216, 167, 177, 0.3);
+            color: #6B5E5E;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 5px;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.5);
+            opacity: 0;
+            border-radius: 100%;
+            transform: scale(1, 1) translate(-50%);
+            transform-origin: 50% 50%;
+        }
+
+        .btn:focus:not(:active)::after {
+            animation: ripple 1s ease-out;
+        }
+
+        @keyframes ripple {
+            0% {
+                transform: scale(0, 0);
+                opacity: 0.5;
+            }
+            100% {
+                transform: scale(40, 40);
+                opacity: 0;
+            }
+        }
+
+        .verification-line {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            font-weight: 300;
+            color: #6B5E5E;
+            height: 32px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #000;
         }
 
-        .track-info {
-            font-size: 0.65rem;
-            letter-spacing: 3px;
-            color: var(--gold);
-            font-weight: 600;
-            text-transform: uppercase;
+        .letter-content {
+            text-align: left;
+            line-height: 1.8;
         }
 
-        /* Floating Particles */
-        .particle { position: fixed; pointer-events: none; z-index: 50; }
+        .letter-line {
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(15px);
+        }
 
-        @media (max-width: 768px) {
-            h1 { font-size: 1.8rem; letter-spacing: 5px; }
-            .message-body { font-size: 1.1rem; line-height: 1.6; }
-            .glass-vault { padding: 40px 25px; width: 92%; }
+        .signature {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            margin-top: 40px;
+            text-align: right;
+            color: #2E2E2E;
+        }
+
+        .final-note {
+            font-size: 0.9rem;
+            color: #6B5E5E;
+            text-align: center;
+            margin-top: 40px;
+            opacity: 0;
+        }
+
+        .progress-container {
+            width: 100%;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.2);
+            margin: 40px auto 30px;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #D8A7B1, #F6D1DC);
+            border-radius: 2px;
+            transition: width 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .spotify-container {
+            margin-top: 40px;
+            border-radius: 15px;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(20px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .spotify-container iframe {
+            width: 100%;
+            border: none;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes breathe {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.02);
+                opacity: 0.95;
+            }
+        }
+
+        @keyframes unlock {
+            0% {
+                transform: rotate(0deg);
+            }
+            30% {
+                transform: rotate(-15deg);
+            }
+            70% {
+                transform: rotate(5deg);
+            }
+            100% {
+                transform: rotate(0deg);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .glass-card {
+                padding: 30px 25px;
+                border-radius: 25px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .subtext {
+                font-size: 1rem;
+            }
+            
+            .btn {
+                padding: 16px 25px;
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
 <body>
-
-    <div id="preloader">
-        <div class="loader-content">
-            <h2 style="font-family:'Cinzel'; color:var(--gold); letter-spacing: 5px;">SARA KHAN</h2>
-            <p style="font-size: 0.6rem; letter-spacing: 4px; margin-top: 10px; opacity: 0.6;">OPENING A PRIVATE HEART...</p>
-        </div>
-    </div>
-
-    <div id="cursor-ring"></div>
-    <div id="cursor-dot"></div>
-    <div class="bg-gradient"></div>
-    <div class="texture-overlay"></div>
-
-    <div class="stage">
-        <div class="glass-vault active" id="scene1">
-            <div class="subtitle">A Private Dedication</div>
-            <h1>For Sara Khan</h1>
-            <p class="message-body">
-                Some moments are too beautiful for words, <br>
-                and some people are too precious for a single day. <br><br>
-                <span style="color: var(--gold); font-style: italic; font-size: 1.1rem;">Will you step into my heart for a moment?</span>
-            </p>
-            <button class="btn-luxury" onclick="goToScene(2)">Open My Heart</button>
+    <div class="container">
+        <!-- SCENE 1: LOCKED INTRO -->
+        <div class="scene active" id="scene1">
+            <div class="glass-card" id="card1">
+                <div class="lock-icon" id="lockIcon">
+                    <i class="fas fa-lock"></i>
+                </div>
+                <h1>This message is locked.</h1>
+                <p class="subtext">Something made with care, just for you.</p>
+            </div>
         </div>
 
-        <div class="glass-vault" id="scene2">
-            <h1>My Valentine</h1>
-            <p class="message-body">
-                In a world of temporary things, <strong>you are my forever</strong>. <br><br>
-                Sara, you are the poetry in a world of prose. 
-                You are the calm I never knew I needed and the 
-                clarity I can no longer live without. <br><br>
+        <!-- SCENE 2: THE QUESTION -->
+        <div class="scene" id="scene2">
+            <div class="glass-card" id="card2">
+                <h1>Sara Khan, do you like being cared for, even in the quiet moments?</h1>
+                <div class="btn-container">
+                    <button class="btn btn-yes" id="btnYes">Yes, I do</button>
+                    <button class="btn btn-tease" id="btnTease">I'm pretending not to</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- SCENE 3: VERIFICATION -->
+        <div class="scene" id="scene3">
+            <div class="glass-card" id="card3">
+                <div class="verification-line" id="verify1"></div>
+                <div class="verification-line" id="verify2"></div>
+                <div class="verification-line" id="verify3"></div>
+            </div>
+        </div>
+
+        <!-- SCENE 4: PATIENCE MOMENT -->
+        <div class="scene" id="scene4">
+            <div class="glass-card" id="card4">
+                <h1>Good things take a little time, Sara.</h1>
+                <div class="progress-container">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+                <div class="lock-icon" id="unlockIcon">
+                    <i class="fas fa-lock-open"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- SCENE 5: FINAL UNLOCK -->
+        <div class="scene" id="scene5">
+            <div class="glass-card" id="card5">
+                <div class="letter-content">
+                    <div class="letter-line" id="line1">Sara Khan,</div>
+                    <div class="letter-line" id="line2">Happy Valentine's Day.</div>
+                    <div class="letter-line" id="line3"></div>
+                    <div class="letter-line" id="line4">This isn't just a message.</div>
+                    <div class="letter-line" id="line5">It's a small reminder that you are cared for,</div>
+                    <div class="letter-line" id="line6">thought of,</div>
+                    <div class="letter-line" id="line7">and chosen — quietly and sincerely.</div>
+                    <div class="letter-line" id="line8"></div>
+                    <div class="letter-line" id="line9">In a loud world, you are my calm.</div>
+                    <div class="letter-line" id="line10">In busy days, you are my pause.</div>
+                    <div class="letter-line" id="line11">And today, I just wanted you to feel that.</div>
+                    <div class="letter-line" id="line12"></div>
+                    <div class="letter-line" id="line13">Happy Valentine's Day, Sara.</div>
+                    <div class="letter-line signature" id="line14">Always.</div>
+                </div>
                 
-                <span style="font-family: 'Cinzel'; color: var(--gold); font-size: 1rem; letter-spacing: 3px;">
-                    I don't just choose you today—I choose you in every version of tomorrow.
-                </span>
-                <br><br>
-                Happy Valentine's Day, my beautiful Sara.
-            </p>
-            <div class="subtitle" style="margin-top: 10px; border-top: 1px solid rgba(212,175,55,0.2); padding-top: 25px;">
-                Faithfully & Always Yours
+                <div class="spotify-container" id="spotifyContainer">
+                    <iframe src="https://open.spotify.com/embed/track/1aeRSlCn1EF7f5q7b5l6uu?utm_source=generator&theme=0" 
+                            height="152" 
+                            allowfullscreen="" 
+                            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                            loading="lazy">
+                    </iframe>
+                </div>
+                
+                <div class="final-note" id="finalNote">Unlocked only once, for Sara Khan.</div>
             </div>
         </div>
     </div>
 
-    <div class="audio-hub">
-        <button class="play-btn" id="audioToggle">
-            <i class="fas fa-play" id="playIcon"></i>
-        </button>
-        <div class="track-info">LADY — AVENOIR</div>
-    </div>
-
-    <audio id="mainMusic" loop>
-        <source src="https://assets.mixkit.co/music/preview/mixkit-romantic-sunset-687.mp3" type="audio/mpeg">
-    </audio>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script>
-        const ring = document.getElementById('cursor-ring');
-        const dot = document.getElementById('cursor-dot');
+        // Initialize GSAP
+        gsap.registerPlugin();
 
-        window.addEventListener('mousemove', (e) => {
-            gsap.to(ring, { x: e.clientX - 25, y: e.clientY - 25, duration: 0.4 });
-            gsap.to(dot, { x: e.clientX - 2, y: e.clientY - 2, duration: 0.1 });
+        // Background gradient animation
+        gsap.to('body', {
+            backgroundPosition: '100% 100%',
+            duration: 30,
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut"
         });
 
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                document.getElementById('preloader').style.opacity = '0';
-                setTimeout(() => document.getElementById('preloader').remove(), 2000);
-            }, 3000);
-        });
-
-        function goToScene(id) {
-            const current = document.querySelector('.glass-vault.active');
-            gsap.to(current, { opacity: 0, y: -20, scale: 0.95, duration: 1, onComplete: () => {
-                current.classList.remove('active');
-                const next = document.getElementById(`scene${id}`);
-                next.classList.add('active');
-                gsap.fromTo(next, {opacity: 0, y: 30, scale: 0.95}, {opacity: 1, y: 0, scale: 1, duration: 1.5});
-                if(id === 2) launchPetals();
-            }});
+        // Scene management
+        const scenes = document.querySelectorAll('.scene');
+        let currentScene = 1;
+        
+        function changeScene(sceneNumber) {
+            // Hide current scene
+            gsap.to(`#scene${currentScene}`, {
+                opacity: 0,
+                duration: 0.8,
+                ease: "power2.inOut",
+                onComplete: () => {
+                    document.getElementById(`scene${currentScene}`).classList.remove('active');
+                }
+            });
+            
+            // Show new scene
+            document.getElementById(`scene${sceneNumber}`).classList.add('active');
+            gsap.fromTo(`#scene${sceneNumber}`, 
+                { opacity: 0 },
+                { opacity: 1, duration: 1, delay: 0.3, ease: "power2.inOut" }
+            );
+            
+            currentScene = sceneNumber;
+            
+            // Scene-specific animations
+            sceneSpecificAnimations(sceneNumber);
         }
-
-        const music = document.getElementById('mainMusic');
-        const audioBtn = document.getElementById('audioToggle');
-        const icon = document.getElementById('playIcon');
-        let playing = false;
-
-        audioBtn.addEventListener('click', () => {
-            if(!playing) {
-                music.play();
-                icon.className = 'fas fa-pause';
-            } else {
-                music.pause();
-                icon.className = 'fas fa-play';
-            }
-            playing = !playing;
-        });
-
-        function launchPetals() {
-            for(let i=0; i<45; i++) {
-                setTimeout(createPetal, i * 120);
+        
+        function sceneSpecificAnimations(sceneNumber) {
+            switch(sceneNumber) {
+                case 1:
+                    // Floating lock animation
+                    gsap.to('#lockIcon', {
+                        y: -5,
+                        duration: 2,
+                        repeat: -1,
+                        yoyo: true,
+                        ease: "sine.inOut"
+                    });
+                    
+                    // Card entrance animation
+                    gsap.from('#card1', {
+                        scale: 0.9,
+                        opacity: 0,
+                        duration: 1.2,
+                        ease: "back.out(1.2)"
+                    });
+                    break;
+                    
+                case 2:
+                    // Card transition animation
+                    gsap.from('#card2', {
+                        y: 30,
+                        opacity: 0,
+                        duration: 1,
+                        ease: "power3.out"
+                    });
+                    break;
+                    
+                case 4:
+                    // Breathing animation for patience moment
+                    gsap.to('#card4', {
+                        scale: 1.02,
+                        opacity: 0.95,
+                        duration: 2,
+                        repeat: -1,
+                        yoyo: true,
+                        ease: "sine.inOut"
+                    });
+                    
+                    // Unlock icon animation
+                    gsap.to('#unlockIcon', {
+                        rotation: -15,
+                        duration: 0.5,
+                        delay: 0.5,
+                        ease: "power2.out",
+                        onComplete: () => {
+                            gsap.to('#unlockIcon', {
+                                rotation: 0,
+                                duration: 0.8,
+                                ease: "elastic.out(1, 0.5)"
+                            });
+                        }
+                    });
+                    
+                    // Progress bar animation
+                    setTimeout(() => {
+                        document.getElementById('progressBar').style.width = '100%';
+                    }, 300);
+                    break;
+                    
+                case 5:
+                    // Warm up background
+                    gsap.to('body', {
+                        background: 'linear-gradient(135deg, #F8D7E0 0%, #FFF9F0 100%)',
+                        duration: 2,
+                        ease: "power2.inOut"
+                    });
+                    
+                    // Letter line animations
+                    const letterLines = document.querySelectorAll('.letter-line');
+                    letterLines.forEach((line, index) => {
+                        gsap.to(line, {
+                            opacity: 1,
+                            y: 0,
+                            duration: 0.8,
+                            delay: 0.5 + (index * 0.15),
+                            ease: "power2.out"
+                        });
+                    });
+                    
+                    // Spotify container animation
+                    gsap.to('#spotifyContainer', {
+                        opacity: 1,
+                        y: 0,
+                        duration: 1,
+                        delay: 3,
+                        ease: "power3.out"
+                    });
+                    
+                    // Final note animation
+                    gsap.to('#finalNote', {
+                        opacity: 1,
+                        duration: 1.5,
+                        delay: 4,
+                        ease: "power2.inOut"
+                    });
+                    break;
             }
         }
-
-        function createPetal() {
-            const petal = document.createElement('div');
-            petal.className = 'particle';
-            const isGold = Math.random() > 0.7;
-            petal.style.width = (Math.random() * 8 + 4) + 'px';
-            petal.style.height = petal.style.width;
-            petal.style.background = isGold ? 'var(--gold)' : '#630a0a';
-            petal.style.borderRadius = '50% 0 50% 50%';
-            petal.style.left = Math.random() * 100 + 'vw';
-            petal.style.top = '-5vh';
-            petal.style.opacity = Math.random();
-            document.body.appendChild(petal);
-
-            gsap.to(petal, {
-                y: '110vh',
-                x: (Math.random() - 0.5) * 500,
-                rotation: 720,
-                duration: 7 + Math.random() * 5,
-                ease: "none",
-                onComplete: () => petal.remove()
+        
+        // Scene 1: Click to unlock
+        document.getElementById('scene1').addEventListener('click', () => {
+            changeScene(2);
+        });
+        
+        // Scene 2: Button handlers
+        document.getElementById('btnYes').addEventListener('click', () => {
+            // Button press animation
+            gsap.to('#btnYes', {
+                scale: 0.95,
+                duration: 0.1,
+                yoyo: true,
+                repeat: 1,
+                onComplete: () => {
+                    // Move to verification scene
+                    changeScene(3);
+                    
+                    // Run verification sequence
+                    setTimeout(() => verificationSequence(), 500);
+                }
+            });
+        });
+        
+        document.getElementById('btnTease').addEventListener('click', function() {
+            // Button shake animation
+            gsap.to(this, {
+                x: 5,
+                duration: 0.1,
+                yoyo: true,
+                repeat: 5,
+                ease: "power1.inOut",
+                onComplete: () => {
+                    // Change button text temporarily
+                    const originalText = this.textContent;
+                    this.textContent = "That's okay. I still care.";
+                    this.style.color = '#D8A7B1';
+                    
+                    // Card tilt animation
+                    gsap.to('#card2', {
+                        rotationY: 10,
+                        duration: 0.3,
+                        yoyo: true,
+                        repeat: 1,
+                        ease: "power2.inOut",
+                        onComplete: () => {
+                            // Reset after delay
+                            setTimeout(() => {
+                                this.textContent = originalText;
+                                this.style.color = '';
+                            }, 2000);
+                        }
+                    });
+                }
+            });
+        });
+        
+        // Verification sequence
+        function verificationSequence() {
+            const messages = [
+                "Verifying answer…",
+                "Aligning emotions…",
+                "Connection with Sara Khan confirmed."
+            ];
+            
+            const elements = ['verify1', 'verify2', 'verify3'];
+            
+            // Clear any existing text
+            elements.forEach(id => {
+                document.getElementById(id).textContent = '';
+            });
+            
+            // Typewriter effect for each line
+            elements.forEach((id, index) => {
+                const element = document.getElementById(id);
+                const message = messages[index];
+                
+                setTimeout(() => {
+                    let i = 0;
+                    const typewriter = setInterval(() => {
+                        if (i < message.length) {
+                            element.textContent += message.charAt(i);
+                            i++;
+                        } else {
+                            clearInterval(typewriter);
+                            
+                            // Fade in effect after typing
+                            gsap.fromTo(element, 
+                                { opacity: 0.5 },
+                                { opacity: 1, duration: 0.5 }
+                            );
+                            
+                            // If this is the last message, move to next scene
+                            if (index === elements.length - 1) {
+                                setTimeout(() => {
+                                    changeScene(4);
+                                    
+                                    // After patience moment, move to final scene
+                                    setTimeout(() => {
+                                        changeScene(5);
+                                    }, 4000);
+                                }, 1500);
+                            }
+                        }
+                    }, 80); // Typing speed
+                }, index * 1500); // Delay between messages
+            });
+            
+            // Reduce blur effect during verification
+            gsap.to('#card3', {
+                backdropFilter: 'blur(8px) saturate(180%)',
+                WebkitBackdropFilter: 'blur(8px) saturate(180%)',
+                duration: 4,
+                ease: "power2.inOut"
             });
         }
-
-        window.addEventListener('mousedown', (e) => {
-            for(let i=0; i<8; i++) {
-                const spark = document.createElement('div');
-                spark.style.position = 'fixed';
-                spark.style.left = e.clientX + 'px';
-                spark.style.top = e.clientY + 'px';
-                spark.style.width = '2px';
-                spark.style.height = '12px';
-                spark.style.background = 'var(--gold)';
-                spark.style.pointerEvents = 'none';
-                document.body.appendChild(spark);
-
-                const angle = (i / 8) * Math.PI * 2;
-                gsap.to(spark, {
-                    x: Math.cos(angle) * 120,
-                    y: Math.sin(angle) * 120,
-                    rotation: angle * 100,
-                    opacity: 0,
-                    duration: 1.2,
-                    onComplete: () => spark.remove()
+        
+        // Initialize first scene animations
+        document.addEventListener('DOMContentLoaded', () => {
+            sceneSpecificAnimations(1);
+            
+            // Add click sound effect (simulated with CSS)
+            const buttons = document.querySelectorAll('.btn');
+            buttons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Ripple effect is handled by CSS
+                    this.classList.add('clicked');
+                    setTimeout(() => this.classList.remove('clicked'), 600);
                 });
-            }
+            });
         });
     </script>
 </body>
