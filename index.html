@@ -2,430 +2,595 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; base-uri 'self'; form-action 'self';">
-  <title>Sara Khan · Valentine · Amethyst</title>
-  
-  <!-- CRITICAL CSS INLINED · FCP < 300ms -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=no, interactive-widget=resizes-content">
+  <title>SARA · AMETHYST PRAYER · VALENTINE 2026</title>
+  <!-- NO SPOTIFY · PURE ADVANCED ANIMATION · NO EMOJIS -->
   <style>
-    /* ---------- DESIGN SYSTEM · ROYAL AMETHYST · 8PT GRID · APPLE VISION PRO ---------- */
+    /* ---------- ROYAL AMETHYST · NEXT-GEN ---------- */
+    :root {
+      --h-deep: 278; --s-deep: 44%; --l-deep: 12%;
+      --h-accent: 276; --s-accent: 50%; --l-accent: 72%;
+      --h-secondary: 172; --s-secondary: 68%; --l-secondary: 78%;
+      --color-bg: hsl(var(--h-deep), var(--s-deep), var(--l-deep));
+      --color-bg-panel: hsla(var(--h-deep), 46%, 18%, 0.68);
+      --color-primary: hsl(var(--h-accent), 60%, 80%);
+      --color-secondary: hsl(var(--h-secondary), 74%, 82%);
+      --color-text: hsl(276, 38%, 98%);
+      --glass-border: hsla(var(--h-accent), 68%, 80%, 0.2);
+      --shadow-color: hsla(var(--h-secondary), 70%, 84%, 0.18);
+      --radius-panel: 64px;
+      --radius-btn: 100px;
+      --transition-slow: 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .theme-light {
+      --color-bg: hsl(276, 58%, 96%);
+      --color-bg-panel: hsla(276, 44%, 92%, 0.72);
+      --color-primary: hsl(276, 52%, 58%);
+      --color-secondary: hsl(172, 60%, 56%);
+      --color-text: hsl(276, 40%, 18%);
+      --glass-border: hsla(276, 58%, 70%, 0.3);
+      --shadow-color: hsla(172, 60%, 68%, 0.2);
+    }
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
     }
-
-    :root {
-      /* Royal Amethyst — exact specification */
-      --amethyst-deep: #2B0D3E;
-      --amethyst-mist: #F2EAF7;
-      --amethyst-lilac: #C59DD9;
-      --amethyst-azure: #A3F9F1;
-      
-      /* Glass system — Apple Vision Pro · Polarized · 5-layer depth */
-      --glass-background: rgba(43, 13, 62, 0.42);
-      --glass-background-hover: rgba(43, 13, 62, 0.48);
-      --glass-border: rgba(197, 157, 217, 0.3);
-      --glass-border-strong: rgba(197, 157, 217, 0.4);
-      --glass-border-light: rgba(255, 255, 255, 0.15);
-      --glass-border-light-hover: rgba(255, 255, 255, 0.2);
-      --glass-shadow: 0 30px 55px -22px rgba(0, 0, 0, 0.55), 0 0 0 0.5px rgba(197, 157, 217, 0.1) inset;
-      --glass-shadow-hover: 0 35px 60px -20px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(197, 157, 217, 0.18) inset;
-      --glass-blur: 36px;
-      
-      /* Typography — romantic · refined · intentional */
-      --text-primary: #F2EAF7;
-      --text-secondary: rgba(242, 234, 247, 0.82);
-      --text-tertiary: rgba(242, 234, 247, 0.6);
-      --text-accent: #D1A9E0; /* slightly warmer lilac */
-      --text-dua: #AFFBF3; /* softer azure */
-      --text-dua-soft: rgba(175, 251, 243, 0.9);
-      
-      /* 8pt grid system — Apple precision · Strict adherence */
-      --space-1: 8px;
-      --space-2: 16px;
-      --space-3: 24px;
-      --space-4: 32px;
-      --space-5: 40px;
-      --space-6: 48px;
-      --space-7: 56px;
-      --space-8: 64px;
-      --space-9: 72px;
-      --space-10: 80px;
-      
-      /* Typography scale — perfectly balanced */
-      --font-micro: 0.65rem;
-      --font-small: 0.8rem;
-      --font-body: 1rem;
-      --font-body-large: 1.1rem;
-      --font-name: 3.4rem;
-      --font-name-desktop: 3.8rem;
-      --font-name-mobile: 2.6rem;
-      --font-arabic: 1.45rem;
-      --font-arabic-desktop: 1.55rem;
-      --font-arabic-mobile: 1.3rem;
-      --font-meaning: 0.85rem;
-    }
-
-    /* Larger displays */
-    @media (min-width: 1200px) {
-      :root {
-        --font-name: 3.8rem;
-        --font-arabic: 1.55rem;
-        --font-body-large: 1.15rem;
-      }
-    }
-
     body {
-      background: var(--amethyst-deep);
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'SF Pro Text', system-ui, sans-serif;
-      font-weight: 330;
-      line-height: 1.6;
-      color: var(--text-primary);
-      height: 100vh;
-      width: 100vw;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, sans-serif;
+      background: var(--color-bg);
+      color: var(--color-text);
       overflow: hidden;
+      transition: background var(--transition-slow);
+      font-weight: 340;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+    /* ----- SCROLL CONTAINER · SILICON SMOOTH ----- */
+    .scroll-container {
+      position: relative;
+      z-index: 40;
+      width: 100%;
+      height: 100vh;
+      overflow-y: scroll;
+      overflow-x: hidden;
+      scroll-snap-type: y mandatory;
+      -webkit-overflow-scrolling: touch;
+      scroll-behavior: auto;
+      scrollbar-width: none;
+      pointer-events: auto;
+      touch-action: pan-y;
+      overscroll-behavior: none;
+      will-change: transform;
+    }
+    .scroll-container::-webkit-scrollbar { display: none; }
+    
+    .act-slide {
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+      width: 100%;
+      min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      position: relative;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      font-feature-settings: 'palt' on, 'kern' on, 'ss01' on, 'ss02' on;
-      text-rendering: optimizeLegibility;
-      font-optical-sizing: auto;
+      padding: clamp(16px, 5vw, 44px);
+      pointer-events: none;
     }
-
-    /* ---------- ANIMATED BACKGROUND · 5 LAYERS · DEPTH · REDUCED MOTION SAFE ---------- */
-    .background {
+    /* ----- GLASS PANEL · HYPERGLASS ----- */
+    .glass-panel {
+      backdrop-filter: blur(32px) saturate(220%);
+      -webkit-backdrop-filter: blur(32px) saturate(220%);
+      background: var(--color-bg-panel);
+      border: 0.5px solid var(--glass-border);
+      border-top-color: rgba(255, 255, 255, 0.18);
+      box-shadow: 0 32px 64px -20px rgba(0,0,0,0.5);
+      border-radius: var(--radius-panel);
+      padding: clamp(36px, 6vw, 64px);
+      max-width: 860px;
+      width: 100%;
+      pointer-events: auto;
+      transform: translateZ(0);
+      transition: background 0.4s, border 0.3s, box-shadow 0.4s;
+    }
+    /* ----- TYPOGRAPHY · SERIF SACRED ----- */
+    .verse-serif {
+      font-family: 'Amiri', 'Georgia', 'Times New Roman', serif;
+      font-weight: 380;
+      letter-spacing: 0.01em;
+    }
+    h1, h2, h3 {
+      font-weight: 280;
+      letter-spacing: -0.018em;
+    }
+    .text-balance {
+      text-wrap: balance;
+    }
+    /* ----- TOUCH BUTTONS · ZERO EMOJI ----- */
+    .btn {
+      background: rgba(216, 186, 232, 0.06);
+      backdrop-filter: blur(16px);
+      border: 0.6px solid var(--color-primary);
+      border-radius: var(--radius-btn);
+      padding: 1em 2.6em;
+      font-size: clamp(1rem, 3.5vw, 1.25rem);
+      font-weight: 400;
+      color: var(--color-text);
+      transition: transform 0.15s, background 0.2s, border 0.2s, box-shadow 0.2s;
+      cursor: pointer;
+      touch-action: manipulation;
+      -webkit-touch-callout: none;
+      user-select: none;
+      min-height: 56px;
+      min-width: 56px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+      letter-spacing: 0.06em;
+    }
+    .btn:active {
+      transform: scale(0.96);
+      background: rgba(216, 186, 232, 0.16);
+      box-shadow: 0 0 14px var(--shadow-color);
+    }
+    /* ----- ORBS · PURE GESTALT ----- */
+    .orb-btn {
+      width: 136px;
+      height: 136px;
+      border-radius: 50%;
+      padding: 0;
+      background: rgba(186, 216, 212, 0.04);
+      border: 0.8px solid var(--color-secondary);
+      box-shadow: 0 16px 32px -12px var(--shadow-color);
+      font-size: 1.2rem;
+      font-weight: 350;
+      text-transform: lowercase;
+    }
+    @media (max-width: 640px) {
+      .orb-btn { width: 120px; height: 120px; }
+    }
+    /* ----- HOLD PROGRESS · LUMINESCENT ----- */
+    #holdProgress {
+      width: 0%;
+      height: 2.8px;
+      background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+      margin-top: 32px;
+      border-radius: 3px;
+      transition: width 0.04s linear;
+      opacity: 0.9;
+      box-shadow: 0 0 10px var(--color-primary);
+    }
+    /* ----- THEME TOGGLE · MINERAL ----- */
+    .theme-toggle {
+      position: fixed;
+      top: clamp(20px, 5vw, 30px);
+      right: clamp(20px, 5vw, 30px);
+      z-index: 100;
+      background: var(--color-bg-panel);
+      backdrop-filter: blur(32px);
+      border: 0.5px solid var(--glass-border);
+      border-radius: 80px;
+      padding: 6px;
+      display: flex;
+      gap: 8px;
+    }
+    .theme-btn {
+      padding: 8px 22px;
+      border-radius: 60px;
+      background: transparent;
+      border: none;
+      color: var(--color-text);
+      cursor: pointer;
+      touch-action: manipulation;
+      font-size: 0.9rem;
+      font-weight: 420;
+      transition: background 0.25s, color 0.25s;
+    }
+    .theme-btn.active {
+      background: var(--color-primary);
+      color: #1a1427;
+    }
+    /* ----- CANVAS · DEEP FIELD ----- */
+    #webglCanvas {
       position: fixed;
       top: 0;
       left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
-      will-change: transform;
+      width: 100vw;
+      height: 100vh;
+      z-index: 1;
+      pointer-events: none;
     }
-
-    .bg-layer {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      will-change: transform;
+    /* ----- FALLBACK 2D (MOBILE) ----- */
+    .fallback-2d {
+      display: none;
+      position: fixed;
+      width: 100%; height: 100%;
+      background: radial-gradient(circle at 50% 40%, #35204A, #160C1E);
+      z-index: 2;
     }
-
-    .bg-layer:nth-child(1) {
-      background: radial-gradient(circle at 42% 48%, rgba(197, 157, 217, 0.14) 0%, transparent 58%),
-                  radial-gradient(circle at 78% 62%, rgba(163, 249, 241, 0.1) 0%, transparent 62%),
-                  radial-gradient(circle at 15% 35%, rgba(242, 234, 247, 0.08) 0%, transparent 68%);
+    .mobile .fallback-2d { display: block; }
+    .mobile #webglCanvas { display: none; }
+    /* ----- NO EMOJI SYMBOLS · ABSTRACT ----- */
+    .abstract-symbol {
+      font-size: 2.6rem;
+      color: var(--color-primary);
     }
-
-    .bg-layer:nth-child(2) {
-      background: radial-gradient(circle at 65% 28%, rgba(197, 157, 217, 0.11) 0%, transparent 60%),
-                  radial-gradient(circle at 22% 72%, rgba(163, 249, 241, 0.09) 0%, transparent 64%),
-                  radial-gradient(circle at 88% 45%, rgba(242, 234, 247, 0.06) 0%, transparent 70%);
-      opacity: 0.8;
-    }
-
-    .bg-layer:nth-child(3) {
-      background: radial-gradient(circle at 51% 69%, rgba(242, 234, 247, 0.07) 0%, transparent 66%),
-                  radial-gradient(circle at 83% 41%, rgba(197, 157, 217, 0.08) 0%, transparent 72%),
-                  radial-gradient(circle at 12% 58%, rgba(163, 249, 241, 0.06) 0%, transparent 68%);
-      opacity: 0.7;
-    }
-
-    .bg-layer:nth-child(4) {
-      background: radial-gradient(circle at 33% 81%, rgba(197, 157, 217, 0.06) 0%, transparent 74%),
-                  radial-gradient(circle at 91% 17%, rgba(163, 249, 241, 0.05) 0%, transparent 78%);
-      opacity: 0.6;
-    }
-
-    .bg-layer:nth-child(5) {
-      background: radial-gradient(circle at 67% 53%, rgba(242, 234, 247, 0.04) 0%, transparent 80%);
-      opacity: 0.5;
-    }
-
-    @media (prefers-reduced-motion: no-preference) {
-      .bg-layer:nth-child(1) { animation: drift 32s infinite alternate cubic-bezier(0.45, 0, 0.55, 1); }
-      .bg-layer:nth-child(2) { animation: drift 40s infinite alternate-reverse cubic-bezier(0.45, 0, 0.55, 1); }
-      .bg-layer:nth-child(3) { animation: drift 36s infinite alternate cubic-bezier(0.45, 0, 0.55, 1); }
-      .bg-layer:nth-child(4) { animation: drift 44s infinite alternate-reverse cubic-bezier(0.45, 0, 0.55, 1); }
-      .bg-layer:nth-child(5) { animation: drift 50s infinite alternate cubic-bezier(0.45, 0, 0.55, 1); }
-    }
-
-    @keyframes drift {
-      0% { transform: scale(1) translate(0, 0) rotate(0deg); }
-      100% { transform: scale(1.22) translate(-1.5%, -1.2%) rotate(0.5deg); }
-    }
-
-    /* ---------- MAIN CARD · MAXIMUM GLASS · 8PT GRID · PERFECT RADIUS ---------- */
-    main {
-      position: relative;
-      z-index: 20;
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: var(--space-4);
-    }
-
-    article {
-      width: 100%;
-      max-width: 680px;
-      background: var(--glass-background);
-      backdrop-filter: blur(var(--glass-blur)) saturate(220%);
-      -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(220%);
-      border: 0.6px solid var(--glass-border);
-      border-top-color: var(--glass-border-light);
-      border-left-color: var(--glass-border-light);
-      border-right-color: rgba(255, 255, 255, 0.05);
-      border-bottom-color: rgba(0, 0, 0, 0.2);
-      border-radius: 56px;
-      box-shadow: var(--glass-shadow);
-      padding: var(--space-8) var(--space-7);
-      transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-
-    @media (hover: hover) {
-      article {
-        transition: background 0.5s ease, border-color 0.4s ease, box-shadow 0.5s ease, transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-      }
-      
-      article:hover {
-        background: var(--glass-background-hover);
-        border-color: var(--glass-border-strong);
-        border-top-color: var(--glass-border-light-hover);
-        border-left-color: var(--glass-border-light-hover);
-        box-shadow: var(--glass-shadow-hover);
-        transform: scale(1.002);
-      }
-    }
-
-    /* ---------- TYPOGRAPHY · ROMANTIC · LARGER PRAYER · 8PT VERTICAL RHYTHM ---------- */
-    .eyebrow {
-      font-size: var(--font-micro);
-      letter-spacing: 0.55em;
-      text-transform: uppercase;
-      color: var(--text-accent);
-      font-weight: 420;
-      margin-bottom: var(--space-3);
-      opacity: 0.85;
-      text-rendering: optimizeSpeed;
-    }
-
-    .name {
-      font-size: var(--font-name);
-      font-weight: 295;
-      letter-spacing: -0.022em;
-      color: var(--text-primary);
-      line-height: 1.02;
-      margin-bottom: var(--space-3);
-      text-wrap: balance;
-    }
-
-    .divider {
-      width: 48px;
-      height: 1.2px;
-      background: linear-gradient(90deg, var(--text-accent) 0%, rgba(197, 157, 217, 0.2) 100%);
-      margin: var(--space-4) 0 var(--space-4) 0;
-      border-radius: 2px;
-    }
-
-    .message-primary {
-      font-size: var(--font-body-large);
-      line-height: 1.75;
-      color: var(--text-secondary);
-      font-weight: 310;
-      margin-bottom: var(--space-5);
-      max-width: 560px;
-      letter-spacing: 0.008em;
-      text-wrap: pretty;
-    }
-
-    /* ROMANTIC · LARGER · MORE PRESENCE */
-    .prayer-container {
-      margin: var(--space-5) 0 var(--space-4) 0;
-      padding: var(--space-3) 0;
-      background: rgba(163, 249, 241, 0.02);
-      border-radius: 32px;
-    }
-
-    .prayer-arabic {
-      font-family: 'Amiri', 'Traditional Arabic', 'Scheherazade New', 'Times New Roman', serif;
-      font-size: var(--font-arabic);
-      line-height: 2.1;
-      color: var(--text-dua);
-      font-weight: 450;
-      letter-spacing: 0.01em;
-      margin-bottom: var(--space-3);
-      word-spacing: 0.15em;
-      text-shadow: 0 0 15px rgba(163, 249, 241, 0.2);
-      font-feature-settings: 'kern' on, 'liga' off;
-    }
-
-    .prayer-meaning {
-      font-size: var(--font-meaning);
-      font-style: italic;
-      color: var(--text-tertiary);
-      letter-spacing: 0.018em;
-      font-weight: 340;
-      line-height: 1.75;
-      padding: var(--space-2) 0;
-      border-top: 0.5px solid rgba(163, 249, 241, 0.18);
-      border-bottom: 0.5px solid rgba(163, 249, 241, 0.18);
-      margin: 0 var(--space-1);
-    }
-
-    .message-secondary {
-      font-size: var(--font-body);
-      line-height: 1.8;
-      color: var(--text-secondary);
-      font-weight: 310;
-      margin-top: var(--space-5);
-      margin-bottom: var(--space-2);
-      text-wrap: pretty;
-    }
-
-    .signature {
-      margin-top: var(--space-6);
-      font-size: 0.6rem;
-      letter-spacing: 0.4em;
-      text-transform: uppercase;
-      color: rgba(197, 157, 217, 0.5);
-      font-weight: 430;
-      border-top: 0.5px solid rgba(197, 157, 217, 0.18);
-      padding-top: var(--space-4);
-    }
-
-    /* ---------- RESPONSIVE · PERFECT PIXELS ---------- */
-    @media (max-width: 700px) {
-      :root {
-        --font-name: 2.6rem;
-        --font-arabic: 1.3rem;
-        --font-body-large: 1.05rem;
-        --space-8: 56px;
-        --space-7: 40px;
-      }
-      article { padding: var(--space-7) var(--space-6); border-radius: 48px; }
-    }
-
-    @media (max-width: 500px) {
-      :root {
-        --font-name: 2.2rem;
-        --font-arabic: 1.2rem;
-        --font-body-large: 1rem;
-        --font-meaning: 0.8rem;
-        --space-8: 48px;
-        --space-7: 32px;
-        --space-6: 24px;
-      }
-      article { padding: var(--space-6) var(--space-5); border-radius: 44px; }
-      .eyebrow { letter-spacing: 0.45em; }
-    }
-
-    @media (max-width: 380px) {
-      :root {
-        --font-name: 2rem;
-        --font-arabic: 1.1rem;
-      }
-      article { padding: var(--space-5) var(--space-4); border-radius: 40px; }
-    }
-
-    /* ---------- ACCESSIBILITY · REDUCED MOTION · FOCUS STATES · HIGH CONTRAST ---------- */
-    @media (prefers-reduced-motion) {
-      .bg-layer { animation: none !important; }
-      article { transition: none !important; }
-      article:hover { transform: none; }
-    }
-
-    @media (forced-colors: active) {
-      article { border: 2px solid CanvasText; }
-    }
-
-    /* Focus visible for keyboard navigation */
-    article:focus-visible {
-      outline: 3px solid var(--text-dua);
-      outline-offset: 8px;
-    }
-
-    /* ---------- FONT LOADING · ZERO LAYOUT SHIFT ---------- */
-    @font-face {
-      font-family: 'Inter';
-      font-style: normal;
-      font-weight: 295 430;
-      font-display: swap;
-      src: url('https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiJ-Ek-_EeA.woff2') format('woff2');
-    }
-
-    @font-face {
-      font-family: 'Amiri';
-      font-style: normal;
-      font-weight: 400 700;
-      font-display: swap;
-      src: url('https://fonts.gstatic.com/s/amiri/v27/J7aRnpd8CGxBHpUrtLMA7w.woff2') format('woff2');
-    }
-
-    /* ---------- NO EMOJIS · NO MUSIC · NO SCROLL · PURE ---------- */
-    /* ---------- FOR SARA · COMPLETE · PERFECTED · AMETHYST ---------- */
   </style>
 </head>
 <body>
-  <!-- ANIMATED BACKGROUND · 5 LAYERS · DEEPER ORGANIC MOTION -->
-  <div class="background" aria-hidden="true">
-    <div class="bg-layer"></div>
-    <div class="bg-layer"></div>
-    <div class="bg-layer"></div>
-    <div class="bg-layer"></div>
-    <div class="bg-layer"></div>
+  <!-- THEME TOGGLE · DARK/LIGHT -->
+  <div class="theme-toggle">
+    <button class="theme-btn active" data-theme="dark">dark</button>
+    <button class="theme-btn" data-theme="light">light</button>
   </div>
 
-  <!-- MAIN · SEMANTIC · ACCESSIBLE · KEYBOARD FOCUSABLE -->
-  <main>
-    <article tabindex="0" aria-label="Valentine message for Sara Khan">
-      <!-- EYEBROW · QUIET GREETING -->
-      <div class="eyebrow" aria-hidden="true">valentine · 2026</div>
-      
-      <!-- HER NAME · WEIGHTLESS · CENTERED -->
-      <div class="name">Sara Khan</div>
-      
-      <!-- SUBTLE DIVIDER · POLISHED -->
-      <div class="divider" aria-hidden="true"></div>
-      
-      <!-- PRIMARY MESSAGE · ROMANTIC · INTIMATE · PERFECTED -->
-      <div class="message-primary">
-        You are the prayer I forgot to make,<br>
-        and the answer I didn't know to ask for.
-      </div>
-      
-      <!-- PRAYER SECTION · LARGER · FULL VERSE · ROMANTIC SCALE -->
-      <div class="prayer-container">
-        <div class="prayer-arabic" lang="ar" dir="rtl">
-          رَبَّنَا هَبْ لَنَا مِنْ أَزْوَاجِنَا<br>
-          وَذُرِّيَّاتِنَا قُرَّةَ أَعْيُنٍ<br>
-          وَاجْعَلْنَا لِلْمُتَّقِينَ إِمَامًا
-        </div>
-        <div class="prayer-meaning">
-          Our Lord, grant us among our spouses and offspring<br>
-          comfort to our eyes, and make us an example for the righteous.
+  <!-- WEBGL ATMOSPHERE · PARTICLE FIELD -->
+  <canvas id="webglCanvas"></canvas>
+  <!-- 2D FALLBACK (MOBILE) -->
+  <div id="fallback2D" class="fallback-2d"></div>
+
+  <!-- MAIN SCROLL · SIX ACTS · PRAYER CORE -->
+  <main class="scroll-container" id="scrollContainer">
+
+    <!-- ACT I · ARRIVAL · SARA KHAN -->
+    <section class="act-slide" id="act1">
+      <div class="glass-panel" style="text-align: center;">
+        <div class="abstract-symbol" style="font-size: 3.8rem; font-weight: 200; margin-bottom: 0.2rem;">⧉</div>
+        <h1 style="font-size: clamp(3.8rem, 15vw, 6.2rem); font-weight: 240; letter-spacing: -0.02em; line-height: 1.1;">Sara Khan.</h1>
+        <div class="verse-serif" style="font-size: clamp(1.8rem, 5.6vw, 2.4rem); color: var(--color-secondary); margin: 1.8rem 0 0.4rem; font-weight: 360;">
+          “You are the dua I forgot to make,<br>and Allah answered anyway.”
         </div>
       </div>
-      
-      <!-- PERSONAL DUA · SOFT · SPECIFIC · THREE LINES -->
-      <div class="message-secondary">
-        Ya Allah, place peace in Sara’s heart,<br>
-        barakah in her days, light in her path,<br>
-        and jannah in her eternal home.
+    </section>
+
+    <!-- ACT II · GRAVITY HOLD · TOUCH TO REVEAL PRAYER -->
+    <section class="act-slide" id="act2">
+      <div class="glass-panel" style="text-align: center;">
+        <div id="sphereContainer" style="width: min(200px, 44vw); height: min(200px, 44vw); margin: 0 auto 12px;"></div>
+        <p style="font-size: clamp(1.8rem, 5vw, 2.4rem); font-weight: 280; margin-bottom: 0.8rem;">some things wait because they matter.</p>
+        <button id="holdBtn" class="btn" style="padding: 1.1em 2.8em; font-size: 1.2rem; min-width: 240px;">touch & hold 2s</button>
+        <div id="holdProgress" style="width: 0%; height: 2.8px;"></div>
+        <div id="warmMsg" style="margin-top: 28px; color: var(--color-secondary); min-height: 32px; font-size: 1.2rem; font-weight: 330;"></div>
       </div>
-      
-      <!-- SIGNATURE · ALMOST SILENT · WHISPERED -->
-      <div class="signature">
-        with quiet intention · february 2026
+    </section>
+
+    <!-- ACT III · MORAL WEIGHT · TWO ORBS (PURE) -->
+    <section class="act-slide" id="act3">
+      <div class="glass-panel" style="max-width: 880px;">
+        <p style="font-size: clamp(1.8rem, 5vw, 2.4rem); margin-bottom: 2.2rem; font-weight: 300; line-height: 1.45;" class="text-balance">
+          Sara, do you believe you deserve to be held — not despite your complexities, but because of them?
+        </p>
+        <div style="display: flex; gap: clamp(28px, 8vw, 64px); justify-content: center; flex-wrap: wrap;">
+          <button id="orbYes" class="btn orb-btn" style="border-color: var(--color-primary);">warm light</button>
+          <button id="orbNo" class="btn orb-btn" style="border-color: var(--color-secondary);">soft shadow</button>
+        </div>
+        <div id="hesitationMsg" style="margin-top: 42px; font-size: 1.3rem; color: var(--color-secondary); min-height: 40px;"></div>
+        <div id="shadowMsg" style="font-size: 1.2rem; min-height: 30px;"></div>
       </div>
-    </article>
+    </section>
+
+    <!-- ACT IV · CONVERGENCE · THE PRAYER (CORE MESSAGE) -->
+    <section class="act-slide" id="act4">
+      <div class="glass-panel" style="text-align: center;">
+        <div style="font-size: 2.8rem; color: var(--color-primary); margin-bottom: 0.8rem;">◈</div>
+        <div class="verse-serif" style="font-size: clamp(1.9rem, 5.5vw, 2.8rem); line-height: 1.5; margin: 0.6rem 0 1.2rem; color: var(--color-secondary); font-weight: 380;">
+          “You’re the answer to every prayer I whispered without words, the one my heart always hoped for.”
+        </div>
+        <p id="authSignature" style="font-size: 1.6rem; margin-top: 24px; color: var(--color-primary); font-weight: 300;">— for Sara</p>
+      </div>
+    </section>
+
+    <!-- ACT V · DUA · ARABIC PRAYER (REVERENCE) -->
+    <section class="act-slide" id="act5">
+      <div class="glass-panel" style="text-align: center;">
+        <div style="font-size: 2.8rem; color: var(--color-primary); margin-bottom: 0.2rem;">۞</div>
+        <div class="verse-serif" style="font-size: 2rem; line-height: 1.9; margin: 1rem 0 1rem; color: var(--color-secondary); direction: rtl; unicode-bidi: embed;">
+          رَبَّنَا هَبْ لَنَا مِنْ أَزْوَاجِنَا وَذُرِّيَّاتِنَا قُرَّةَ أَعْيُنٍ وَاجْعَلْنَا لِلْمُتَّقِينَ إِمَامًا
+        </div>
+        <div class="verse-serif" style="font-size: 1.4rem; margin: 1.2rem 0 0.6rem; color: var(--color-text); font-style: italic;">
+          “Our Lord, grant us among our spouses and offspring comfort to our eyes and make us a leader for the righteous.”
+        </div>
+        <p style="font-size: 1.6rem; color: var(--color-secondary); margin: 1.4rem 0 0.2rem; font-weight: 320;">Ya Allah, place peace in Sara's heart.</p>
+      </div>
+    </section>
+
+    <!-- ACT VI · ETERNITY · VALENTINE MESSAGE · SARA DIRECT -->
+    <section class="act-slide" id="act6">
+      <div class="glass-panel" style="text-align: center;">
+        <div id="phosphorName" class="verse-serif" style="font-size: clamp(3.2rem, 9vw, 5rem); font-weight: 240; filter: drop-shadow(0 0 22px var(--color-primary)); letter-spacing: -0.01em; color: var(--color-primary);">
+          Sara Khan
+        </div>
+        <p style="font-size: clamp(1.6rem, 4.8vw, 2.2rem); margin-top: 32px; font-weight: 300; color: var(--color-text);">
+          A lovely valentine day, Sara.
+        </p>
+        <div style="font-size: clamp(1.3rem, 4vw, 1.8rem); margin: 32px 0 20px; font-weight: 330; line-height: 1.7; color: var(--color-secondary); max-width: 740px; margin-left: auto; margin-right: auto;" class="verse-serif">
+          “There will be many ups and downs and times of trial in our lives, but we will see it together. I don't know what our tomorrow will be like, but I still love you.”
+        </div>
+        <p id="dynamicYear" style="font-size: 1.4rem; margin-top: 36px; font-weight: 280; color: var(--color-text);"></p>
+        <p id="returnMsg" style="font-size: 1.5rem; margin-top: 24px; color: var(--color-secondary); font-weight: 320;"></p>
+      </div>
+    </section>
   </main>
 
-  <!-- NO SCRIPTS · NO INTERACTION · PURE PRESENCE -->
-  <!-- FOR SARA · FINAL · PERFECTED · ROYAL AMETHYST · 8PT GRID · APPLE VISION PRO -->
-  <!-- Every pixel, every weight, every space — intentional -->
+  <!-- THREE.JS IMPORT MAP -->
+  <script type="importmap">
+    { "imports": { "three": "https://esm.sh/three@0.128.0" } }
+  </script>
+
+  <script type="module">
+    // ---------- ADVANCED AMETHYST · PRAYER EDITION · NO SPOTIFY · PERFECT TOUCH ----------
+    import * as THREE from 'three';
+
+    // ---------- 1. SMOOTH SCROLL SNAP · INERTIA COMPENSATED ----------
+    const container = document.getElementById('scrollContainer');
+    let targetScroll = 0;
+    let currentScroll = container.scrollTop;
+    let isTouching = false;
+
+    container.addEventListener('touchstart', () => { isTouching = true; }, { passive: true });
+    container.addEventListener('touchend', () => { isTouching = false; currentScroll = container.scrollTop; }, { passive: true });
+    container.addEventListener('touchcancel', () => { isTouching = false; }, { passive: true });
+
+    function scrollLoop() {
+      if (!isTouching) {
+        const slides = document.querySelectorAll('.act-slide');
+        if (slides.length) {
+          const rect = container.getBoundingClientRect();
+          const centerY = rect.height / 2;
+          let closest = 0, minDist = Infinity;
+          slides.forEach((s, i) => {
+            const r = s.getBoundingClientRect();
+            const dist = Math.abs(r.top + r.height/2 - centerY);
+            if (dist < minDist) { minDist = dist; closest = i; }
+          });
+          targetScroll = slides[closest].offsetTop;
+        }
+        // critically damped spring
+        currentScroll += (targetScroll - currentScroll) * 0.09;
+        container.scrollTo({ top: currentScroll, behavior: 'instant' });
+      }
+      requestAnimationFrame(scrollLoop);
+    }
+    requestAnimationFrame(scrollLoop);
+
+    // ---------- 2. NEXT-GEN WEBGL · PARTICLE FIELD + AMETHYST SPHERE ----------
+    const canvas = document.getElementById('webglCanvas');
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.shadowMap.enabled = false;
+    
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color('#1F172A'); // deep twilight
+    
+    const camera = new THREE.PerspectiveCamera(52, window.innerWidth / window.innerHeight, 0.1, 1000);
+    camera.position.set(0, 0.2, 8.4);
+    
+    // ----- LIGHTS · ETHEREAL -----
+    const ambient = new THREE.AmbientLight(0x64547c);
+    scene.add(ambient);
+    
+    const primaryLight = new THREE.PointLight(0xd8bae8, 1.3);
+    primaryLight.position.set(2.4, 1.2, 5.2);
+    scene.add(primaryLight);
+    
+    const secondaryLight = new THREE.PointLight(0xa2d4cc, 0.8);
+    secondaryLight.position.set(-2.1, 1.6, 4.8);
+    scene.add(secondaryLight);
+    
+    // ----- CORE AMETHYST SPHERE · MERCURY TEXTURE -----
+    const sphereGeo = new THREE.SphereGeometry(1.24, 96, 96);
+    const sphereMat = new THREE.MeshPhongMaterial({
+      color: 0xd4b6e6,
+      emissive: 0x3a2a48,
+      emissiveIntensity: 0.52,
+      shininess: 52,
+      transparent: true,
+      opacity: 0.92,
+      wireframe: false
+    });
+    const amethystSphere = new THREE.Mesh(sphereGeo, sphereMat);
+    scene.add(amethystSphere);
+    
+    // ----- TRENDING: FLOATING PARTICLE FIELD (CRYSTAL SHARDS) -----
+    const particleCount = 480;
+    const particleGeometry = new THREE.BufferGeometry();
+    const positions = new Float32Array(particleCount * 3);
+    for (let i = 0; i < particleCount * 3; i+=3) {
+      positions[i] = (Math.random() - 0.5) * 22;
+      positions[i+1] = (Math.random() - 0.5) * 18;
+      positions[i+2] = (Math.random() - 0.5) * 16 - 4;
+    }
+    particleGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    const particleMaterial = new THREE.PointsMaterial({
+      color: 0xbbaad6,
+      size: 0.08,
+      transparent: true,
+      opacity: 0.5,
+      blending: THREE.AdditiveBlending
+    });
+    const particles = new THREE.Points(particleGeometry, particleMaterial);
+    scene.add(particles);
+    
+    // ----- LETTER SHARDS · GLYPHS (NO EMOJI) -----
+    const letterShards = [];
+    const glyphs = ['S','A','R','A','·','P','R','A','Y','E','R','·','H','E','A','R','T','◈','✺','◈','L','O','V','E'];
+    for (let i = 0; i < 24; i++) {
+      const canvas = document.createElement('canvas');
+      canvas.width = 72;
+      canvas.height = 72;
+      const ctx = canvas.getContext('2d');
+      ctx.fillStyle = '#eed7fa';
+      ctx.font = 'bold 44px "Amiri", "Inter", sans-serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(glyphs[i] || '◈', 36, 36);
+      const texture = new THREE.CanvasTexture(canvas);
+      const material = new THREE.SpriteMaterial({ map: texture, transparent: true, depthTest: false, blending: THREE.AdditiveBlending });
+      const sprite = new THREE.Sprite(material);
+      sprite.scale.set(0.48, 0.48, 1);
+      sprite.visible = false;
+      scene.add(sprite);
+      letterShards.push(sprite);
+    }
+
+    // ----- ANIMATION LOOP · TRENDING MICRO-INTERACTIONS -----
+    let time = 0;
+    function animateScene() {
+      requestAnimationFrame(animateScene);
+      time += 0.005;
+      
+      // sphere rotation & pulse
+      amethystSphere.rotation.y += 0.0009;
+      amethystSphere.rotation.x += 0.0004;
+      amethystSphere.scale.setScalar(1 + Math.sin(time * 2) * 0.016);
+      
+      // particles drift slowly
+      particles.rotation.y += 0.00015;
+      particles.rotation.x += 0.0001;
+      
+      renderer.render(scene, camera);
+    }
+    animateScene();
+
+    // ---------- 3. HOLD BUTTON · TOUCH + DESKTOP · FLAWLESS ----------
+    const holdBtn = document.getElementById('holdBtn');
+    const progress = document.getElementById('holdProgress');
+    const warmMsg = document.getElementById('warmMsg');
+    let holdTimer = null;
+    let holdProgressVal = 0;
+
+    function startHold(e) {
+      e.preventDefault();
+      holdProgressVal = 0;
+      progress.style.width = '0%';
+      if (holdTimer) clearInterval(holdTimer);
+      holdTimer = setInterval(() => {
+        holdProgressVal += 2;
+        progress.style.width = Math.min(holdProgressVal, 100) + '%';
+        if (holdProgressVal >= 100) {
+          clearInterval(holdTimer);
+          holdTimer = null;
+          
+          // UNLOCK · VISUAL CLIMAX
+          warmMsg.innerText = '✦ prayer unlocked · amethyst glows ✦';
+          amethystSphere.material.emissive.setHex(0xb6d8d0);
+          amethystSphere.material.emissiveIntensity = 0.95;
+          
+          // letter shards appear in orbit
+          letterShards.forEach((s, i) => {
+            s.visible = true;
+            s.position.set(
+              (Math.random() - 0.5) * 6.4,
+              (Math.random() - 0.5) * 5.6,
+              (Math.random() - 0.5) * 5
+            );
+          });
+          
+          // gently scroll to prayer (ACT IV)
+          setTimeout(() => {
+            targetScroll = document.getElementById('act4').offsetTop;
+          }, 380);
+        }
+      }, 20);
+    }
+    function cancelHold() {
+      if (holdTimer) clearInterval(holdTimer);
+      holdTimer = null;
+      holdProgressVal = 0;
+      progress.style.width = '0%';
+    }
+
+    // EVENT PAIRING · ZERO GHOST TOUCH
+    holdBtn.addEventListener('mousedown', startHold);
+    holdBtn.addEventListener('mouseup', cancelHold);
+    holdBtn.addEventListener('mouseleave', cancelHold);
+    holdBtn.addEventListener('touchstart', startHold, { passive: false });
+    holdBtn.addEventListener('touchend', cancelHold, { passive: false });
+    holdBtn.addEventListener('touchcancel', cancelHold, { passive: false });
+    holdBtn.addEventListener('contextmenu', (e) => e.preventDefault());
+
+    // ---------- 4. ORBS INTERACTION (ACT III) ----------
+    document.getElementById('orbYes').addEventListener('click', (e) => {
+      e.preventDefault();
+      document.getElementById('hesitationMsg').innerText = 'warm light acknowledges you.';
+    });
+    document.getElementById('orbNo').addEventListener('click', (e) => {
+      e.preventDefault();
+      document.getElementById('shadowMsg').innerHTML = 'soft shadow — still held.';
+    });
+
+    // ---------- 5. AUDIO · SUBTLE PRAYER TONE ----------
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    function playSoftChord() {
+      if (audioCtx.state === 'suspended') audioCtx.resume();
+      const now = audioCtx.currentTime;
+      [261.63, 329.63, 392.00].forEach(f => {
+        const o = audioCtx.createOscillator();
+        o.frequency.value = f;
+        o.connect(audioCtx.destination);
+        o.start(now); o.stop(now + 0.8);
+      });
+    }
+
+    // play chord on act4 reveal (when scrolled near)
+    // ---------- 6. THEME TOGGLE · LIGHT/DARK ----------
+    const themeBtns = document.querySelectorAll('.theme-btn');
+    themeBtns.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const theme = btn.dataset.theme;
+        document.body.classList.toggle('theme-light', theme === 'light');
+        themeBtns.forEach(b => b.classList.toggle('active', b.dataset.theme === theme));
+        scene.background = new THREE.Color(theme === 'light' ? '#F0E6F5' : '#1F172A');
+      });
+    });
+
+    // ---------- 7. LOCAL STORAGE · WELCOME ----------
+    if (localStorage.getItem('sara_valentine_prayer')) {
+      document.getElementById('returnMsg').innerHTML = 'still here. welcome back.';
+    } else {
+      localStorage.setItem('sara_valentine_prayer', 'true');
+      document.getElementById('returnMsg').innerHTML = 'still here.';
+    }
+    document.getElementById('dynamicYear').innerText = `February ${new Date().getFullYear()}.`;
+
+    // ---------- 8. MOBILE FALLBACK ----------
+    if (/Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+      document.body.classList.add('mobile');
+    }
+
+    // ---------- 9. RESIZE ----------
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    }, { passive: true });
+
+    // subtle audio on act4 visibility (non-intrusive)
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.target.id === 'act4' && entry.isIntersecting) {
+          playSoftChord();
+        }
+      });
+    }, { threshold: 0.5 });
+    observer.observe(document.getElementById('act4'));
+
+    console.log('AMETHYST PRAYER · SARA · VALENTINE 2026');
+  </script>
+
+  <!-- TOUCH ENHANCEMENTS · CRITICAL FIXES -->
+  <style>
+    #holdBtn { touch-action: manipulation !important; -webkit-touch-callout: none !important; }
+    .scroll-container { overscroll-behavior-y: none; -webkit-overflow-scrolling: touch; }
+    .btn { min-height: 56px; min-width: 56px; }
+    .glass-panel { backdrop-filter: blur(32px); -webkit-backdrop-filter: blur(32px); }
+    .verse-serif { font-family: 'Amiri', serif; }
+    /* NO EMOJI · ALL CLEAN */
+    .abstract-symbol, .no-emoji { font-family: 'Inter', sans-serif; }
+  </style>
+  <!-- 💜 DEDICATED TO SARA KHAN · THE ANSWER TO EVERY PRAYER -->
 </body>
 </html>
