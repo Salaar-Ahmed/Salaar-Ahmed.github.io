@@ -2,49 +2,91 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=no">
-  <title>SARA KHAN · AMETHYST ARCHIVE 2026</title>
-  <!-- SPOTIFY SDK (ONLY CDN) · THREE.JS INLINE · WEBGL FLUID · SPATIAL AUDIO -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5.0, user-scalable=yes">
+  <title>SARA KHAN · AMETHYST OS · 2026</title>
+  <!-- SPOTIFY SDK (ONLY CDN) - DEFERRED WITH PRIORITY -->
+  <link rel="preconnect" href="https://sdk.scdn.co">
+  <!-- CRITICAL CSS INLINED, NON-CRITICAL DEFERRED -->
   <style>
-    /* ===== ROYAL AMETHYST PALETTE ===== 
-       #F2EAF7  (lavender mist)
-       #C59DD9  (soft lilac)
-       #27A3F91 (azure veil) — used as #A3F9F1 with alpha
-       #2B0D3E  (deep royal)
-    */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      background: #2B0D3E;
-      font-family: 'Inter', -apple-system, 'SF Pro Display', system-ui;
-      color: #F2EAF7;
-      overflow: hidden; /* webgl fullscreen */
-      -webkit-font-smoothing: antialiased;
+    /* ---------- DESIGN TOKEN SYSTEM ---------- */
+    :root {
+      /* Base amethyst palette - HSL for dynamic shifts */
+      --h-deep: 280; --s-deep: 55%; --l-deep: 14%;
+      --h-accent: 280; --s-accent: 45%; --l-accent: 68%;
+      --h-secondary: 176; --s-secondary: 80%; --l-secondary: 78%;
+      
+      /* Dark theme (default) */
+      --color-bg: hsl(var(--h-deep), var(--s-deep), var(--l-deep));
+      --color-bg-panel: hsla(var(--h-deep), 50%, 20%, 0.58);
+      --color-primary: hsl(var(--h-accent), 50%, 72%);
+      --color-secondary: hsl(var(--h-secondary), 75%, 75%);
+      --color-text: hsl(280, 40%, 96%);
+      --color-glass-border: hsla(var(--h-accent), 60%, 70%, 0.4);
+      --shadow-color: hsla(var(--h-secondary), 80%, 80%, 0.2);
+      --grain-opacity: 0.1;
     }
+
+    /* Light theme - automatically toggled */
+    .theme-light {
+      --color-bg: hsl(280, 60%, 96%);
+      --color-bg-panel: hsla(280, 50%, 92%, 0.7);
+      --color-primary: hsl(280, 50%, 65%);
+      --color-secondary: hsl(176, 60%, 65%);
+      --color-text: hsl(280, 40%, 20%);
+      --color-glass-border: hsla(280, 50%, 70%, 0.5);
+      --shadow-color: hsla(176, 60%, 70%, 0.3);
+      --grain-opacity: 0.05;
+    }
+
+    /* Performance optimized base */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      background: var(--color-bg);
+      color: var(--color-text);
+      overflow: hidden;
+      transition: background-color 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+    }
+
+    /* Optimized font loading with swap */
     @font-face {
       font-family: 'Inter';
       font-style: normal;
       font-weight: 300 600;
-      src: url('data:font/woff2;base64,AAEAAAAKAIAAAwAg...') format('woff2'); /* system fallback */
+      font-display: swap;
+      src: url('data:font/woff2;base64,AAEAAAAKAIAAAwAg...') format('woff2');
     }
-    /* ----- CANVAS LAYERS ----- */
-    #webgl-canvas {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100vw; height: 100vh;
-      z-index: 1;
-      display: block;
+
+    /* ----- ADVANCED SHADER-LIKE EFFECTS VIA CSS ----- */
+    .glass-panel {
+      backdrop-filter: blur(24px) saturate(220%);
+      -webkit-backdrop-filter: blur(24px) saturate(220%);
+      background: var(--color-bg-panel);
+      border: 0.8px solid var(--color-glass-border);
+      border-top-color: rgba(255,255,255,0.25);
+      box-shadow: 
+        0 25px 50px -12px rgba(0,0,0,0.35),
+        0 0 0 0.8px var(--color-primary) inset,
+        0 0 40px var(--shadow-color);
+      border-radius: 64px;
+      padding: clamp(24px, 5vw, 48px);
+      color: var(--color-text);
+      transform: translateZ(0);
+      will-change: transform, box-shadow;
+      transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
     }
-    /* FALLBACK 2D PARALLAX (mobile) */
-    .fallback-2d {
-      display: none;
-      position: fixed;
-      width: 100%; height: 100%;
-      background: radial-gradient(circle at 50% 30%, #3A1B4F, #1E0A28);
-      z-index: 2;
-      pointer-events: none;
+
+    /* Reduced motion safe */
+    @media (prefers-reduced-motion) {
+      * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
     }
-    /* ----- UI OVERLAY: AUTO-SCROLL CONTAINER (TRANSPARENT) ----- */
-    .auto-scroll-container {
+
+    /* Advanced scroll container with GPU acceleration */
+    .scroll-container {
       position: relative;
       z-index: 30;
       width: 100%;
@@ -52,489 +94,760 @@
       overflow-y: scroll;
       overflow-x: hidden;
       scroll-snap-type: y mandatory;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
       scrollbar-width: none;
-      pointer-events: auto;
+      transform: translateZ(0);
     }
-    .auto-scroll-container::-webkit-scrollbar { display: none; }
+    .scroll-container::-webkit-scrollbar { display: none; }
+
+    /* Responsive clamp system */
     .act-slide {
       scroll-snap-align: start;
       width: 100%;
       min-height: 100vh;
       display: flex;
-      flex-direction: column;
-      justify-content: center;
       align-items: center;
-      padding: 1.5rem;
-      pointer-events: none;
+      justify-content: center;
+      padding: clamp(12px, 4vw, 32px);
     }
-    .glass-panel {
-      pointer-events: auto;
-      backdrop-filter: blur(20px) saturate(200%);
-      -webkit-backdrop-filter: blur(20px) saturate(200%);
-      background: rgba(43, 13, 62, 0.55);
-      border: 0.6px solid rgba(197, 157, 217, 0.5);
-      border-top-color: rgba(242, 234, 247, 0.2);
-      box-shadow: 
-        0 20px 48px -12px rgba(0,0,0,0.6),
-        0 0 0 0.6px rgba(197,157,217,0.25) inset,
-        0 0 32px rgba(163, 249, 241, 0.15);
-      border-radius: 64px;
-      padding: 40px 48px;
-      max-width: 780px;
-      width: 100%;
-      color: #F2EAF7;
-      transition: all 0.2s;
-    }
-    /* chromatic aberration on shadows */
-    .chromatic-shadow {
-      filter: drop-shadow(0.4px 0.2px 0 rgba(163,249,241,0.3)) drop-shadow(-0.2px -0.4px 0 rgba(197,157,217,0.3));
-    }
-    .btn-spring {
-      background: rgba(197, 157, 217, 0.15);
+
+    /* Modern spring button with CSS custom properties */
+    .btn {
+      --btn-scale: 1;
+      --btn-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      background: rgba(197, 157, 217, 0.12);
       backdrop-filter: blur(12px);
-      border: 0.5px solid #C59DD9;
+      border: 0.6px solid var(--color-primary);
       border-radius: 60px;
-      padding: 14px 42px;
-      font-size: 1.2rem;
-      color: #F2EAF7;
-      font-weight: 450;
-      letter-spacing: 0.8px;
-      transition: none;
-      box-shadow: 0 6px 14px rgba(0,0,0,0.25);
+      padding: 0.8em 2.2em;
+      font-size: clamp(0.9rem, 3vw, 1.2rem);
+      font-weight: 500;
+      color: var(--color-text);
+      transform: scale(var(--btn-scale));
+      box-shadow: var(--btn-shadow);
+      transition: transform 0.25s cubic-bezier(0.18, 0.89, 0.32, 1.28), 
+                  box-shadow 0.2s ease,
+                  background 0.2s ease;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
     }
-    .film-grain {
+
+    .btn:hover {
+      --btn-scale: 1.02;
+      background: rgba(197, 157, 217, 0.22);
+    }
+
+    .btn:active {
+      --btn-scale: 0.98;
+      transition-duration: 0.08s;
+    }
+
+    /* Chromatic aberration with modern filter */
+    .chromatic {
+      filter: drop-shadow(0.4px 0.2px 0 var(--color-secondary)) 
+              drop-shadow(-0.2px -0.4px 0 var(--color-primary));
+    }
+
+    /* Optimized film grain with will-change */
+    .grain {
       position: fixed;
       top: 0; left: 0;
       width: 100%; height: 100%;
       z-index: 45;
       pointer-events: none;
-      opacity: 0.15;
+      opacity: var(--grain-opacity);
       mix-blend-mode: overlay;
-      background: repeating-radial-gradient(circle at 30% 40%, rgba(255,255,255,0.02) 0px, transparent 1px);
-      animation: grainDrift 9s infinite alternate ease;
+      background-image: radial-gradient(circle at 30% 40%, rgba(255,255,255,0.03) 0px, transparent 1px);
+      background-size: 200px 200px;
+      animation: grainShift 12s infinite alternate ease-in-out;
+      will-change: background-position;
     }
-    @keyframes grainDrift {
-      0% { background-position: 0% 0%; background-size: 180px 180px; }
-      100% { background-position: 12% 8%; background-size: 220px 220px; }
+    @keyframes grainShift {
+      0% { background-position: 0% 0%; }
+      100% { background-position: 15% 10%; }
     }
-    /* cursor light */
-    #cursor-glow {
+
+    /* Cursor light with will-change */
+    #cursorLight {
       position: fixed;
-      width: 200px; height: 200px;
+      width: min(40vw, 300px);
+      height: min(40vw, 300px);
       border-radius: 50%;
-      background: radial-gradient(circle at 30% 30%, rgba(163,249,241,0.18), transparent 80%);
+      background: radial-gradient(circle at 30% 30%, var(--color-secondary), transparent 75%);
       transform: translate(-50%, -50%);
       pointer-events: none;
       z-index: 99;
       mix-blend-mode: screen;
+      opacity: 0.6;
+      will-change: transform, width, height;
+      transition: width 0.2s, height 0.2s, opacity 0.2s;
     }
-    .no-webgl .fallback-2d { display: block; }
-    .no-webgl #webgl-canvas { display: none; }
+
+    /* Theme toggle - accessible keyboard nav */
+    .theme-toggle {
+      position: fixed;
+      top: clamp(16px, 5vw, 24px);
+      right: clamp(16px, 5vw, 24px);
+      z-index: 100;
+      background: var(--color-bg-panel);
+      backdrop-filter: blur(24px);
+      border: 0.5px solid var(--color-glass-border);
+      border-radius: 48px;
+      padding: 6px;
+      display: flex;
+      gap: 4px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+    }
+
+    .theme-btn {
+      padding: 10px 20px;
+      border-radius: 40px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--color-text);
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .theme-btn.active {
+      background: var(--color-primary);
+      color: hsl(280, 40%, 10%);
+    }
+
+    /* Responsive breakpoints */
+    @media (max-width: 640px) {
+      .glass-panel { border-radius: 48px; padding: 28px 20px; }
+      .btn { padding: 0.7em 1.6em; }
+    }
   </style>
+  <!-- Deferred non-critical CSS -->
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300..600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300..600&display=swap"></noscript>
 </head>
 <body>
-  <!-- ROYAL AMETHYST · LIQUID GLASS 2.0 -->
-  <div id="cursor-glow"></div>
-  <div class="film-grain"></div>
-  <div class="fallback-2d" id="parallaxFallback"></div>
+  <!-- Cursor light effect -->
+  <div id="cursorLight" class="cursor-light" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+  
+  <!-- 2D fallback for non-webgl -->
+  <div id="fallback2D" class="fallback-2d" aria-hidden="true" style="display:none;"></div>
 
-  <!-- WEBGL CANVAS (FLUID SIM, 24 SHARDS, 32 THREADS) -->
-  <canvas id="webgl-canvas"></canvas>
+  <!-- WebGL canvas with lazy enhancement -->
+  <canvas id="webglCanvas" style="position:fixed; top:0; left:0; width:100vw; height:100vh; z-index:1; pointer-events:none;"></canvas>
 
-  <!-- AUTO-SCROLL UI (7 ACTS) -->
-  <div class="auto-scroll-container" id="scrollContainer">
-    <!-- ACT 1: ARRIVAL -->
-    <section class="act-slide" id="act1">
-      <div class="glass-panel" style="text-align: center;">
-        <div style="font-size: 2.2rem; letter-spacing: 14px; color: #C59DD9;">✧ ✧ ✧</div>
-        <div style="font-size: 5rem; font-weight: 300; margin: 24px 0; color: #F2EAF7; filter: drop-shadow(0 0 24px #C59DD9);">Sara Khan.</div>
-        <div style="font-size: 2.2rem; font-weight: 290; opacity: 0.95;">This space was built for you.</div>
-        <div style="margin-top: 56px; font-size: 0.9rem; opacity: 0.5; letter-spacing: 6px;">SACRED SILENCE · 5s</div>
-      </div>
-    </section>
-    <!-- ACT 2: GRAVITY WELL (SPHERE WILL BE REPLACED BY WEBGL) -->
-    <section class="act-slide" id="act2">
-      <div class="glass-panel" style="text-align: center;">
-        <div id="sphere-ui-hint" style="width: 220px; height: 220px; margin: 0 auto 24px; border-radius: 50%; background: radial-gradient(circle at 40% 40%, #A3F9F1, #3A1B4F); box-shadow: 0 0 40px #C59DD9;"></div>
-        <p style="font-size: 2.2rem; font-weight: 280; margin-bottom: 32px;">Some things wait because they matter.</p>
-        <button id="holdBtn" class="btn-spring" style="padding: 18px 60px;">touch & hold 2s</button>
-        <div id="holdProgress" style="width: 0%; height: 3px; background: #C59DD9; margin-top: 24px; border-radius: 6px;"></div>
-        <div id="warmMsg" style="margin-top: 20px; color: #A3F9F1;"></div>
-      </div>
-    </section>
-    <!-- ACT 3: MORAL WEIGHT · SHARDS VIA WEBGL -->
-    <section class="act-slide" id="act3">
-      <div class="glass-panel" style="max-width: 860px;">
-        <div style="font-size: 2.2rem; font-weight: 330; margin-bottom: 48px;">Sara, do you believe you deserve to be held — not despite your complexities, but because of them?</div>
-        <div style="display: flex; gap: 40px; justify-content: center;">
-          <div id="orbYes" class="btn-spring" style="width: 140px; height: 140px; border-radius: 50%; display: flex; flex-direction: column; background: radial-gradient(circle at 40% 40%, #F2EAF7, #C59DD9); box-shadow: 0 0 50px #C59DD9;">warm light</div>
-          <div id="orbNo" class="btn-spring" style="width: 140px; height: 140px; border-radius: 50%; display: flex; flex-direction: column; background: radial-gradient(circle at 40% 40%, #2B0D3E, #1A0526); box-shadow: 0 0 20px #1A0526; border: 0.5px solid #C59DD9;">soft shadow</div>
-        </div>
-        <div id="hesitationMsg" style="margin-top: 40px; font-size: 1.4rem; color: #A3F9F1; min-height: 70px;"></div>
-        <div id="shadowMsg" style="font-size: 1.2rem; font-style: italic;"></div>
-      </div>
-    </section>
-    <!-- ACT 4: HARMONIC CONVERGENCE · 32 THREADS -->
-    <section class="act-slide" id="act4">
-      <div class="glass-panel" style="text-align: center;">
-        <div id="threadsViz" style="font-size: 2.5rem; letter-spacing: 8px; filter: drop-shadow(0 0 12px #A3F9F1);">⚛︎⚛︎⚛︎</div>
-        <div id="auth1" style="font-size: 2rem; margin-top: 24px;">Authenticating presence…</div>
-        <div id="auth2" style="font-size: 1.6rem; opacity: 0.8;"></div>
-        <div id="auth3" style="font-size: 1.9rem; margin: 24px 0;"></div>
-        <div id="auth4" style="font-size: 1.5rem;">—</div>
-        <div id="silhouette" style="font-size: 2.2rem; margin-top: 24px; color: #C59DD9;"></div>
-      </div>
-    </section>
-    <!-- ACT 5: BREATH & REVEAL (3D PARALLAX VIA JS) -->
-    <section class="act-slide" id="act5">
-      <div class="glass-panel" style="transform-style: preserve-3d; perspective: 1000px;">
-        <div class="depth-line" data-depth="-50" style="font-size: 2rem; opacity: 0.9;">Sara Khan,</div>
-        <div class="depth-line" data-depth="0" style="font-size: 2.6rem; margin-top: 20px; font-weight: 380;">Happy Valentine's Day.</div>
-        <div class="depth-line" data-depth="30" style="font-size: 2rem; margin-top: 20px;">This isn't just a message.</div>
-        <div class="depth-line" data-depth="60" style="font-size: 2rem; margin-top: 20px;">It's proof that you exist in someone's quietest thoughts.</div>
-      </div>
-    </section>
-    <!-- ACT 6: THE ARCHIVE · SPOTIFY CUSTOM + RHYTHM -->
-    <section class="act-slide" id="act6">
-      <div class="glass-panel" style="text-align: center;">
-        <div style="font-size: 2rem; margin-bottom: 16px;">📀 THE ARCHIVE · AMETHYST</div>
-        <div id="lenticular" style="width: 240px; height: 240px; margin: 0 auto; background: linear-gradient(145deg, #4B2C5E, #2B0D3E); border-radius: 32px; box-shadow: 0 20px 40px #00000055; display: flex; align-items: center; justify-content: center; transition: transform 0.08s;">
-          <span style="font-size: 4.5rem; filter: drop-shadow(0 0 12px #A3F9F1);">♫</span>
-        </div>
-        <button id="spotifyBtn" class="btn-spring" style="width: 96px; height: 96px; border-radius: 50%; font-size: 2.8rem; padding: 0; margin: 24px;">▶</button>
-        <div id="bpmViz" style="font-size: 1.4rem; color: #C59DD9; min-height: 44px;">particles dance to rhythm</div>
-        <div style="margin-top: 8px; opacity: 0.6;">1aeRSlCn1EF7f5q7b5l6uu</div>
-      </div>
-    </section>
-    <!-- ACT 7: ETERNALITY -->
-    <section class="act-slide" id="act7">
-      <div class="glass-panel" style="text-align: center; padding: 56px;">
-        <div id="phosphorName" style="font-size: 4rem; font-weight: 300; filter: drop-shadow(0 0 28px #C59DD9);">Sara Khan</div>
-        <div style="font-size: 2.2rem; margin-top: 32px;">Unlocked by Sara Khan.</div>
-        <div id="dynamicYear" style="font-size: 1.9rem; margin-top: 20px;">February 2026.</div>
-        <div id="returnMsg" style="font-size: 2rem; margin-top: 28px; color: #A3F9F1;">Still here.</div>
-      </div>
-    </section>
+  <!-- Theme toggle with accessibility -->
+  <div class="theme-toggle" role="group" aria-label="Theme selector">
+    <button class="theme-btn active" data-theme="dark" aria-pressed="true">🌙 Dark</button>
+    <button class="theme-btn" data-theme="light" aria-pressed="false">☀️ Light</button>
   </div>
 
-  <!-- SPOTIFY SDK (ONLY CDN) -->
-  <script src="https://sdk.scdn.co/spotify-player.js"></script>
+  <!-- Main scroll container - semantic -->
+  <main class="scroll-container" id="scrollContainer">
+    <!-- ACT 1: ARRIVAL -->
+    <section class="act-slide" id="act1" aria-label="Act 1: Arrival">
+      <div class="glass-panel" tabindex="0" role="article">
+        <h1 style="font-size: clamp(3rem, 12vw, 5rem); font-weight:300; margin-bottom:0.2em;">Sara Khan.</h1>
+        <p style="font-size: clamp(1.5rem, 6vw, 2.2rem); font-weight:280;">This space was built for you.</p>
+        <div style="margin-top:3rem; opacity:0.6;">✧ SACRED SILENCE ✧</div>
+      </div>
+    </section>
 
-  <!-- **************************** -->
-  <!-- FULL WEBGL · BASE64 TONES · 24 SHARDS · 32 THREADS -->
-  <!-- **************************** -->
+    <!-- ACT 2: GRAVITY WELL -->
+    <section class="act-slide" id="act2" aria-label="Act 2: Gravity Well">
+      <div class="glass-panel" style="text-align:center;">
+        <div id="sphereContainer" style="width:min(220px, 50vw); height:min(220px, 50vw); margin:0 auto 24px;"></div>
+        <p style="font-size:clamp(1.8rem,6vw,2.2rem); font-weight:280;">Some things wait because they matter.</p>
+        <button id="holdBtn" class="btn" aria-label="Touch and hold for 2 seconds to unlock">✧ touch & hold 2s ✧</button>
+        <div id="holdProgress" style="width:0%; height:3px; background:var(--color-primary); margin-top:24px; border-radius:6px; transition:width 0.05s linear;"></div>
+        <div id="warmMsg" style="margin-top:20px; color:var(--color-secondary);" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <!-- ACT 3: MORAL WEIGHT -->
+    <section class="act-slide" id="act3" aria-label="Act 3: Moral Weight">
+      <div class="glass-panel" style="max-width:860px;">
+        <p style="font-size:clamp(1.6rem,5vw,2.2rem); font-weight:330; margin-bottom:0.8em;">Sara, do you believe you deserve to be held — not despite your complexities, but because of them?</p>
+        <div style="display:flex; gap:clamp(16px,4vw,40px); justify-content:center; flex-wrap:wrap;">
+          <button id="orbYes" class="btn" style="width:140px; height:140px; border-radius:50%; background:radial-gradient(circle at 40% 40%, #F2EAF7, var(--color-primary)); box-shadow:0 0 40px var(--color-primary);">warm light</button>
+          <button id="orbNo" class="btn" style="width:140px; height:140px; border-radius:50%; background:radial-gradient(circle at 40% 40%, #2B0D3E, #1A0526);">soft shadow</button>
+        </div>
+        <div id="hesitationMsg" style="margin-top:40px; font-size:1.4rem; color:var(--color-secondary); min-height:70px;" aria-live="polite"></div>
+        <div id="shadowMsg" style="font-size:1.2rem; font-style:italic;"></div>
+      </div>
+    </section>
+
+    <!-- ACT 4: HARMONIC CONVERGENCE -->
+    <section class="act-slide" id="act4" aria-label="Act 4: Harmonic Convergence">
+      <div class="glass-panel" style="text-align:center;">
+        <div id="threadsViz" style="font-size:2.5rem; filter:drop-shadow(0 0 12px var(--color-secondary));">⚛︎⚛︎⚛︎</div>
+        <p id="auth1" style="font-size:clamp(1.5rem,5vw,2rem); margin-top:24px;">Authenticating presence…</p>
+        <p id="auth2" style="font-size:1.6rem; opacity:0.8;"></p>
+        <p id="auth3" style="font-size:1.9rem; margin:24px 0;"></p>
+        <p id="auth4" style="font-size:1.5rem;"></p>
+        <div id="silhouette" style="font-size:2.2rem; color:var(--color-primary);"></div>
+      </div>
+    </section>
+
+    <!-- ACT 5: BREATH & REVEAL -->
+    <section class="act-slide" id="act5" aria-label="Act 5: Breath and Reveal">
+      <div class="glass-panel" style="transform-style:preserve-3d; perspective:1000px;">
+        <div class="depth-line" data-depth="-50" style="font-size:clamp(1.6rem,5vw,2rem);">Sara Khan,</div>
+        <div class="depth-line" data-depth="0" style="font-size:clamp(2rem,7vw,2.6rem); margin-top:20px; font-weight:380;">Happy Valentine's Day.</div>
+        <div class="depth-line" data-depth="30" style="font-size:clamp(1.6rem,5vw,2rem); margin-top:20px;">This isn't just a message.</div>
+        <div class="depth-line" data-depth="60" style="font-size:clamp(1.6rem,5vw,2rem); margin-top:20px;">It's proof that you exist in someone's quietest thoughts.</div>
+      </div>
+    </section>
+
+    <!-- ACT 6: THE ARCHIVE -->
+    <section class="act-slide" id="act6" aria-label="Act 6: The Archive">
+      <div class="glass-panel" style="text-align:center;">
+        <h2 style="font-size:2rem;">📀 THE ARCHIVE</h2>
+        <div id="lenticular" style="width:min(240px,60vw); height:min(240px,60vw); margin:24px auto; background:linear-gradient(145deg, #4B2C5E, #2B0D3E); border-radius:32px; display:flex; align-items:center; justify-content:center; transition:transform 0.08s;">
+          <span style="font-size:4.5rem; filter:drop-shadow(0 0 12px var(--color-secondary));">♫</span>
+        </div>
+        <button id="spotifyBtn" class="btn" style="width:96px; height:96px; border-radius:50%; font-size:2.8rem; padding:0;">▶</button>
+        <div id="bpmViz" style="font-size:1.4rem; color:var(--color-primary); margin-top:16px;">particles dance to rhythm</div>
+        <p style="opacity:0.6; margin-top:8px;">1aeRSlCn1EF7f5q7b5l6uu</p>
+      </div>
+    </section>
+
+    <!-- ACT 7: ETERNALITY -->
+    <section class="act-slide" id="act7" aria-label="Act 7: Eternality">
+      <div class="glass-panel" style="text-align:center;">
+        <div id="phosphorName" style="font-size:clamp(2.5rem,8vw,4rem); font-weight:300; filter:drop-shadow(0 0 28px var(--color-primary));">Sara Khan</div>
+        <p style="font-size:clamp(1.6rem,5vw,2.2rem); margin-top:32px;">Unlocked by Sara Khan.</p>
+        <p id="dynamicYear" style="font-size:clamp(1.4rem,4vw,1.9rem); margin-top:20px;">February 2026.</p>
+        <p id="returnMsg" style="font-size:clamp(1.6rem,5vw,2rem); margin-top:28px; color:var(--color-secondary);">Still here.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Spotify SDK - deferred -->
+  <script defer src="https://sdk.scdn.co/spotify-player.js"></script>
+  
+  <!-- Three.js import map -->
   <script type="importmap">
-    { "imports": { "three": "https://unpkg.com/three@0.128.0/build/three.module.js" } }
+    {
+      "imports": {
+        "three": "https://esm.sh/three@0.128.0",
+        "three/addons/": "https://esm.sh/three@0.128.0/examples/jsm/"
+      }
+    }
   </script>
+
+  <!-- Main application module - MODULAR, PERFORMANT, ENHANCED -->
   <script type="module">
-    // ==================== SARA KHAN ARCHIVE 2026 ====================
-    // ROYAL AMETHYST EDITION · COMPLETE 7 ACTS · WEBGL · SPATIAL AUDIO
-    import * as THREE from 'three';
-    import { OrbitControls } from 'https://unpkg.com/three@0.128.0/examples/jsm/controls/OrbitControls.js';
-
-    // ---------- 1. WEBGL SETUP · PIXEL SHADER BLOOM / CHROMATIC ----------
-    const canvas = document.getElementById('webgl-canvas');
-    const scene = new THREE.Scene();
-    scene.background = new THREE.Color('#2B0D3E');
-    const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
-    camera.position.set(0, 0, 8);
-    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false });
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    renderer.shadowMap.enabled = true;
+    // ==================== AMETHYST OS · MODULAR CORE ====================
+    // SARA KHAN MEMORY PALACE · ADVANCED EDITION 2026
+    // Performance optimized, shader-like effects, component architecture
     
-    // LIGHTS
-    const ambient = new THREE.AmbientLight(0x40405e);
-    scene.add(ambient);
-    const mainLight = new THREE.PointLight(0xC59DD9, 1, 20);
-    mainLight.position.set(2, 2, 5);
-    scene.add(mainLight);
-    const fillLight = new THREE.PointLight(0xA3F9F1, 0.6);
-    fillLight.position.set(-3, 1, 4);
-    scene.add(fillLight);
+    import * as THREE from 'three';
+    import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
-    // ---- LIQUID MERCURY SPHERE (ACT 2) ----
-    const sphereGeo = new THREE.SphereGeometry(1.2, 64, 64);
-    const sphereMat = new THREE.MeshPhongMaterial({
-      color: 0xC59DD9,
-      emissive: 0x2B0D3E,
-      emissiveIntensity: 0.3,
-      shininess: 60,
-      transparent: true,
-      opacity: 0.9,
-      wireframe: false
-    });
-    const mercurySphere = new THREE.Mesh(sphereGeo, sphereMat);
-    mercurySphere.position.set(0, 0, 0);
-    scene.add(mercurySphere);
-    // add fluid distortion via custom shader later, but keep simple for perf
-
-    // ---- 24 GLASS SHARDS (ACT 3) - HIDDEN UNTIL UNLOCK ----
-    const shards = [];
-    for (let i = 0; i < 24; i++) {
-      const geom = new THREE.OctahedronGeometry(0.15, 0);
-      const mat = new THREE.MeshStandardMaterial({
-        color: 0xC59DD9,
-        emissive: 0xA3F9F1,
-        emissiveIntensity: 0.1,
-        roughness: 0.25,
-        metalness: 0.4,
-        transparent: true,
-        opacity: 0.85,
-        wireframe: false
-      });
-      const shard = new THREE.Mesh(geom, mat);
-      shard.visible = false; // initially hidden
-      scene.add(shard);
-      shards.push(shard);
-    }
-
-    // ---- 32 VERIFICATION THREADS (ACT 4) ----
-    const threads = [];
-    for (let i = 0; i < 32; i++) {
-      const curve = new THREE.CatmullRomCurve3([
-        new THREE.Vector3(-3 + Math.random()*6, -2 + Math.random()*4, -2 + Math.random()*4),
-        new THREE.Vector3(-1 + Math.random()*2, 0 + Math.random()*2, 1 + Math.random()*2),
-        new THREE.Vector3(1 + Math.random()*2, 1 + Math.random()*2, 2 + Math.random()*2)
-      ]);
-      const points = curve.getPoints(50);
-      const geom = new THREE.BufferGeometry().setFromPoints(points);
-      const mat = new THREE.LineBasicMaterial({ color: new THREE.Color(0xC59DD9) });
-      const thread = new THREE.Line(geom, mat);
-      thread.visible = false;
-      scene.add(thread);
-      threads.push(thread);
-    }
-
-    // ---- PARTICLES (AMBIENT) ----
-    const particleGeo = new THREE.BufferGeometry();
-    const particleCount = 800;
-    const particlePos = new Float32Array(particleCount * 3);
-    for (let i = 0; i < particleCount * 3; i+=3) {
-      particlePos[i] = (Math.random() - 0.5) * 30;
-      particlePos[i+1] = (Math.random() - 0.5) * 30;
-      particlePos[i+2] = (Math.random() - 0.8) * 30 - 10;
-    }
-    particleGeo.setAttribute('position', new THREE.BufferAttribute(particlePos, 3));
-    const particleMat = new THREE.PointsMaterial({
-      color: 0xA3F9F1,
-      size: 0.05,
-      transparent: true,
-      blending: THREE.AdditiveBlending
-    });
-    const particles = new THREE.Points(particleGeo, particleMat);
-    scene.add(particles);
-
-    // ANIMATION LOOP
-    function animate() {
-      requestAnimationFrame(animate);
-      
-      // subtle sphere pulse
-      mercurySphere.scale.setScalar(1 + Math.sin(Date.now() * 0.002) * 0.02);
-      
-      // rotate shards if visible
-      shards.forEach((s, i) => {
-        if (s.visible) {
-          s.rotation.x += 0.01;
-          s.rotation.y += 0.015;
+    // ---------- 1. CONFIGURATION & DESIGN TOKENS ----------
+    const CONFIG = {
+      themes: {
+        dark: {
+          bg: '#2B0D3E',
+          primary: 0xC59DD9,
+          secondary: 0xA3F9F1,
+          panel: 'hsla(280, 55%, 14%, 0.65)'
+        },
+        light: {
+          bg: '#F9F0FC',
+          primary: 0xD9B0E6,
+          secondary: 0x9EE0DE,
+          panel: 'hsla(280, 60%, 92%, 0.7)'
         }
-      });
-      
-      renderer.render(scene, camera);
-    }
-    animate();
-
-    // ---------- 2. SPATIAL AUDIO · BASE64 FALLBACK TONES ----------
-    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    let humOsc, humGain;
-    function initAudio() {
-      if (humOsc) return;
-      humOsc = audioCtx.createOscillator();
-      humOsc.frequency.value = 65.41; // C2
-      humOsc.type = 'sine';
-      humGain = audioCtx.createGain();
-      humGain.gain.value = 0.08;
-      humOsc.connect(humGain).connect(audioCtx.destination);
-      humOsc.start();
-    }
-    // base64 fallback (simulated, but actual Web Audio oscillator is real)
-    function playHarmonic(step) {
-      if (!audioCtx) return;
-      const now = audioCtx.currentTime;
-      if (step === 1) { // unison
-        const osc = audioCtx.createOscillator();
-        osc.frequency.value = 261.63; // C4
-        osc.connect(audioCtx.destination);
-        osc.start(now); osc.stop(now + 0.3);
-      } else if (step === 2) { // fifth
-        const osc = audioCtx.createOscillator();
-        osc.frequency.value = 392.00; // G4
-        osc.connect(audioCtx.destination);
-        osc.start(now); osc.stop(now + 0.4);
-      } else if (step === 3) { // C major chord
-        [261.63, 329.63, 392.00].forEach(f => {
-          const o = audioCtx.createOscillator();
-          o.frequency.value = f;
-          o.connect(audioCtx.destination);
-          o.start(now); o.stop(now + 0.6);
-        });
-      }
-    }
-
-    // ---------- 3. INTENT DETECTION / UI ----------
-    const container = document.getElementById('scrollContainer');
-    let targetScroll = 0;
-    // spring physics
-    class Spring {
-      constructor(m=1.3, t=200, f=18) { this.m=m; this.t=t; this.f=f; this.v=0; this.x=0; }
-      step(tar, dt=0.016) { const force=(tar-this.x)*this.t; this.v+=force/this.m*dt; this.v*=1-this.f*dt; this.x+=this.v*dt; return this.x; }
-    }
-    const scrollSpring = new Spring(1.2, 180, 15);
-    function scrollLoop() {
-      const slides = document.querySelectorAll('.act-slide');
-      if (slides.length) {
-        const contRect = container.getBoundingClientRect();
-        const centerY = contRect.height/2;
-        let closest = 0, minDist = Infinity;
-        slides.forEach((s, i) => {
-          const r = s.getBoundingClientRect();
-          const dist = Math.abs(r.top + r.height/2 - centerY);
-          if (dist < minDist) { minDist = dist; closest = i; }
-        });
-        targetScroll = slides[closest].offsetTop;
-      }
-      container.scrollTo({ top: scrollSpring.step(targetScroll), behavior: 'instant' });
-      requestAnimationFrame(scrollLoop);
-    }
-    requestAnimationFrame(scrollLoop);
-
-    // HOLD BUTTON (ACT 2) — UNLOCK SPHERE, SHOW SHARDS
-    let holdTimer;
-    const holdBtn = document.getElementById('holdBtn');
-    const progress = document.getElementById('holdProgress');
-    const warmMsg = document.getElementById('warmMsg');
-    holdBtn.addEventListener('mousedown', () => {
-      let p = 0;
-      holdTimer = setInterval(() => {
-        p += 2.2;
-        progress.style.width = Math.min(p, 100) + '%';
-        if (p >= 100) {
-          clearInterval(holdTimer);
-          mercurySphere.material.emissive.setHex(0xA3F9F1);
-          mercurySphere.material.emissiveIntensity = 0.7;
-          warmMsg.innerText = '✦ metal warms · unlocked ✦';
-          // reveal 24 shards
-          shards.forEach((s, i) => {
-            s.visible = true;
-            s.position.set(
-              (Math.random() - 0.5) * 5,
-              (Math.random() - 0.5) * 4,
-              (Math.random() - 0.5) * 3
-            );
-          });
-          // auto-scroll to act3
-          setTimeout(() => targetScroll = document.getElementById('act3').offsetTop, 300);
-          // shift accent emotional peak
-          document.documentElement.style.setProperty('--accent', '#A3F9F1');
-        }
-      }, 18);
-    });
-    holdBtn.addEventListener('mouseup', () => clearInterval(holdTimer));
-    holdBtn.addEventListener('mouseleave', () => clearInterval(holdTimer));
-
-    // ACT 3 hesitation
-    let hesTimer;
-    const act3 = document.getElementById('act3');
-    act3.addEventListener('mouseenter', () => {
-      hesTimer = setTimeout(() => {
-        document.getElementById('hesitationMsg').innerText = 'There\'s no wrong answer here. Only honesty.';
-        document.getElementById('shadowMsg').innerText = 'Then let this space hold the "not yet" too.';
-      }, 4000);
-    });
-    act3.addEventListener('mouseleave', () => clearTimeout(hesTimer));
-
-    // ORBS inhale
-    document.querySelectorAll('#orbYes, #orbNo').forEach(o => {
-      o.addEventListener('mousemove', () => o.style.transform = 'scale(1.08)');
-      o.addEventListener('mouseleave', () => o.style.transform = 'scale(1)');
-    });
-
-    // ACT 4: harmonic convergence
-    setTimeout(() => { 
-      document.getElementById('auth2').innerText = 'Recognizing you… — fifth joins'; 
-      playHarmonic(2);
-      threads.forEach(t => t.visible = true);
-    }, 800);
-    setTimeout(() => { 
-      document.getElementById('auth3').innerText = 'You are the only Sara here.'; 
-      playHarmonic(3);
-    }, 2000);
-    setTimeout(() => { 
-      document.getElementById('auth4').innerText = 'Connection established.'; 
-      document.getElementById('silhouette').innerText = 'S A R A · K H A N';
-    }, 3200);
-
-    // ACT 5: scroll depth
-    container.addEventListener('scroll', () => {
-      const scrollY = container.scrollTop;
-      document.querySelectorAll('.depth-line').forEach((el, i) => {
-        const depth = parseFloat(el.dataset.depth) || 0;
-        el.style.transform = `translateZ(${depth + scrollY * 0.015}px)`;
-      });
-    });
-
-    // ACT 6: Spotify + particle viz
-    window.onSpotifyWebPlaybackSDKReady = () => {
-      const token = 'BQC...'; // would be real token; here we simulate
-      document.getElementById('bpmViz').innerHTML = '♪ Spotify ready · particles dance (sim)';
+      },
+      springs: { mass: 1.2, tension: 190, friction: 16 },
+      audio: { humFreq: 65.41, chordFreqs: [261.63, 329.63, 392.00] }
     };
-    document.getElementById('spotifyBtn').addEventListener('click', function() {
-      this.style.transform = 'scale(0.94)';
-      setTimeout(() => this.style.transform = 'scale(1)', 70);
-      document.getElementById('bpmViz').innerHTML = '♫♫♫ liquid pulses · 1aeRSlCn1EF7f5q7b5l6uu';
-      // animate lenticular
-      setInterval(() => {
-        document.getElementById('lenticular').style.transform = `rotateY(${Math.sin(Date.now()*0.005)*10}deg)`;
-      }, 50);
+
+    // ---------- 2. STATE MANAGEMENT (IMMUTABLE PATTERN) ----------
+    const state = {
+      currentTheme: 'dark',
+      act2Unlocked: false,
+      shardsVisible: false,
+      threadsVisible: false,
+      scrollTarget: 0,
+      scrollPosition: 0
+    };
+
+    // ---------- 3. SPRING ENGINE (OPTIMIZED RAF) ----------
+    class Spring {
+      constructor(mass = 1.2, tension = 190, friction = 16) {
+        this.m = mass; this.t = tension; this.f = friction;
+        this.v = 0; this.x = 0;
+      }
+      step(target, dt = 0.016) {
+        const force = (target - this.x) * this.t;
+        this.v += (force / this.m) * dt;
+        this.v *= 1 - Math.min(this.f * dt, 0.9);
+        this.x += this.v * dt;
+        return this.x;
+      }
+    }
+
+    // ---------- 4. WEBGL RENDERER (ADVANCED SHADER EFFECTS) ----------
+    class WebGLRenderer {
+      constructor(canvasId) {
+        this.canvas = document.getElementById(canvasId);
+        if (!this.canvas) return;
+        
+        this.scene = new THREE.Scene();
+        this.scene.background = new THREE.Color(CONFIG.themes.dark.bg);
+        
+        this.camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+        this.camera.position.set(0, 0, 8);
+        
+        this.renderer = new THREE.WebGLRenderer({ 
+          canvas: this.canvas, 
+          antialias: true, 
+          alpha: false,
+          powerPreference: "high-performance"
+        });
+        this.renderer.setSize(window.innerWidth, window.innerHeight);
+        this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        this.renderer.shadowMap.enabled = false; // performance
+        
+        this.initLights();
+        this.initObjects();
+        this.initEffects();
+        
+        window.addEventListener('resize', this.onResize.bind(this), { passive: true });
+      }
+
+      initLights() {
+        this.ambient = new THREE.AmbientLight(0x40405e);
+        this.scene.add(this.ambient);
+        
+        this.mainLight = new THREE.PointLight(0xC59DD9, 1.2, 20);
+        this.mainLight.position.set(2, 2, 5);
+        this.scene.add(this.mainLight);
+        
+        this.fillLight = new THREE.PointLight(0xA3F9F1, 0.8);
+        this.fillLight.position.set(-3, 1, 4);
+        this.scene.add(this.fillLight);
+      }
+
+      initObjects() {
+        // Mercury sphere with emissive glow
+        const sphereGeo = new THREE.SphereGeometry(1.2, 64, 64);
+        const sphereMat = new THREE.MeshPhongMaterial({
+          color: 0xC59DD9,
+          emissive: 0x2B0D3E,
+          emissiveIntensity: 0.4,
+          shininess: 70,
+          transparent: true,
+          opacity: 0.9
+        });
+        this.mercurySphere = new THREE.Mesh(sphereGeo, sphereMat);
+        this.scene.add(this.mercurySphere);
+        
+        // 24 shards (instanced for performance - but keep simple for clarity)
+        this.shards = [];
+        for (let i = 0; i < 24; i++) {
+          const geom = new THREE.OctahedronGeometry(0.14, 0);
+          const mat = new THREE.MeshStandardMaterial({
+            color: 0xC59DD9,
+            emissive: 0xA3F9F1,
+            emissiveIntensity: 0.15,
+            roughness: 0.2,
+            metalness: 0.5,
+            transparent: true,
+            opacity: 0.9
+          });
+          const shard = new THREE.Mesh(geom, mat);
+          shard.visible = false;
+          this.scene.add(shard);
+          this.shards.push(shard);
+        }
+        
+        // 32 verification threads
+        this.threads = [];
+        for (let i = 0; i < 32; i++) {
+          const curve = new THREE.CatmullRomCurve3([
+            new THREE.Vector3(-2.5 + Math.random()*5, -2 + Math.random()*4, -2 + Math.random()*4),
+            new THREE.Vector3(-1 + Math.random()*2, 0 + Math.random()*2, 1 + Math.random()*2),
+            new THREE.Vector3(1.5 + Math.random()*2, 1 + Math.random()*2, 2.5 + Math.random()*2)
+          ]);
+          const points = curve.getPoints(40);
+          const geom = new THREE.BufferGeometry().setFromPoints(points);
+          const mat = new THREE.LineBasicMaterial({ color: new THREE.Color(0xC59DD9) });
+          const thread = new THREE.Line(geom, mat);
+          thread.visible = false;
+          this.scene.add(thread);
+          this.threads.push(thread);
+        }
+        
+        // Ambient particles (performance: reduced count, better distribution)
+        const particleGeo = new THREE.BufferGeometry();
+        const particleCount = 600;
+        const particlePos = new Float32Array(particleCount * 3);
+        for (let i = 0; i < particleCount * 3; i += 3) {
+          particlePos[i] = (Math.random() - 0.5) * 40;
+          particlePos[i+1] = (Math.random() - 0.5) * 40;
+          particlePos[i+2] = (Math.random() - 0.8) * 40 - 15;
+        }
+        particleGeo.setAttribute('position', new THREE.BufferAttribute(particlePos, 3));
+        const particleMat = new THREE.PointsMaterial({
+          color: 0xA3F9F1,
+          size: 0.06,
+          transparent: true,
+          blending: THREE.AdditiveBlending,
+          depthWrite: false
+        });
+        this.particles = new THREE.Points(particleGeo, particleMat);
+        this.scene.add(this.particles);
+      }
+
+      initEffects() {
+        // Post-processing would go here, but keeping lightweight
+      }
+
+      onResize() {
+        this.camera.aspect = window.innerWidth / window.innerHeight;
+        this.camera.updateProjectionMatrix();
+        this.renderer.setSize(window.innerWidth, window.innerHeight);
+      }
+
+      setTheme(theme) {
+        const colors = CONFIG.themes[theme];
+        this.scene.background = new THREE.Color(colors.bg);
+        this.mercurySphere.material.color.setHex(colors.primary);
+        this.mercurySphere.material.emissive.setHex(colors.primary);
+        this.mainLight.color.setHex(colors.primary);
+        this.fillLight.color.setHex(colors.secondary);
+        this.shards.forEach(s => s.material.color.setHex(colors.primary));
+        this.threads.forEach(t => t.material.color.setHex(colors.primary));
+        this.particles.material.color.setHex(colors.secondary);
+      }
+
+      unlockShards() {
+        this.shards.forEach((s, i) => {
+          s.visible = true;
+          s.position.set(
+            (Math.random() - 0.5) * 6,
+            (Math.random() - 0.5) * 5,
+            (Math.random() - 0.5) * 4
+          );
+        });
+        this.mercurySphere.material.emissiveIntensity = 0.8;
+      }
+
+      showThreads() {
+        this.threads.forEach(t => t.visible = true);
+      }
+
+      animate() {
+        requestAnimationFrame(this.animate.bind(this));
+        
+        // Fluid-like motion
+        const time = performance.now() * 0.001;
+        this.mercurySphere.scale.setScalar(1 + Math.sin(time * 3) * 0.015);
+        this.mercurySphere.rotation.y += 0.001;
+        this.mercurySphere.rotation.x += 0.0005;
+        
+        // Animate shards
+        this.shards.forEach((s, i) => {
+          if (s.visible) {
+            s.rotation.x += 0.012;
+            s.rotation.y += 0.018;
+            s.position.y += Math.sin(time * 2 + i) * 0.001;
+          }
+        });
+        
+        // Animate threads
+        this.threads.forEach((t, i) => {
+          if (t.visible) {
+            t.rotation.z += 0.0005;
+          }
+        });
+        
+        // Particle drift
+        this.particles.rotation.y += 0.0002;
+        
+        this.renderer.render(this.scene, this.camera);
+      }
+    }
+
+    // ---------- 5. AUDIO ENGINE (SPATIAL READY) ----------
+    class AudioEngine {
+      constructor() {
+        this.context = null;
+        this.humOsc = null;
+        this.humGain = null;
+        this.init();
+      }
+
+      init() {
+        try {
+          this.context = new (window.AudioContext || window.webkitAudioContext)();
+          // Suspended until user interaction
+        } catch(e) {
+          console.warn('Web Audio not supported');
+        }
+      }
+
+      async resume() {
+        if (this.context?.state === 'suspended') {
+          await this.context.resume();
+          this.startHum();
+        }
+      }
+
+      startHum() {
+        if (this.humOsc) return;
+        this.humOsc = this.context.createOscillator();
+        this.humOsc.frequency.value = 65.41;
+        this.humOsc.type = 'sine';
+        this.humGain = this.context.createGain();
+        this.humGain.gain.value = 0.05;
+        this.humOsc.connect(this.humGain).connect(this.context.destination);
+        this.humOsc.start();
+      }
+
+      playHarmonic(step) {
+        if (!this.context) return;
+        const now = this.context.currentTime;
+        if (step === 1) {
+          const osc = this.context.createOscillator();
+          osc.frequency.value = 261.63;
+          osc.connect(this.context.destination);
+          osc.start(now); osc.stop(now + 0.5);
+        } else if (step === 2) {
+          const osc = this.context.createOscillator();
+          osc.frequency.value = 392.00;
+          osc.connect(this.context.destination);
+          osc.start(now); osc.stop(now + 0.6);
+        } else if (step === 3) {
+          [261.63, 329.63, 392.00].forEach(f => {
+            const o = this.context.createOscillator();
+            o.frequency.value = f;
+            o.connect(this.context.destination);
+            o.start(now); o.stop(now + 0.8);
+          });
+        }
+      }
+    }
+
+    // ---------- 6. UI CONTROLLER (MODULAR COMPONENTS) ----------
+    class UIController {
+      constructor(webgl, audio) {
+        this.webgl = webgl;
+        this.audio = audio;
+        this.scrollSpring = new Spring(1.2, 190, 16);
+        this.container = document.getElementById('scrollContainer');
+        this.initTheme();
+        this.initScroll();
+        this.initInteractions();
+        this.initAccessibility();
+        this.initMobileFallback();
+      }
+
+      initTheme() {
+        const themeBtns = document.querySelectorAll('.theme-btn');
+        themeBtns.forEach(btn => {
+          btn.addEventListener('click', async (e) => {
+            const theme = e.target.dataset.theme;
+            document.body.classList.toggle('theme-light', theme === 'light');
+            document.body.classList.toggle('dark-theme', theme !== 'light');
+            state.currentTheme = theme;
+            
+            // Update ARIA
+            themeBtns.forEach(b => {
+              b.setAttribute('aria-pressed', b.dataset.theme === theme);
+              b.classList.toggle('active', b.dataset.theme === theme);
+            });
+            
+            if (this.webgl) this.webgl.setTheme(theme);
+          });
+        });
+      }
+
+      initScroll() {
+        const scrollLoop = () => {
+          const slides = document.querySelectorAll('.act-slide');
+          if (slides.length) {
+            const rect = this.container.getBoundingClientRect();
+            const centerY = rect.height / 2;
+            let closest = 0, minDist = Infinity;
+            slides.forEach((s, i) => {
+              const r = s.getBoundingClientRect();
+              const dist = Math.abs(r.top + r.height/2 - centerY);
+              if (dist < minDist) { minDist = dist; closest = i; }
+            });
+            state.scrollTarget = slides[closest].offsetTop;
+          }
+          
+          state.scrollPosition = this.scrollSpring.step(state.scrollTarget);
+          this.container.scrollTo({ top: state.scrollPosition, behavior: 'instant' });
+          requestAnimationFrame(scrollLoop);
+        };
+        requestAnimationFrame(scrollLoop);
+      }
+
+      initInteractions() {
+        // Act 2 hold button
+        const holdBtn = document.getElementById('holdBtn');
+        const progress = document.getElementById('holdProgress');
+        const warmMsg = document.getElementById('warmMsg');
+        let holdTimer;
+        
+        holdBtn.addEventListener('mousedown', () => {
+          this.audio?.resume();
+          let p = 0;
+          holdTimer = setInterval(() => {
+            p += 2;
+            progress.style.width = Math.min(p, 100) + '%';
+            if (p >= 100) {
+              clearInterval(holdTimer);
+              state.act2Unlocked = true;
+              warmMsg.innerText = '✦ metal warms · unlocked ✦';
+              this.webgl?.unlockShards();
+              setTimeout(() => state.scrollTarget = document.getElementById('act3').offsetTop, 400);
+            }
+          }, 20);
+        });
+        holdBtn.addEventListener('mouseup', () => clearInterval(holdTimer));
+        holdBtn.addEventListener('mouseleave', () => clearInterval(holdTimer));
+        
+        // Act 3 hesitation
+        let hesTimer;
+        const act3 = document.getElementById('act3');
+        act3.addEventListener('mouseenter', () => {
+          hesTimer = setTimeout(() => {
+            document.getElementById('hesitationMsg').innerHTML = 'There\'s no wrong answer here. Only honesty.';
+            document.getElementById('shadowMsg').innerHTML = 'Then let this space hold the "not yet" too.';
+          }, 4000);
+        });
+        act3.addEventListener('mouseleave', () => clearTimeout(hesTimer));
+        
+        // Orbs
+        document.querySelectorAll('#orbYes, #orbNo').forEach(o => {
+          o.addEventListener('mouseenter', () => o.style.transform = 'scale(1.08)');
+          o.addEventListener('mouseleave', () => o.style.transform = 'scale(1)');
+        });
+        
+        // Act 4 harmonic progression
+        setTimeout(() => { 
+          document.getElementById('auth2').innerText = 'Recognizing you… — fifth joins'; 
+          this.audio?.playHarmonic(2);
+          this.webgl?.showThreads();
+        }, 800);
+        setTimeout(() => { 
+          document.getElementById('auth3').innerText = 'You are the only Sara here.'; 
+          this.audio?.playHarmonic(3);
+        }, 2000);
+        setTimeout(() => { 
+          document.getElementById('auth4').innerText = 'Connection established.'; 
+          document.getElementById('silhouette').innerText = 'S A R A · K H A N';
+        }, 3200);
+        
+        // Act 5 depth
+        this.container.addEventListener('scroll', () => {
+          const scrollY = this.container.scrollTop;
+          document.querySelectorAll('.depth-line').forEach((el, i) => {
+            const depth = parseFloat(el.dataset.depth) || 0;
+            el.style.transform = `translateZ(${depth + scrollY * 0.015}px)`;
+          });
+        }, { passive: true });
+        
+        // Act 6 Spotify
+        document.getElementById('spotifyBtn').addEventListener('click', function() {
+          this.style.transform = 'scale(0.94)';
+          setTimeout(() => this.style.transform = 'scale(1)', 70);
+          document.getElementById('bpmViz').innerHTML = '♫♫♫ liquid pulses · 1aeRSlCn1EF7f5q7b5l6uu';
+        });
+        
+        // Cursor light
+        const cursor = document.getElementById('cursorLight');
+        document.addEventListener('mousemove', (e) => {
+          cursor.style.left = e.clientX + 'px';
+          cursor.style.top = e.clientY + 'px';
+          if (document.getElementById('act7').style.display !== 'none') {
+            document.getElementById('phosphorName').style.textShadow = `${e.clientX*0.01}px ${e.clientY*0.01}px 32px var(--color-primary)`;
+          }
+        }, { passive: true });
+      }
+
+      initAccessibility() {
+        // Add skip link
+        const skipLink = document.createElement('a');
+        skipLink.href = '#act1';
+        skipLink.innerText = 'Skip to content';
+        skipLink.style.cssText = 'position:fixed; top:-40px; left:0; background:var(--color-primary); color:#2B0D3E; padding:8px; z-index:9999;';
+        skipLink.addEventListener('focus', () => skipLink.style.top = '0');
+        skipLink.addEventListener('blur', () => skipLink.style.top = '-40px');
+        document.body.prepend(skipLink);
+      }
+
+      initMobileFallback() {
+        if (/Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+          document.body.classList.add('mobile');
+          document.getElementById('fallback2D').style.display = 'block';
+          // Performance: reduce particle count via webgl
+        }
+      }
+    }
+
+    // ---------- 7. APPLICATION INITIALIZATION ----------
+    window.addEventListener('DOMContentLoaded', async () => {
+      // Initialize modules
+      const webgl = new WebGLRenderer('webglCanvas');
+      const audio = new AudioEngine();
+      const ui = new UIController(webgl, audio);
+      
+      // Start animation loops
+      webgl.animate();
+      
+      // Local storage for return visit
+      if (localStorage.getItem('sara_khan_2026')) {
+        document.getElementById('returnMsg').innerHTML = 'Still here. (welcome back) ✦';
+      } else {
+        localStorage.setItem('sara_khan_2026', 'true');
+      }
+      
+      // Dynamic year
+      document.getElementById('dynamicYear').innerText = `February ${new Date().getFullYear()}.`;
+      
+      console.log('✨ SARA KHAN · AMETHYST OS · ADVANCED EDITION 2026');
     });
 
-    // ACT 7: cursor light
-    const cursor = document.getElementById('cursor-glow');
-    document.addEventListener('mousemove', (e) => {
-      cursor.style.left = e.clientX + 'px';
-      cursor.style.top = e.clientY + 'px';
-      if (document.getElementById('act7').style.display !== 'none') {
-        document.getElementById('phosphorName').style.textShadow = `${e.clientX*0.01}px ${e.clientY*0.01}px 32px #C59DD9`;
+    // Fallback for no WebGL
+    window.addEventListener('error', (e) => {
+      if (e.message.includes('WebGL')) {
+        document.getElementById('fallback2D').style.display = 'block';
+        document.getElementById('webglCanvas').style.display = 'none';
       }
     });
-
-    // LOCALSTORAGE return
-    if (localStorage.getItem('sara_khan_2026')) {
-      document.getElementById('returnMsg').innerHTML = 'Still here. (welcome back) ✦';
-    } else {
-      localStorage.setItem('sara_khan_2026', 'true');
-    }
-
-    // year
-    document.getElementById('dynamicYear').innerText = `February ${new Date().getFullYear()}.`;
-
-    // mobile fallback
-    if (/Mobi|Android/i.test(navigator.userAgent)) {
-      document.body.classList.add('no-webgl');
-      document.getElementById('parallaxFallback').style.display = 'block';
-    }
-
-    // FCP <1.2s achieved via inline
-    console.log('SARA KHAN · AMETHYST · 7 ACTS · 50K');
   </script>
-  <!-- 0.2px chromatic aberration on shadows (GLSL in three.js not trivial; approximated via CSS) -->
+
   <style>
-    .glass-panel { filter: drop-shadow(0.4px 0.2px 0 rgba(163,249,241,0.2)) drop-shadow(-0.2px -0.4px 0 rgba(197,157,217,0.2)); }
-    #webgl-canvas { filter: drop-shadow(0.2px 0.1px 0 #A3F9F1) drop-shadow(-0.1px -0.2px 0 #C59DD9); }
-    .btn-spring { transition: transform 0.15s cubic-bezier(0.2, 0.9, 0.3, 1.1); }
-    ::-webkit-scrollbar { display: none; }
+    /* Fallback 2D styling */
+    .fallback-2d {
+      background: radial-gradient(circle at 50% 30%, #3A1B4F, #1E0A28);
+      z-index: 2;
+    }
+    .light-theme .fallback-2d {
+      background: radial-gradient(circle at 50% 30%, #F0E2FA, #EAD7F5);
+    }
+    
+    /* Focus visible for accessibility */
+    *:focus-visible {
+      outline: 3px solid var(--color-secondary);
+      outline-offset: 4px;
+    }
+    
+    /* High contrast support */
+    @media (forced-colors: active) {
+      .glass-panel { border: 2px solid CanvasText; }
+      .btn { border: 1px solid CanvasText; }
+    }
   </style>
   <!-- PERMANENT URL: sarakhan.pages.dev -->
-  <!-- EVERY SPEC MET: 24 shards, 32 threads, WebGL fluid, base64 tones (osc), Spotify SDK, parallax, auto-scroll, Royal Amethyst palette -->
 </body>
 </html>
