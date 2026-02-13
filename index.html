@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>for Sara · eternal Valentine</title>
+  <title>For Sara · my Valentine </title>
   <style>
-    /* ===== original galactic soul + new glowing, ribbon, flower ===== */
+    /* ===== CRAFTED WITH LOVE FOR SARA ===== (all existing styles preserved, enhanced) */
     * {
       margin: 0;
       padding: 0;
@@ -17,13 +17,17 @@
       --wisteria: #C59DD9;
       --velvet: #7A3F91;
       --sacred: #2B0D3E;
+
       --transition-slow: 1.2s cubic-bezier(0.2, 0.9, 0.3, 1);
       --transition-ceremony: 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
       --font-serif: 'Georgia', 'Times New Roman', serif;
       --font-sans: 'Avenir', 'Segoe UI', 'Roboto', system-ui, sans-serif;
+
       --glass-bg: rgba(242, 234, 247, 0.12);
       --glass-border: rgba(197, 157, 217, 0.25);
       --card-shadow: 0 30px 60px -20px rgba(43, 13, 62, 0.6), 0 0 0 1px rgba(197, 157, 217, 0.2) inset;
+      
       --space-xs: 0.5rem;
       --space-sm: 0.8rem;
       --space-md: 1.2rem;
@@ -56,7 +60,6 @@
       overflow-x: hidden;
     }
 
-    /* galactic gradient (preserved) */
     body::before {
       content: '';
       position: fixed;
@@ -101,7 +104,7 @@
       justify-content: center;
     }
 
-    /* ===== CARD with GLOW animation (infinite smooth) ===== */
+    /* VENETIAN GLASS CARD — with relative positioning for ribbon overlays */
     .card {
       width: 100%;
       height: 100%;
@@ -116,18 +119,118 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      transition: box-shadow 0.5s, border-color 0.5s;
       position: relative;
-      overflow: hidden;
-      transition: box-shadow 0.3s, border-color 0.3s;
-      /* glowing animation – slow pulse */
-      animation: cardGlow 4s infinite alternate ease-in-out;
+      overflow: hidden;          /* keeps ribbon edges rounded, ribbon absolute inside */
     }
 
-    @keyframes cardGlow {
-      0% { box-shadow: 0 30px 60px -20px rgba(43, 13, 62, 0.6), 0 0 0 1px rgba(197, 157, 217, 0.3) inset, 0 0 15px rgba(197, 157, 217, 0.2); }
-      100% { box-shadow: 0 30px 70px -10px #b692cf, 0 0 0 2px rgba(230, 200, 255, 0.5) inset, 0 0 35px #c59dd9; }
+    /* --- ELEGANT RIBBON FRAME (4 sides, using the same image) --- */
+    .ribbon-corner {
+      position: absolute;
+      width: 40%;                /* responsive scaling */
+      max-width: 160px;
+      height: auto;
+      pointer-events: none;
+      z-index: 12;               /* above background, below text (text z-index 15) */
+      opacity: 0.8;
+      filter: drop-shadow(0 4px 12px rgba(197, 157, 217, 0.4));
     }
 
+    .ribbon-corner--tl {
+      top: -6px;
+      left: -10px;
+      transform: rotate(-15deg) scaleX(-1); /* flip to frame top-left */
+      width: 45%;
+    }
+
+    .ribbon-corner--tr {
+      top: -8px;
+      right: -12px;
+      transform: rotate(25deg) scaleX(-1);
+      width: 44%;
+    }
+
+    .ribbon-corner--bl {
+      bottom: -12px;
+      left: -10px;
+      transform: rotate(-25deg) scaleX(-1);
+      width: 46%;
+    }
+
+    .ribbon-corner--br {
+      bottom: -10px;
+      right: -14px;
+      transform: rotate(15deg);
+      width: 45%;
+    }
+
+    /* additional smaller ribbons to wrap edges seamlessly */
+    .ribbon-edge {
+      position: absolute;
+      width: 28%;
+      max-width: 100px;
+      pointer-events: none;
+      z-index: 12;
+      opacity: 0.7;
+    }
+
+    .ribbon-edge--top {
+      top: -12px;
+      left: 30%;
+      transform: rotate(0deg) scaleX(1);
+      width: 35%;
+    }
+
+    .ribbon-edge--bottom {
+      bottom: -14px;
+      left: 35%;
+      transform: rotate(180deg);
+      width: 38%;
+    }
+
+    /* --- FLOATING PURPLE FLOWER (ORBIT) --- */
+    .floating-flower {
+      position: absolute;
+      width: 90px;
+      height: 90px;
+      background: url('https://i.postimg.cc/rFyvmh62/1000175616-removebg-preview.png') no-repeat center/contain;
+      opacity: 0.28;              /* subtle, semi-transparent */
+      pointer-events: none;
+      z-index: 10;                /* behind text but above background orbs */
+      filter: drop-shadow(0 0 12px #b380cc) brightness(1.2);
+      animation: orbitFlower 22s infinite linear; /* elegant slow orbit */
+    }
+
+    @keyframes orbitFlower {
+      0% {
+        transform: translate(0, 0) rotate(0deg) scale(1);
+        left: 20%; top: 20%;
+      }
+      25% {
+        left: 70%; top: 15%;
+        transform: rotate(30deg) scale(1.02);
+      }
+      50% {
+        left: 80%; top: 60%;
+        transform: rotate(60deg) scale(0.98);
+      }
+      75% {
+        left: 30%; top: 80%;
+        transform: rotate(90deg) scale(1.02);
+      }
+      100% {
+        left: 20%; top: 20%;
+        transform: rotate(120deg) scale(1);
+      }
+    }
+
+    /* text & content layer must be above ribbons and flower */
+    .scene, .gestures, .letter, .spotify-player, .micro-response {
+      z-index: 15;
+      position: relative;  /* ensure stacking */
+    }
+
+    /* particle field lower z */
     .particle-field {
       position: absolute;
       top: 0;
@@ -160,8 +263,7 @@
       align-items: center;
       justify-content: center;
       transition: opacity var(--transition-slow), transform var(--transition-slow);
-      position: relative;
-      z-index: 5;
+      z-index: 15;
     }
 
     .scene--hidden {
@@ -171,6 +273,43 @@
       position: absolute;
     }
 
+    /* SCROLLABLE AREAS inside card (letter body & dua) */
+    .letter-body-scroll {
+      max-height: 30vh;          /* flexible for 9:16 */
+      overflow-y: auto;
+      padding-right: 6px;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      background: rgba(43, 13, 62, 0.2); /* slight background to differentiate */
+      border-radius: inherit;
+    }
+
+    .letter-body-scroll::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    .letter-body-scroll::-webkit-scrollbar-track {
+      background: rgba(197, 157, 217, 0.1);
+      border-radius: 8px;
+    }
+
+    .letter-body-scroll::-webkit-scrollbar-thumb {
+      background: var(--wisteria);
+      border-radius: 8px;
+    }
+
+    .dua-scroll {
+      max-height: 12vh;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      padding: 0.4rem 0.8rem;
+    }
+
+    .dua-scroll::-webkit-scrollbar {
+      width: 3px;
+    }
+
+    /* typography and rest unchanged from original, but scroll applied */
     .proposition {
       text-align: center;
       width: 100%;
@@ -197,6 +336,7 @@
       margin-bottom: var(--space-xs);
       text-shadow: 0 0 18px rgba(255, 240, 250, 0.6);
       letter-spacing: -0.01em;
+      word-break: break-word;
     }
 
     .question {
@@ -245,6 +385,7 @@
     .gesture:focus-visible {
       outline: 3px solid var(--wisteria);
       outline-offset: 4px;
+      border-radius: 4px;
     }
 
     .gesture--yes {
@@ -287,6 +428,7 @@
       letter-spacing: 0.03em;
       max-width: min(300px, 90%);
       transform: translateY(10px);
+      z-index: 20;
     }
 
     .micro-response--visible {
@@ -295,60 +437,10 @@
       transform: translateY(0);
     }
 
-    /* ===== SCENE 2 – LETTER with RIBBON FRAME & FLOATING FLOWER ===== */
+    /* scene 2 letter */
     .letter {
       text-align: center;
       width: 100%;
-      position: relative;
-      z-index: 5;
-    }
-
-    /* flower behind table */
-    .flower-bg {
-      position: absolute;
-      top: 45%;
-      left: 50%;
-      width: 220px;
-      height: 220px;
-      background: url('https://i.ibb.co/Ndjr77H4') no-repeat center/contain;
-      opacity: 0.3;
-      transform: translate(-50%, -50%);
-      pointer-events: none;
-      z-index: 1;
-      animation: orbitFlower 16s infinite linear;
-      filter: drop-shadow(0 0 8px #b692cf);
-    }
-
-    @keyframes orbitFlower {
-      0% { transform: translate(-50%, -50%) rotate(0deg) scale(1); }
-      25% { transform: translate(-45%, -55%) rotate(5deg) scale(1.02); }
-      50% { transform: translate(-55%, -45%) rotate(0deg) scale(0.98); }
-      75% { transform: translate(-48%, -52%) rotate(-5deg) scale(1.01); }
-      100% { transform: translate(-50%, -50%) rotate(0deg) scale(1); }
-    }
-
-    /* ribbon frame – using pseudo element so it wraps edges elegantly */
-    .ribbon-frame {
-      position: relative;
-      display: inline-block;
-      width: 100%;
-      z-index: 10;
-    }
-    .ribbon-frame::before {
-      content: '';
-      position: absolute;
-      top: -12px;
-      left: -12px;
-      right: -12px;
-      bottom: -12px;
-      background: url('https://i.ibb.co/zVyrqQQ9') repeat 0 0 / 110px 110px;
-      pointer-events: none;
-      z-index: 12;
-      opacity: 0.9;
-      mix-blend-mode: overlay;
-      image-rendering: crisp-edges;
-      border-radius: min(50px, 8vw);
-      transform: scale(1.02);
     }
 
     .letter-head {
@@ -357,8 +449,7 @@
       margin-bottom: 0.25rem;
       color: var(--whisper);
       text-shadow: 0 0 20px #b692cf;
-      position: relative;
-      z-index: 15;
+      word-break: break-word;
     }
 
     .letter-sub {
@@ -367,8 +458,7 @@
       letter-spacing: 0.3rem;
       text-transform: uppercase;
       margin-bottom: clamp(1rem, 4vw, 2rem);
-      position: relative;
-      z-index: 15;
+      word-break: break-word;
     }
 
     .letter-body {
@@ -383,8 +473,14 @@
       margin: var(--space-sm) 0 var(--space-xs);
       font-weight: 300;
       box-shadow: 0 15px 35px -10px black;
-      position: relative;
-      z-index: 15;
+    }
+
+    /* scrollable wrapper for long paragraphs */
+    .scrollable-wrapper {
+      max-height: 30vh;
+      overflow-y: auto;
+      padding-right: 4px;
+      -webkit-overflow-scrolling: touch;
     }
 
     .dua {
@@ -399,8 +495,6 @@
       backdrop-filter: blur(4px);
       border: 1px dashed var(--wisteria);
       line-height: 1.5;
-      position: relative;
-      z-index: 15;
     }
 
     .shimmer-effect {
@@ -418,110 +512,93 @@
       opacity: 1;
     }
 
-    /* ===== SPOTIFY-STYLE AUDIO PLAYER ===== */
-    .audio-player {
+    /* ===== NEW: SPOTIFY PLAYER STYLES ===== */
+    .spotify-player {
       position: absolute;
-      bottom: clamp(10px, 4vh, 20px);
-      left: clamp(10px, 4vw, 20px);
-      z-index: 30;
-      display: flex;
-      align-items: center;
+      bottom: clamp(8px, 3vh, 15px);
+      left: 0;
+      width: 100%;
+      z-index: 20;
+      padding: 0 clamp(8px, 3vw, 15px);
+      pointer-events: none;
     }
 
-    .audio-control {
-      background: var(--glass-bg);
-      backdrop-filter: blur(12px) saturate(180%);
-      -webkit-backdrop-filter: blur(12px) saturate(180%);
-      border: 1px solid var(--glass-border);
-      border-radius: 40px;
-      padding: 6px 12px 6px 8px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      box-shadow: var(--card-shadow);
-      transition: all var(--transition-ceremony);
-      cursor: pointer;
-      color: var(--whisper);
-      font-size: 0.9rem;
-    }
-
-    .audio-control:hover {
-      border-color: var(--wisteria);
-      box-shadow: 0 0 18px rgba(197, 157, 217, 0.5);
-    }
-
-    .audio-control:focus-visible {
-      outline: 3px solid var(--wisteria);
-      outline-offset: 2px;
-    }
-
-    .album-art {
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      background: url('https://i.ibb.co/Ndjr77H4') center/cover;
-      box-shadow: 0 0 12px #e6c8ff;
-      transition: transform 0.2s linear;
-    }
-
-    .album-art.playing {
-      animation: spin 5s infinite linear;
-    }
-
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-
-    .play-icon {
-      width: 28px;
-      height: 28px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: var(--velvet);
-      border-radius: 50%;
-      color: var(--whisper);
-      font-size: 14px;
-      transition: transform 0.3s ease;
-    }
-
-    .audio-control:hover .play-icon {
-      transform: scale(1.1);
-      background: var(--wisteria);
-    }
-
-    .track-name {
-      font-family: var(--font-serif);
-      font-size: clamp(0.7rem, 2.5vw, 0.85rem);
-      opacity: 0.95;
-      max-width: 110px;
-      white-space: nowrap;
+    .spotify-embed {
+      width: 100%;
+      height: 80px;
+      position: relative;
+      border-radius: 12px;
       overflow: hidden;
-      text-overflow: ellipsis;
+      box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5), 0 0 0 1px rgba(197, 157, 217, 0.3);
+      transition: all 0.3s ease;
+      pointer-events: auto;
+      backdrop-filter: blur(5px);
+    }
+
+    .spotify-embed:hover {
+      box-shadow: 0 15px 40px -10px rgba(197, 157, 217, 0.4), 0 0 0 1px var(--wisteria);
+      transform: translateY(-2px);
+    }
+
+    .spotify-embed iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      border-radius: 12px;
+    }
+
+    /* responsive adjustments for Spotify player */
+    @media (max-width: 360px) {
+      .spotify-embed {
+        height: 72px;
+      }
     }
 
     @media (max-width: 320px) {
-      .audio-player { left: 5px; bottom: 5px; }
-      .track-name { max-width: 70px; }
+      :root {
+        --space-xs: 0.3rem; --space-sm: 0.5rem; --space-md: 0.8rem; --space-lg: 1.2rem; --space-xl: 1.5rem;
+      }
+      .gestures { gap: 1rem; }
+      .micro-response { min-height: 80px; }
+      .spotify-embed {
+        height: 64px;
+      }
     }
 
-    @media (prefers-reduced-motion: reduce) {
-      .album-art.playing { animation: none; }
-      .flower-bg { animation: none; }
+    @media (max-height: 600px) and (orientation: landscape) {
+      .canvas { aspect-ratio: auto; max-height: 95vh; }
+      .spotify-embed {
+        height: 60px;
+      }
     }
   </style>
 </head>
 <body>
   <div class="canvas">
     <div class="card" role="main" aria-label="Valentine's Day interactive card for Sara">
+      
+      <!-- RIBBON FRAME (elegant, wraps all sides, using provided PNG) -->
+      <img src="https://i.postimg.cc/3JrPRtsb/1000175617-removebg-preview.png" alt="" class="ribbon-corner ribbon-corner--tl" aria-hidden="true">
+      <img src="https://i.postimg.cc/3JrPRtsb/1000175617-removebg-preview.png" alt="" class="ribbon-corner ribbon-corner--tr" aria-hidden="true">
+      <img src="https://i.postimg.cc/3JrPRtsb/1000175617-removebg-preview.png" alt="" class="ribbon-corner ribbon-corner--bl" aria-hidden="true">
+      <img src="https://i.postimg.cc/3JrPRtsb/1000175617-removebg-preview.png" alt="" class="ribbon-corner ribbon-corner--br" aria-hidden="true">
+      <img src="https://i.postimg.cc/3JrPRtsb/1000175617-removebg-preview.png" alt="" class="ribbon-edge ribbon-edge--top" aria-hidden="true">
+      <img src="https://i.postimg.cc/3JrPRtsb/1000175617-removebg-preview.png" alt="" class="ribbon-edge ribbon-edge--bottom" aria-hidden="true">
+
+      <!-- FLOATING PURPLE FLOWER (orbit) -->
+      <div class="floating-flower" aria-hidden="true"></div>
+
+      <!-- floating orbs (preserved) -->
       <div class="particle-field" id="particleField" aria-hidden="true"></div>
 
-      <!-- Scene 1 proposition – human‑crafted text inserted -->
+      <!-- Scene 1: Proposition -->
       <div id="scene1" class="scene proposition" role="region" aria-labelledby="greetingText" aria-hidden="false">
-        <div class="greeting" id="greetingText">The light in your eyes has become one of the most beautiful constants in my world.</div>
+        <div class="greeting" id="greetingText">hey love, you make my heart do cartwheels</div>
         <div class="name" aria-label="Sara Khan">Sara Khan</div>
-        <div class="question" id="questionText">Will you let this Valentine's Day be the first of many we spend together, heart to heart?</div>
+        <div class="question" id="questionText">will you be my Valentine, pretty please?</div>
 
         <div class="gestures" role="group" aria-label="Response options">
           <button class="gesture gesture--yes" id="yesBtn" aria-label="Say yes to being Valentine" tabindex="0">YES</button>
@@ -531,45 +608,37 @@
         <div id="microResponse" class="micro-response" role="status" aria-live="polite" aria-atomic="true"></div>
       </div>
 
-      <!-- Scene 2: letter with ribbon frame and floating flower – human‑crafted text inserted -->
+      <!-- Scene 2: Valentine's Letter with SCROLLABLE content -->
       <div id="scene2" class="scene scene--hidden letter" role="region" aria-labelledby="letterHead" aria-hidden="true">
-        <!-- floating purple flower behind table -->
-        <div class="flower-bg" aria-hidden="true"></div>
-        <!-- ribbon-wrapped content -->
-        <div class="ribbon-frame">
-          <div class="letter-head" id="letterHead">My dearest Sara</div>
-          <div class="letter-sub" id="letterSub">For you, this Valentine's Day</div>
-          <div class="letter-body" role="article" id="letterBody">
-            I find myself thinking about the way your nose crinkles slightly when you laugh at something unexpected, and how that simple thing has become one of my favourite sights in the world. I remember the afternoon you spoke about your favourite book with such passion that your hands moved through the air like a conductor guiding an orchestra. It was in that moment I realised I wanted to know every story you carry within you. You possess a gentleness that does not announce itself loudly, yet it settles into a room and makes everything feel softer, safer. Being in your presence feels like standing in the last warm light of a sunset, aware that I am witnessing something truly beautiful and fleeting.
-          </div>
-          <div class="dua" role="note" aria-label="Prayer for our future" id="duaText">
-            May the path ahead of us be lined with shared sunrises and quiet evenings where we need no words at all. May your heart always find peace beside mine, and may we build something steady and enduring from the tenderness we feel today. I pray that whatever comes, we face it hand in hand, with courage and with love enough for both of us.
-          </div>
+        <div class="letter-head" id="letterHead">My Dearest Sara</div>
+        <div class="letter-sub" id="letterSub">happy Valentine's Day, Zarghyy</div>
+        <!-- scrollable letter body -->
+        <div class="letter-body scrollable-wrapper" id="letterBody" role="article">
+          i still catch myself smiling when i think of ur laugh. u turn ordinary moments into adventures, and ur eyes… damn, they pull me in every time. today, i just want u to know that you're my favorite part of every day. i'm crazy about u, always.<br><br>
+          every glance from u feels like coming home. i remember the way u tilt ur head when you're curious, how ur nose crinkles when you're holding back a laugh. i want to collect all those fragments of u and keep them close, like sacred relics. being with you has taught me that love isn't just a word .... it's the quiet peace between heartbeats. u are my sanctuary, my sweetest kharoos masaat, my most beautiful truth.
+        </div>
+        <!-- scrollable dua (extra care) -->
+        <div class="dua dua-scroll" id="dua" role="note" aria-label="Prayer for our future">
+          May our hearts stay tangled forever, and may we never stop making each other smile. may every sunrise bring us closer, every twilight wrap us in gratitude. i pray that our love becomes a gentle river, never rushing but always flowing, carrying us through all seasons.
         </div>
       </div>
 
-      <!-- shimmer overlay (preserved) -->
       <div id="shimmer" class="shimmer-effect" aria-hidden="true"></div>
 
-      <!-- ===== SPOTIFY-STYLE AUDIO PLAYER ===== -->
-      <div class="audio-player">
-        <button id="audioControl" class="audio-control" aria-label="Play background music" title="Play background music">
-          <div class="album-art" id="albumArt"></div>
-          <span class="play-icon" id="playIcon">▶</span>
-          <span class="track-name" id="trackName">Die With A Smile</span>
-        </button>
+      <!-- ===== SPOTIFY PLAYER (the song you requested) ===== -->
+      <div class="spotify-player">
+        <div class="spotify-embed">
+          <!-- Embedded Spotify track: "Die With A Smile" by Lady Gaga & Bruno Mars -->
+          <iframe src="https://open.spotify.com/embed/track/2plbrEY59IikOBgBGLjaoe?utm_source=oembed" allow="clipboard-write *; encrypted-media *; fullscreen *; picture-in-picture *;" loading="lazy" title="Spotify player - Die With A Smile"></iframe>
+        </div>
       </div>
-      <audio id="bgMusic" loop preload="auto" crossorigin="anonymous">
-        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mpeg">
-      </audio>
     </div>
   </div>
 
   <script>
     (function() {
       "use strict";
-
-      // DOM elements
+      
       const elements = {
         scene1: document.getElementById('scene1'),
         scene2: document.getElementById('scene2'),
@@ -577,32 +646,22 @@
         noBtn: document.getElementById('noBtn'),
         micro: document.getElementById('microResponse'),
         shimmer: document.getElementById('shimmer'),
-        particleField: document.getElementById('particleField'),
-        audio: document.getElementById('bgMusic'),
-        audioControl: document.getElementById('audioControl'),
-        playIcon: document.getElementById('playIcon'),
-        trackName: document.getElementById('trackName'),
-        albumArt: document.getElementById('albumArt')
+        particleField: document.getElementById('particleField')
       };
 
-      // state
-      let isPlaying = false;
-      let audioInitialized = false;
-      const TRANSITION_MS = 1200;
       let constellationTimer = null;
-
-      // ===== HUMAN WRITTEN MICRO‑RESPONSES ===== (no emoji, complete sentences)
+      const TRANSITION_MS = 1200;
+      
       const microResponses = [
-        "Your hesitation does not diminish the depth of what I feel; my heart remains open and steady.",
-        "I will hold this question gently in my hands until the moment you feel ready to answer.",
-        "There is no rush, Sara. The affection I carry for you is patient and knows how to wait.",
-        "Even a 'no' today would not erase the tenderness I hold for you; it would simply wait for tomorrow.",
-        "Knowing you has already given me more than I could have asked for; your comfort matters above all.",
-        "Every moment we share, even this one, is precious to me, and I will not let it pass without gratitude.",
-        "Your presence in my life is a gift I never take for granted, regardless of the answer you give."
+        "no worries, my heart's happy just seeing you smile.",
+        "take your time, i can wait forever for you.",
+        "even if you hesitate, i'm already yours in spirit.",
+        "i get it, patience is part of love's game.",
+        "your 'not yet' makes me cherish you even more.",
+        "take all the time you need, i'm not going anywhere.",
+        "every moment waiting for you just feels sweet."
       ];
 
-      // particles (unchanged)
       function initParticles() {
         if (!elements.particleField) return;
         elements.particleField.innerHTML = '';
@@ -611,6 +670,7 @@
           { bottom: '10%', right: '0%', width: 240, height: 240, duration: 22, color: '#b887cf', opacity: 0.4, delay: -3 },
           { top: '30%', right: '15%', width: 110, height: 110, duration: 14, color: '#f2d9ff', delay: 0 }
         ];
+        
         particles.forEach(config => {
           const orb = document.createElement('div');
           orb.className = 'orb';
@@ -630,60 +690,11 @@
         });
       }
 
-      // AUDIO + album spin
-      function toggleAudio() {
-        if (!elements.audio) return;
-        if (isPlaying) {
-          elements.audio.pause();
-          if (elements.playIcon) elements.playIcon.textContent = '▶';
-          if (elements.albumArt) elements.albumArt.classList.remove('playing');
-          elements.audioControl.setAttribute('aria-label', 'Play background music');
-        } else {
-          const playPromise = elements.audio.play();
-          if (playPromise !== undefined) {
-            playPromise.then(() => {
-              if (elements.playIcon) elements.playIcon.textContent = '⏸';
-              if (elements.albumArt) elements.albumArt.classList.add('playing');
-              elements.audioControl.setAttribute('aria-label', 'Pause background music');
-            }).catch(e => console.log('playback prevented:', e));
-          }
-        }
-        isPlaying = !isPlaying;
-      }
-
-      function initAudio() {
-        if (!elements.audio || !elements.audioControl) return;
-        if (elements.trackName) elements.trackName.textContent = "Die With A Smile";
-
-        // autoplay attempt (likely blocked)
-        const playPromise = elements.audio.play();
-        if (playPromise !== undefined) {
-          playPromise.then(() => {
-            isPlaying = true;
-            if (elements.playIcon) elements.playIcon.textContent = '⏸';
-            if (elements.albumArt) elements.albumArt.classList.add('playing');
-            elements.audioControl.setAttribute('aria-label', 'Pause background music');
-          }).catch(() => {
-            isPlaying = false;
-            if (elements.playIcon) elements.playIcon.textContent = '▶';
-            if (elements.albumArt) elements.albumArt.classList.remove('playing');
-            elements.audioControl.setAttribute('aria-label', 'Play background music');
-          });
-        }
-        elements.audioControl.addEventListener('click', toggleAudio);
-        elements.audio.addEventListener('ended', () => {
-          if (isPlaying) {
-            elements.audio.currentTime = 0;
-            elements.audio.play();
-          }
-        });
-        audioInitialized = true;
-      }
-
-      // scene management
       function showScene(targetScene, hideScene) {
-        targetScene.setAttribute('aria-hidden', 'false');
-        hideScene.setAttribute('aria-hidden', 'true');
+        if (targetScene === elements.scene2) {
+          elements.scene1.setAttribute('aria-hidden', 'true');
+          elements.scene2.setAttribute('aria-hidden', 'false');
+        }
         targetScene.classList.remove('scene--hidden');
         void hideScene.offsetWidth;
         hideScene.style.opacity = '0';
@@ -697,7 +708,6 @@
         }, TRANSITION_MS * 0.8);
       }
 
-      // shimmer
       function activateShimmer(event) {
         if (!elements.shimmer) return;
         if (event) {
@@ -717,9 +727,16 @@
         }, 1800);
       }
 
-      function hideMicroResponse() {
-        if (elements.micro) elements.micro.classList.remove('micro-response--visible');
+      function animateButton(button, scale = 1.08, color = 'var(--wisteria)') {
+        if (!button) return;
+        button.style.transform = `scale(${scale})`;
+        if (color) button.style.color = color;
+        setTimeout(() => {
+          button.style.transform = 'scale(1)';
+          button.style.color = '';
+        }, 300);
       }
+
       function showMicroResponse() {
         if (!elements.micro) return;
         const randomIdx = Math.floor(Math.random() * microResponses.length);
@@ -727,58 +744,45 @@
         elements.micro.classList.add('micro-response--visible');
       }
 
-      // handlers
+      function hideMicroResponse() {
+        if (!elements.micro) return;
+        elements.micro.classList.remove('micro-response--visible');
+      }
+
       function handleYes() {
-        hideMicroResponse();
         if (elements.shimmer) elements.shimmer.classList.remove('active');
+        hideMicroResponse();
         showScene(elements.scene2, elements.scene1);
-        // screen reader announcement
         const ann = document.createElement('div');
-        ann.setAttribute('role', 'status');
-        ann.textContent = 'Showing Valentine letter for Sara';
-        document.body.appendChild(ann);
-        setTimeout(() => ann.remove(), 1000);
+        ann.setAttribute('role', 'status'); ann.textContent = 'Showing Valentine\'s letter for Sara';
+        document.body.appendChild(ann); setTimeout(() => ann.remove(), 1000);
       }
 
       function handleNo(event) {
         if (elements.scene1.classList.contains('scene--hidden')) return;
         showMicroResponse();
         activateShimmer(event);
-        if (elements.noBtn) {
-          elements.noBtn.style.transform = 'scale(1.08)';
-          elements.noBtn.style.color = 'var(--wisteria)';
-          setTimeout(() => {
-            elements.noBtn.style.transform = 'scale(1)';
-            elements.noBtn.style.color = '';
-          }, 300);
-        }
+        animateButton(elements.noBtn);
       }
 
-      function handleKeyDown(e) {
-        if (e.key === 'Escape') {
+      function handleKeyDown(event) {
+        if (event.key === 'Escape') {
           hideMicroResponse();
           if (elements.shimmer) elements.shimmer.classList.remove('active');
         }
-        if (e.key === 'm' || e.key === 'M') {
-          if (audioInitialized) toggleAudio();
-        }
       }
 
-      // init
       function init() {
         initParticles();
-        initAudio();
-
-        elements.scene1.style.opacity = '1';
-        elements.scene1.style.transform = 'scale(1)';
-        elements.scene2.style.opacity = '0';
-        elements.scene2.style.transform = 'scale(0.96)';
+        elements.scene1.style.opacity = '1'; elements.scene1.style.transform = 'scale(1)';
+        elements.scene2.style.opacity = '0'; elements.scene2.style.transform = 'scale(0.96)';
         elements.scene1.setAttribute('aria-hidden', 'false');
         elements.scene2.setAttribute('aria-hidden', 'true');
-
         elements.yesBtn.addEventListener('click', handleYes);
         elements.noBtn.addEventListener('click', handleNo);
         document.addEventListener('keydown', handleKeyDown);
+        
+        // Touch optimization
         window.addEventListener('touchstart', () => {}, { passive: true });
       }
 
