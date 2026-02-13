@@ -550,6 +550,106 @@
       border-radius: 12px;
     }
 
+
+
+    /* ===== NEW: EXTRA STUNNING FEATURES ===== */
+    .top-badges {
+      position: absolute;
+      top: clamp(10px, 2vh, 16px);
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 0.6rem;
+      z-index: 30;
+      align-items: center;
+    }
+
+    .badge {
+      border: 1px solid rgba(197, 157, 217, 0.5);
+      background: rgba(43, 13, 62, 0.55);
+      color: var(--whisper);
+      font-size: 0.68rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-radius: 999px;
+      padding: 0.35rem 0.7rem;
+      backdrop-filter: blur(6px);
+      box-shadow: 0 8px 18px -10px rgba(0, 0, 0, 0.8);
+      white-space: nowrap;
+    }
+
+    .theme-toggle {
+      border: 1px solid rgba(197, 157, 217, 0.5);
+      background: rgba(242, 234, 247, 0.16);
+      color: var(--whisper);
+      border-radius: 999px;
+      font-size: 0.72rem;
+      padding: 0.35rem 0.65rem;
+      cursor: pointer;
+      transition: transform 0.25s ease, background 0.25s ease;
+    }
+
+    .theme-toggle:hover,
+    .theme-toggle:focus-visible {
+      transform: translateY(-1px);
+      background: rgba(197, 157, 217, 0.4);
+      outline: none;
+    }
+
+    .love-meter {
+      width: min(260px, 86%);
+      margin: 0.7rem auto 0;
+      text-align: left;
+      z-index: 20;
+    }
+
+    .love-meter__label {
+      display: block;
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(242, 234, 247, 0.85);
+      margin-bottom: 0.35rem;
+    }
+
+    .love-meter__track {
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(242, 234, 247, 0.2);
+      overflow: hidden;
+      box-shadow: inset 0 0 0 1px rgba(197, 157, 217, 0.25);
+    }
+
+    .love-meter__fill {
+      display: block;
+      height: 100%;
+      width: 12%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, #d8a4f0, #f8dcff);
+      transition: width 0.35s ease;
+      box-shadow: 0 0 14px rgba(242, 211, 255, 0.9);
+    }
+
+    .sparkle {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      pointer-events: none;
+      background: radial-gradient(circle, #ffe8ff 10%, #c590e0 70%, transparent 75%);
+      animation: sparkleFall 1400ms ease-out forwards;
+      z-index: 25;
+    }
+
+    @keyframes sparkleFall {
+      0% { opacity: 1; transform: translateY(0) scale(1); }
+      100% { opacity: 0; transform: translateY(36px) scale(0.3); }
+    }
+
+    body.theme-dawn::before {
+      background: radial-gradient(circle at 45% 30%, #dca8f2 0%, #47245e 75%);
+    }
+
     /* responsive adjustments for Spotify player */
     @media (max-width: 360px) {
       .spotify-embed {
@@ -594,6 +694,11 @@
       <!-- floating orbs (preserved) -->
       <div class="particle-field" id="particleField" aria-hidden="true"></div>
 
+      <div class="top-badges" aria-label="love controls">
+        <span class="badge" id="countdownBadge">forever starts now</span>
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dreamy color mode">Dream Mode</button>
+      </div>
+
       <!-- Scene 1: Proposition -->
       <div id="scene1" class="scene proposition" role="region" aria-labelledby="greetingText" aria-hidden="false">
         <div class="greeting" id="greetingText">hey love, you make my heart do cartwheels</div>
@@ -606,6 +711,13 @@
         </div>
 
         <div id="microResponse" class="micro-response" role="status" aria-live="polite" aria-atomic="true"></div>
+
+        <div class="love-meter" aria-live="polite">
+          <span class="love-meter__label" id="loveMeterLabel">love meter: 12%</span>
+          <div class="love-meter__track" aria-hidden="true">
+            <span class="love-meter__fill" id="loveMeterFill"></span>
+          </div>
+        </div>
       </div>
 
       <!-- Scene 2: Valentine's Letter with SCROLLABLE content -->
@@ -646,11 +758,19 @@
         noBtn: document.getElementById('noBtn'),
         micro: document.getElementById('microResponse'),
         shimmer: document.getElementById('shimmer'),
-        particleField: document.getElementById('particleField')
+        particleField: document.getElementById('particleField'),
+        countdownBadge: document.getElementById('countdownBadge'),
+        themeToggle: document.getElementById('themeToggle'),
+        loveMeterFill: document.getElementById('loveMeterFill'),
+        loveMeterLabel: document.getElementById('loveMeterLabel'),
+        card: document.querySelector('.card')
       };
 
       let constellationTimer = null;
       const TRANSITION_MS = 1200;
+      const LOVE_START = 12;
+      const LOVE_MAX = 100;
+      let loveMeter = LOVE_START;
       
       const microResponses = [
         "no worries, my heart's happy just seeing you smile.",
@@ -753,6 +873,8 @@
         if (elements.shimmer) elements.shimmer.classList.remove('active');
         hideMicroResponse();
         showScene(elements.scene2, elements.scene1);
+        setLoveMeter(LOVE_MAX);
+        burstSparkles();
         const ann = document.createElement('div');
         ann.setAttribute('role', 'status'); ann.textContent = 'Showing Valentine\'s letter for Sara';
         document.body.appendChild(ann); setTimeout(() => ann.remove(), 1000);
@@ -763,6 +885,7 @@
         showMicroResponse();
         activateShimmer(event);
         animateButton(elements.noBtn);
+        setLoveMeter(loveMeter + 7);
       }
 
       function handleKeyDown(event) {
@@ -770,6 +893,38 @@
           hideMicroResponse();
           if (elements.shimmer) elements.shimmer.classList.remove('active');
         }
+      }
+
+      function setLoveMeter(value) {
+        loveMeter = Math.max(LOVE_START, Math.min(LOVE_MAX, value));
+        if (elements.loveMeterFill) elements.loveMeterFill.style.width = loveMeter + '%';
+        if (elements.loveMeterLabel) elements.loveMeterLabel.textContent = 'love meter: ' + loveMeter + '%';
+      }
+
+      function updateCountdownBadge() {
+        if (!elements.countdownBadge) return;
+        const now = new Date();
+        const target = new Date(now.getFullYear(), 1, 14, 0, 0, 0);
+        if (now > target) target.setFullYear(target.getFullYear() + 1);
+        const days = Math.ceil((target - now) / (1000 * 60 * 60 * 24));
+        elements.countdownBadge.textContent = days + " days until valentine's magic";
+      }
+
+      function burstSparkles() {
+        if (!elements.card) return;
+        for (let i = 0; i < 24; i += 1) {
+          const sparkle = document.createElement('span');
+          sparkle.className = 'sparkle';
+          sparkle.style.left = (10 + Math.random() * 80) + '%';
+          sparkle.style.top = (18 + Math.random() * 62) + '%';
+          sparkle.style.animationDelay = (Math.random() * 120) + 'ms';
+          elements.card.appendChild(sparkle);
+          setTimeout(() => sparkle.remove(), 1500);
+        }
+      }
+
+      function toggleTheme() {
+        document.body.classList.toggle('theme-dawn');
       }
 
       function init() {
@@ -780,8 +935,13 @@
         elements.scene2.setAttribute('aria-hidden', 'true');
         elements.yesBtn.addEventListener('click', handleYes);
         elements.noBtn.addEventListener('click', handleNo);
+        if (elements.themeToggle) elements.themeToggle.addEventListener('click', toggleTheme);
         document.addEventListener('keydown', handleKeyDown);
         
+        setLoveMeter(LOVE_START);
+        updateCountdownBadge();
+        window.setInterval(updateCountdownBadge, 60000);
+
         // Touch optimization
         window.addEventListener('touchstart', () => {}, { passive: true });
       }
