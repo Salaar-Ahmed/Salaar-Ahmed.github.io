@@ -550,6 +550,151 @@
       border-radius: 12px;
     }
 
+
+
+    /* ===== NEW: LUXE ENHANCEMENTS (added without removing existing content) ===== */
+    .utility-bar {
+      position: absolute;
+      top: clamp(10px, 2vh, 16px);
+      right: clamp(10px, 2vw, 16px);
+      display: flex;
+      gap: 0.45rem;
+      z-index: 30;
+    }
+
+    .utility-btn {
+      border: 1px solid rgba(197, 157, 217, 0.4);
+      background: rgba(43, 13, 62, 0.45);
+      color: var(--whisper);
+      border-radius: 999px;
+      padding: 0.35rem 0.65rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      backdrop-filter: blur(10px);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .utility-btn:hover,
+    .utility-btn:focus-visible {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(197, 157, 217, 0.35);
+      outline: none;
+    }
+
+    .memory-chip {
+      margin-top: var(--space-sm);
+      font-size: clamp(0.72rem, 2.8vw, 0.84rem);
+      padding: 0.4rem 0.75rem;
+      border-radius: 999px;
+      border: 1px solid rgba(197, 157, 217, 0.3);
+      background: rgba(122, 63, 145, 0.2);
+      color: #f6e8ff;
+      max-width: 95%;
+      text-wrap: balance;
+    }
+
+    .progress-kisses {
+      margin-top: 0.5rem;
+      display: flex;
+      gap: 0.35rem;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .kiss-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(242, 234, 247, 0.35);
+      box-shadow: 0 0 0 1px rgba(197, 157, 217, 0.25);
+      transition: transform 0.4s ease, background 0.4s ease;
+    }
+
+    .kiss-dot.active {
+      background: #f7d3ff;
+      transform: scale(1.2);
+      box-shadow: 0 0 10px rgba(247, 211, 255, 0.8);
+    }
+
+    .love-countdown {
+      margin: 0.7rem 0;
+      font-size: clamp(0.76rem, 3vw, 0.92rem);
+      color: #f0d8ff;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      opacity: 0.9;
+    }
+
+    .scene2-actions {
+      margin-top: 0.65rem;
+      display: flex;
+      gap: 0.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .mini-btn {
+      border: 1px solid rgba(197, 157, 217, 0.35);
+      color: #f6e8ff;
+      background: rgba(43, 13, 62, 0.45);
+      padding: 0.4rem 0.75rem;
+      border-radius: 999px;
+      font-size: clamp(0.68rem, 2.8vw, 0.78rem);
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .mini-btn:hover,
+    .mini-btn:focus-visible {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 20px -10px rgba(197, 157, 217, 0.6);
+      outline: none;
+    }
+
+    .constellation-field {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .heart-confetti {
+      position: absolute;
+      top: -10%;
+      width: 14px;
+      height: 14px;
+      background: radial-gradient(circle at 30% 30%, #ffe4ff, #c58cd8);
+      transform: rotate(45deg);
+      opacity: 0;
+      animation: heartFall 2.6s linear forwards;
+    }
+
+    .heart-confetti::before,
+    .heart-confetti::after {
+      content: '';
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: inherit;
+    }
+
+    .heart-confetti::before { left: -7px; }
+    .heart-confetti::after { top: -7px; }
+
+    @keyframes heartFall {
+      0% { opacity: 0; transform: translateY(-5%) rotate(45deg) scale(0.6); }
+      20% { opacity: 0.95; }
+      100% { opacity: 0; transform: translateY(420px) rotate(390deg) scale(1.15); }
+    }
+
+    body.dawn-mode::before {
+      background: radial-gradient(circle at 40% 50%, #d58be9 0%, #4d245f 80%);
+      animation-duration: 16s;
+    }
+
     /* responsive adjustments for Spotify player */
     @media (max-width: 360px) {
       .spotify-embed {
@@ -591,6 +736,13 @@
       <!-- FLOATING PURPLE FLOWER (orbit) -->
       <div class="floating-flower" aria-hidden="true"></div>
 
+      <div class="utility-bar" aria-label="Extra controls">
+        <button id="themeToggle" class="utility-btn" type="button" aria-label="Toggle romantic dawn mode">dawn glow</button>
+        <button id="noteToggle" class="utility-btn" type="button" aria-label="Show random love note">love note</button>
+      </div>
+
+      <div id="constellationField" class="constellation-field" aria-hidden="true"></div>
+
       <!-- floating orbs (preserved) -->
       <div class="particle-field" id="particleField" aria-hidden="true"></div>
 
@@ -599,6 +751,7 @@
         <div class="greeting" id="greetingText">hey love, you make my heart do cartwheels</div>
         <div class="name" aria-label="Sara Khan">Sara Khan</div>
         <div class="question" id="questionText">will you be my Valentine, pretty please?</div>
+        <div class="love-countdown" id="loveCountdown" aria-live="polite"></div>
 
         <div class="gestures" role="group" aria-label="Response options">
           <button class="gesture gesture--yes" id="yesBtn" aria-label="Say yes to being Valentine" tabindex="0">YES</button>
@@ -606,6 +759,14 @@
         </div>
 
         <div id="microResponse" class="micro-response" role="status" aria-live="polite" aria-atomic="true"></div>
+
+        <div id="memoryChip" class="memory-chip" aria-live="polite">✧ core memory: your smile is my favorite sunrise.</div>
+
+        <div class="progress-kisses" aria-hidden="true">
+          <span class="kiss-dot active"></span>
+          <span class="kiss-dot"></span>
+          <span class="kiss-dot"></span>
+        </div>
       </div>
 
       <!-- Scene 2: Valentine's Letter with SCROLLABLE content -->
@@ -620,6 +781,11 @@
         <!-- scrollable dua (extra care) -->
         <div class="dua dua-scroll" id="dua" role="note" aria-label="Prayer for our future">
           May our hearts stay tangled forever, and may we never stop making each other smile. may every sunrise bring us closer, every twilight wrap us in gratitude. i pray that our love becomes a gentle river, never rushing but always flowing, carrying us through all seasons.
+        </div>
+
+        <div class="scene2-actions">
+          <button id="replayBtn" class="mini-btn" type="button">Replay magic</button>
+          <button id="blessingBtn" class="mini-btn" type="button">Another dua</button>
         </div>
       </div>
 
@@ -646,12 +812,33 @@
         noBtn: document.getElementById('noBtn'),
         micro: document.getElementById('microResponse'),
         shimmer: document.getElementById('shimmer'),
-        particleField: document.getElementById('particleField')
+        particleField: document.getElementById('particleField'),
+        themeToggle: document.getElementById('themeToggle'),
+        noteToggle: document.getElementById('noteToggle'),
+        memoryChip: document.getElementById('memoryChip'),
+        loveCountdown: document.getElementById('loveCountdown'),
+        constellationField: document.getElementById('constellationField'),
+        replayBtn: document.getElementById('replayBtn'),
+        blessingBtn: document.getElementById('blessingBtn')
       };
 
       let constellationTimer = null;
       const TRANSITION_MS = 1200;
       
+      const memoryNotes = [
+        "✧ core memory: your smile is my favorite sunrise.",
+        "✧ core memory: every laugh with you sounds like home.",
+        "✧ core memory: with you, even silence feels golden.",
+        "✧ core memory: your eyes still pause my entire world."
+      ];
+
+      const blessingLines = [
+        "may our love be protected, patient, and full of barakah.",
+        "may we keep choosing each other in softness and strength.",
+        "may every trial make us kinder, not colder.",
+        "may gratitude always be the language of our hearts."
+      ];
+
       const microResponses = [
         "no worries, my heart's happy just seeing you smile.",
         "take your time, i can wait forever for you.",
@@ -753,6 +940,7 @@
         if (elements.shimmer) elements.shimmer.classList.remove('active');
         hideMicroResponse();
         showScene(elements.scene2, elements.scene1);
+        sprinkleHearts();
         const ann = document.createElement('div');
         ann.setAttribute('role', 'status'); ann.textContent = 'Showing Valentine\'s letter for Sara';
         document.body.appendChild(ann); setTimeout(() => ann.remove(), 1000);
@@ -763,6 +951,7 @@
         showMicroResponse();
         activateShimmer(event);
         animateButton(elements.noBtn);
+        cycleMemoryNote();
       }
 
       function handleKeyDown(event) {
@@ -770,6 +959,63 @@
           hideMicroResponse();
           if (elements.shimmer) elements.shimmer.classList.remove('active');
         }
+      }
+
+
+      function updateCountdown() {
+        if (!elements.loveCountdown) return;
+        const now = new Date();
+        const target = new Date(now.getFullYear(), 1, 14, 0, 0, 0);
+        if (now > target) target.setFullYear(target.getFullYear() + 1);
+        const diff = target - now;
+        const d = Math.floor(diff / 86400000);
+        const h = Math.floor((diff % 86400000) / 3600000);
+        const m = Math.floor((diff % 3600000) / 60000);
+        elements.loveCountdown.textContent = `next valentine in ${d}d ${h}h ${m}m`;
+      }
+
+      function cycleMemoryNote() {
+        if (!elements.memoryChip) return;
+        const idx = Math.floor(Math.random() * memoryNotes.length);
+        elements.memoryChip.textContent = memoryNotes[idx];
+      }
+
+      function sprinkleHearts() {
+        if (!elements.constellationField) return;
+        for (let i = 0; i < 18; i += 1) {
+          const heart = document.createElement('span');
+          heart.className = 'heart-confetti';
+          heart.style.left = Math.random() * 95 + '%';
+          heart.style.animationDelay = (Math.random() * 0.6) + 's';
+          heart.style.animationDuration = (2.1 + Math.random() * 1.6) + 's';
+          elements.constellationField.appendChild(heart);
+          setTimeout(() => heart.remove(), 4000);
+        }
+      }
+
+      function toggleTheme() {
+        document.body.classList.toggle('dawn-mode');
+        if (elements.themeToggle) {
+          elements.themeToggle.textContent = document.body.classList.contains('dawn-mode') ? 'midnight glow' : 'dawn glow';
+        }
+      }
+
+      function setBlessing() {
+        const dua = document.getElementById('dua');
+        if (!dua) return;
+        const idx = Math.floor(Math.random() * blessingLines.length);
+        dua.textContent = blessingLines[idx];
+      }
+
+      function replayMagic() {
+        elements.scene1.classList.remove('scene--hidden');
+        elements.scene1.style.opacity = '1';
+        elements.scene1.style.transform = 'scale(1)';
+        elements.scene2.classList.add('scene--hidden');
+        elements.scene2.style.opacity = '0';
+        elements.scene2.style.transform = 'scale(0.96)';
+        elements.scene1.setAttribute('aria-hidden', 'false');
+        elements.scene2.setAttribute('aria-hidden', 'true');
       }
 
       function init() {
@@ -780,8 +1026,15 @@
         elements.scene2.setAttribute('aria-hidden', 'true');
         elements.yesBtn.addEventListener('click', handleYes);
         elements.noBtn.addEventListener('click', handleNo);
+        if (elements.themeToggle) elements.themeToggle.addEventListener('click', toggleTheme);
+        if (elements.noteToggle) elements.noteToggle.addEventListener('click', cycleMemoryNote);
+        if (elements.replayBtn) elements.replayBtn.addEventListener('click', replayMagic);
+        if (elements.blessingBtn) elements.blessingBtn.addEventListener('click', setBlessing);
         document.addEventListener('keydown', handleKeyDown);
         
+        updateCountdown();
+        setInterval(updateCountdown, 60000);
+
         // Touch optimization
         window.addEventListener('touchstart', () => {}, { passive: true });
       }
