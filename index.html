@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>For Sara Khan · my Valentine</title>
+  <title>for Sara · eternal Valentine</title>
   <style>
-    /* ===== CRAFTED WITH LOVE FOR SARA ===== */
+    /* ===== original galactic soul + new glowing, ribbon, flower ===== */
     * {
       margin: 0;
       padding: 0;
@@ -17,21 +17,13 @@
       --wisteria: #C59DD9;
       --velvet: #7A3F91;
       --sacred: #2B0D3E;
-
-      /* transitions */
       --transition-slow: 1.2s cubic-bezier(0.2, 0.9, 0.3, 1);
       --transition-ceremony: 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-
-      /* typography */
       --font-serif: 'Georgia', 'Times New Roman', serif;
       --font-sans: 'Avenir', 'Segoe UI', 'Roboto', system-ui, sans-serif;
-
-      /* glass effects */
       --glass-bg: rgba(242, 234, 247, 0.12);
       --glass-border: rgba(197, 157, 217, 0.25);
       --card-shadow: 0 30px 60px -20px rgba(43, 13, 62, 0.6), 0 0 0 1px rgba(197, 157, 217, 0.2) inset;
-      
-      /* spacing */
       --space-xs: 0.5rem;
       --space-sm: 0.8rem;
       --space-md: 1.2rem;
@@ -39,7 +31,6 @@
       --space-xl: 2.2rem;
     }
 
-    /* reduced motion preferences */
     @media (prefers-reduced-motion: reduce) {
       *,
       *::before,
@@ -51,7 +42,6 @@
       }
     }
 
-    /* base styles */
     body {
       min-height: 100vh;
       display: flex;
@@ -66,7 +56,7 @@
       overflow-x: hidden;
     }
 
-    /* breathing galactic gradient */
+    /* galactic gradient (preserved) */
     body::before {
       content: '';
       position: fixed;
@@ -86,7 +76,6 @@
       100% { transform: scale(1.08); opacity: 1; background: radial-gradient(circle at 60% 40%, #b47bc9, #351a47); }
     }
 
-    /* film grain / light leak texture */
     body::after {
       content: '';
       position: fixed;
@@ -101,7 +90,6 @@
       mix-blend-mode: overlay;
     }
 
-    /* main canvas */
     .canvas {
       width: 100%;
       max-width: 420px;
@@ -113,7 +101,7 @@
       justify-content: center;
     }
 
-    /* venetian glass card */
+    /* ===== CARD with GLOW animation (infinite smooth) ===== */
     .card {
       width: 100%;
       height: 100%;
@@ -128,12 +116,18 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      transition: box-shadow 0.5s, border-color 0.5s;
       position: relative;
       overflow: hidden;
+      transition: box-shadow 0.3s, border-color 0.3s;
+      /* glowing animation – slow pulse */
+      animation: cardGlow 4s infinite alternate ease-in-out;
     }
 
-    /* particle field - dynamically generated */
+    @keyframes cardGlow {
+      0% { box-shadow: 0 30px 60px -20px rgba(43, 13, 62, 0.6), 0 0 0 1px rgba(197, 157, 217, 0.3) inset, 0 0 15px rgba(197, 157, 217, 0.2); }
+      100% { box-shadow: 0 30px 70px -10px #b692cf, 0 0 0 2px rgba(230, 200, 255, 0.5) inset, 0 0 35px #c59dd9; }
+    }
+
     .particle-field {
       position: absolute;
       top: 0;
@@ -158,7 +152,6 @@
       100% { transform: translate(6%, 8%) scale(1.2); }
     }
 
-    /* scene containers */
     .scene {
       width: 100%;
       height: 100%;
@@ -178,7 +171,6 @@
       position: absolute;
     }
 
-    /* proposition typography */
     .proposition {
       text-align: center;
       width: 100%;
@@ -205,7 +197,6 @@
       margin-bottom: var(--space-xs);
       text-shadow: 0 0 18px rgba(255, 240, 250, 0.6);
       letter-spacing: -0.01em;
-      word-break: break-word;
     }
 
     .question {
@@ -223,7 +214,6 @@
       backdrop-filter: blur(4px);
     }
 
-    /* gestures */
     .gestures {
       display: flex;
       flex-direction: row;
@@ -255,7 +245,6 @@
     .gesture:focus-visible {
       outline: 3px solid var(--wisteria);
       outline-offset: 4px;
-      border-radius: 4px;
     }
 
     .gesture--yes {
@@ -285,7 +274,6 @@
       text-shadow: 0 0 12px var(--velvet);
     }
 
-    /* micro-response container */
     .micro-response {
       min-height: 70px;
       margin-top: var(--space-md);
@@ -307,7 +295,7 @@
       transform: translateY(0);
     }
 
-    /* ===== SCENE 2 - LETTER WITH ENHANCEMENTS ===== */
+    /* ===== SCENE 2 – LETTER with RIBBON FRAME & FLOATING FLOWER ===== */
     .letter {
       text-align: center;
       width: 100%;
@@ -315,197 +303,62 @@
       z-index: 5;
     }
 
-    /* Purple Flower - floating behind */
-    .flower-orbit {
+    /* flower behind table */
+    .flower-bg {
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 45%;
+      left: 50%;
+      width: 220px;
+      height: 220px;
+      background: url('https://i.ibb.co/Ndjr77H4') no-repeat center/contain;
+      opacity: 0.3;
+      transform: translate(-50%, -50%);
       pointer-events: none;
-      z-index: 2;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .purple-flower {
-      width: min(200px, 50%);
-      height: min(200px, 50%);
-      background: radial-gradient(circle at 30% 30%, 
-        rgba(197, 157, 217, 0.25) 0%, 
-        rgba(122, 63, 145, 0.2) 40%, 
-        transparent 70%);
-      border-radius: 60% 40% 50% 50% / 40% 50% 50% 60%;
-      filter: blur(6px) brightness(1.2);
-      opacity: 0.6;
-      animation: orbitFlower 20s infinite linear;
-      transform-origin: center center;
-      box-shadow: 
-        0 0 30px rgba(197, 157, 217, 0.3),
-        inset 0 0 40px rgba(242, 234, 247, 0.2);
-      position: relative;
-    }
-
-    /* Flower petals effect */
-    .purple-flower::before,
-    .purple-flower::after {
-      content: '';
-      position: absolute;
-      width: 80%;
-      height: 80%;
-      background: inherit;
-      border-radius: 50%;
-      filter: blur(8px);
-      opacity: 0.5;
-      top: 10%;
-      left: 10%;
-    }
-
-    .purple-flower::after {
-      width: 60%;
-      height: 60%;
-      top: 20%;
-      left: 20%;
-      background: radial-gradient(circle, rgba(197, 157, 217, 0.4), transparent);
+      z-index: 1;
+      animation: orbitFlower 16s infinite linear;
+      filter: drop-shadow(0 0 8px #b692cf);
     }
 
     @keyframes orbitFlower {
-      0% {
-        transform: rotate(0deg) translateX(15px) rotate(0deg) scale(0.9);
-      }
-      25% {
-        transform: rotate(90deg) translateX(20px) rotate(-90deg) scale(1.1);
-      }
-      50% {
-        transform: rotate(180deg) translateX(15px) rotate(-180deg) scale(0.95);
-      }
-      75% {
-        transform: rotate(270deg) translateX(10px) rotate(-270deg) scale(1.05);
-      }
-      100% {
-        transform: rotate(360deg) translateX(15px) rotate(-360deg) scale(0.9);
-      }
+      0% { transform: translate(-50%, -50%) rotate(0deg) scale(1); }
+      25% { transform: translate(-45%, -55%) rotate(5deg) scale(1.02); }
+      50% { transform: translate(-55%, -45%) rotate(0deg) scale(0.98); }
+      75% { transform: translate(-48%, -52%) rotate(-5deg) scale(1.01); }
+      100% { transform: translate(-50%, -50%) rotate(0deg) scale(1); }
     }
 
-    /* Ribbon frames for letter */
+    /* ribbon frame – using pseudo element so it wraps edges elegantly */
     .ribbon-frame {
-      position: absolute;
-      top: 0;
-      left: 0;
+      position: relative;
+      display: inline-block;
       width: 100%;
-      height: 100%;
+      z-index: 10;
+    }
+    .ribbon-frame::before {
+      content: '';
+      position: absolute;
+      top: -12px;
+      left: -12px;
+      right: -12px;
+      bottom: -12px;
+      background: url('https://i.ibb.co/zVyrqQQ9') repeat 0 0 / 110px 110px;
       pointer-events: none;
-      z-index: 6;
+      z-index: 12;
+      opacity: 0.9;
+      mix-blend-mode: overlay;
+      image-rendering: crisp-edges;
+      border-radius: min(50px, 8vw);
+      transform: scale(1.02);
     }
 
-    .ribbon-corner {
-      position: absolute;
-      width: min(80px, 20%);
-      height: min(80px, 20%);
-      background: linear-gradient(135deg, 
-        rgba(197, 157, 217, 0.25) 0%, 
-        rgba(242, 234, 247, 0.15) 50%, 
-        transparent 80%);
-      filter: blur(1px);
-      border-radius: 0 0 50% 0;
-    }
-
-    .ribbon-corner--tl {
-      top: 0;
-      left: 0;
-      transform: rotate(0deg);
-      border-top: 2px solid rgba(197, 157, 217, 0.3);
-      border-left: 2px solid rgba(197, 157, 217, 0.3);
-      border-radius: 0 0 80% 0;
-    }
-
-    .ribbon-corner--tr {
-      top: 0;
-      right: 0;
-      transform: rotate(90deg);
-      border-top: 2px solid rgba(197, 157, 217, 0.3);
-      border-right: 2px solid rgba(197, 157, 217, 0.3);
-      border-radius: 0 0 0 80%;
-    }
-
-    .ribbon-corner--bl {
-      bottom: 0;
-      left: 0;
-      transform: rotate(270deg);
-      border-bottom: 2px solid rgba(197, 157, 217, 0.3);
-      border-left: 2px solid rgba(197, 157, 217, 0.3);
-      border-radius: 0 80% 0 0;
-    }
-
-    .ribbon-corner--br {
-      bottom: 0;
-      right: 0;
-      transform: rotate(180deg);
-      border-bottom: 2px solid rgba(197, 157, 217, 0.3);
-      border-right: 2px solid rgba(197, 157, 217, 0.3);
-      border-radius: 80% 0 0 0;
-    }
-
-    /* Decorative ribbon edges */
-    .ribbon-edge {
-      position: absolute;
-      background: linear-gradient(90deg, 
-        transparent, 
-        rgba(197, 157, 217, 0.2) 20%, 
-        rgba(242, 234, 247, 0.15) 50%, 
-        rgba(197, 157, 217, 0.2) 80%, 
-        transparent);
-      height: 2px;
-      width: 70%;
-      left: 15%;
-    }
-
-    .ribbon-edge--top {
-      top: 8px;
-    }
-
-    .ribbon-edge--bottom {
-      bottom: 8px;
-      transform: rotate(180deg);
-    }
-
-    .ribbon-edge--left {
-      width: 2px;
-      height: 70%;
-      left: 8px;
-      top: 15%;
-      background: linear-gradient(180deg, 
-        transparent, 
-        rgba(197, 157, 217, 0.2) 20%, 
-        rgba(242, 234, 247, 0.15) 50%, 
-        rgba(197, 157, 217, 0.2) 80%, 
-        transparent);
-    }
-
-    .ribbon-edge--right {
-      width: 2px;
-      height: 70%;
-      right: 8px;
-      top: 15%;
-      background: linear-gradient(180deg, 
-        transparent, 
-        rgba(197, 157, 217, 0.2) 20%, 
-        rgba(242, 234, 247, 0.15) 50%, 
-        rgba(197, 157, 217, 0.2) 80%, 
-        transparent);
-    }
-
-    /* Letter content (existing styles) */
     .letter-head {
       font-family: var(--font-serif);
       font-size: clamp(1.5rem, 6vw, 1.9rem);
       margin-bottom: 0.25rem;
       color: var(--whisper);
       text-shadow: 0 0 20px #b692cf;
-      word-break: break-word;
       position: relative;
-      z-index: 7;
+      z-index: 15;
     }
 
     .letter-sub {
@@ -514,9 +367,8 @@
       letter-spacing: 0.3rem;
       text-transform: uppercase;
       margin-bottom: clamp(1rem, 4vw, 2rem);
-      word-break: break-word;
       position: relative;
-      z-index: 7;
+      z-index: 15;
     }
 
     .letter-body {
@@ -532,7 +384,7 @@
       font-weight: 300;
       box-shadow: 0 15px 35px -10px black;
       position: relative;
-      z-index: 7;
+      z-index: 15;
     }
 
     .dua {
@@ -548,10 +400,9 @@
       border: 1px dashed var(--wisteria);
       line-height: 1.5;
       position: relative;
-      z-index: 7;
+      z-index: 15;
     }
 
-    /* shimmer effect */
     .shimmer-effect {
       position: absolute;
       top: 0; left: 0; width: 100%; height: 100%;
@@ -567,15 +418,14 @@
       opacity: 1;
     }
 
-    /* audio player */
+    /* ===== SPOTIFY-STYLE AUDIO PLAYER ===== */
     .audio-player {
       position: absolute;
       bottom: clamp(10px, 4vh, 20px);
-      right: clamp(10px, 4vw, 20px);
-      z-index: 20;
+      left: clamp(10px, 4vw, 20px);
+      z-index: 30;
       display: flex;
       align-items: center;
-      justify-content: center;
     }
 
     .audio-control {
@@ -584,10 +434,10 @@
       -webkit-backdrop-filter: blur(12px) saturate(180%);
       border: 1px solid var(--glass-border);
       border-radius: 40px;
-      padding: 8px 12px 8px 16px;
+      padding: 6px 12px 6px 8px;
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       box-shadow: var(--card-shadow);
       transition: all var(--transition-ceremony);
       cursor: pointer;
@@ -597,12 +447,30 @@
 
     .audio-control:hover {
       border-color: var(--wisteria);
-      box-shadow: 0 0 15px rgba(197, 157, 217, 0.3);
+      box-shadow: 0 0 18px rgba(197, 157, 217, 0.5);
     }
 
     .audio-control:focus-visible {
       outline: 3px solid var(--wisteria);
       outline-offset: 2px;
+    }
+
+    .album-art {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: url('https://i.ibb.co/Ndjr77H4') center/cover;
+      box-shadow: 0 0 12px #e6c8ff;
+      transition: transform 0.2s linear;
+    }
+
+    .album-art.playing {
+      animation: spin 5s infinite linear;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
 
     .play-icon {
@@ -626,126 +494,73 @@
     .track-name {
       font-family: var(--font-serif);
       font-size: clamp(0.7rem, 2.5vw, 0.85rem);
-      opacity: 0.9;
-      max-width: 120px;
+      opacity: 0.95;
+      max-width: 110px;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
     }
 
-    /* ultra-small devices */
     @media (max-width: 320px) {
-      :root {
-        --space-xs: 0.3rem;
-        --space-sm: 0.5rem;
-        --space-md: 0.8rem;
-        --space-lg: 1.2rem;
-        --space-xl: 1.5rem;
-      }
-      
-      .gestures {
-        gap: 1rem;
-      }
-      
-      .micro-response {
-        min-height: 80px;
-      }
-      
-      .audio-control {
-        padding: 5px 8px 5px 12px;
-      }
-      
-      .track-name {
-        max-width: 80px;
-      }
+      .audio-player { left: 5px; bottom: 5px; }
+      .track-name { max-width: 70px; }
     }
 
-    /* landscape orientation handling */
-    @media (max-height: 600px) and (orientation: landscape) {
-      .canvas {
-        aspect-ratio: auto;
-        max-height: 95vh;
-      }
-      
-      .card {
-        padding: var(--space-sm);
-      }
-      
-      .letter-body {
-        max-height: 40vh;
-        overflow-y: auto;
-      }
+    @media (prefers-reduced-motion: reduce) {
+      .album-art.playing { animation: none; }
+      .flower-bg { animation: none; }
     }
   </style>
 </head>
 <body>
   <div class="canvas">
     <div class="card" role="main" aria-label="Valentine's Day interactive card for Sara">
-      <!-- floating orbs - dynamically generated -->
       <div class="particle-field" id="particleField" aria-hidden="true"></div>
 
-      <!-- Scene 1: Proposition -->
+      <!-- Scene 1 proposition – human‑crafted text inserted -->
       <div id="scene1" class="scene proposition" role="region" aria-labelledby="greetingText" aria-hidden="false">
-        <div class="greeting" id="greetingText">for the one who holds my heart</div>
+        <div class="greeting" id="greetingText">The light in your eyes has become one of the most beautiful constants in my world.</div>
         <div class="name" aria-label="Sara Khan">Sara Khan</div>
-        <div class="question" id="questionText">Will you be my Valentine?</div>
+        <div class="question" id="questionText">Will you let this Valentine's Day be the first of many we spend together, heart to heart?</div>
 
         <div class="gestures" role="group" aria-label="Response options">
           <button class="gesture gesture--yes" id="yesBtn" aria-label="Say yes to being Valentine" tabindex="0">YES</button>
           <button class="gesture gesture--no" id="noBtn" aria-label="Not ready yet, but that's okay" tabindex="0">NO</button>
         </div>
 
-        <!-- micro-response container -->
         <div id="microResponse" class="micro-response" role="status" aria-live="polite" aria-atomic="true"></div>
       </div>
 
-      <!-- Scene 2: Valentine's Letter with Ribbon and Flower -->
+      <!-- Scene 2: letter with ribbon frame and floating flower – human‑crafted text inserted -->
       <div id="scene2" class="scene scene--hidden letter" role="region" aria-labelledby="letterHead" aria-hidden="true">
-        <!-- Purple Flower Orbiting Behind -->
-        <div class="flower-orbit" aria-hidden="true">
-          <div class="purple-flower"></div>
-        </div>
-        
-        <!-- Ribbon Frame -->
-        <div class="ribbon-frame" aria-hidden="true">
-          <div class="ribbon-corner ribbon-corner--tl"></div>
-          <div class="ribbon-corner ribbon-corner--tr"></div>
-          <div class="ribbon-corner ribbon-corner--bl"></div>
-          <div class="ribbon-corner ribbon-corner--br"></div>
-          <div class="ribbon-edge ribbon-edge--top"></div>
-          <div class="ribbon-edge ribbon-edge--bottom"></div>
-          <div class="ribbon-edge ribbon-edge--left"></div>
-          <div class="ribbon-edge ribbon-edge--right"></div>
-        </div>
-        
-        <!-- Letter Content (existing) -->
-        <div class="letter-head" id="letterHead">My dearest Sara</div>
-        <div class="letter-sub">happy Valentine's Day</div>
-        <div class="letter-body" role="article">
-          Every moment with you feels like finding light in the softest places.<br>
-          Your smile is my favourite prayer, your presence my truest home.<br>
-          Today I celebrate you, and the love that grows between us.
-        </div>
-        <div class="dua" role="note" aria-label="Prayer for our future">
-          May the One who brought us together keep our hearts intertwined.<br>
-          I pray for a future where we walk side by side,<br>
-          through every season, hand in hand, always.
+        <!-- floating purple flower behind table -->
+        <div class="flower-bg" aria-hidden="true"></div>
+        <!-- ribbon-wrapped content -->
+        <div class="ribbon-frame">
+          <div class="letter-head" id="letterHead">My dearest Sara</div>
+          <div class="letter-sub" id="letterSub">For you, this Valentine's Day</div>
+          <div class="letter-body" role="article" id="letterBody">
+            I find myself thinking about the way your nose crinkles slightly when you laugh at something unexpected, and how that simple thing has become one of my favourite sights in the world. I remember the afternoon you spoke about your favourite book with such passion that your hands moved through the air like a conductor guiding an orchestra. It was in that moment I realised I wanted to know every story you carry within you. You possess a gentleness that does not announce itself loudly, yet it settles into a room and makes everything feel softer, safer. Being in your presence feels like standing in the last warm light of a sunset, aware that I am witnessing something truly beautiful and fleeting.
+          </div>
+          <div class="dua" role="note" aria-label="Prayer for our future" id="duaText">
+            May the path ahead of us be lined with shared sunrises and quiet evenings where we need no words at all. May your heart always find peace beside mine, and may we build something steady and enduring from the tenderness we feel today. I pray that whatever comes, we face it hand in hand, with courage and with love enough for both of us.
+          </div>
         </div>
       </div>
 
-      <!-- shimmer overlay -->
+      <!-- shimmer overlay (preserved) -->
       <div id="shimmer" class="shimmer-effect" aria-hidden="true"></div>
 
-      <!-- audio player -->
+      <!-- ===== SPOTIFY-STYLE AUDIO PLAYER ===== -->
       <div class="audio-player">
         <button id="audioControl" class="audio-control" aria-label="Play background music" title="Play background music">
+          <div class="album-art" id="albumArt"></div>
           <span class="play-icon" id="playIcon">▶</span>
           <span class="track-name" id="trackName">Die With A Smile</span>
         </button>
       </div>
       <audio id="bgMusic" loop preload="auto" crossorigin="anonymous">
         <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
       </audio>
     </div>
   </div>
@@ -753,7 +568,7 @@
   <script>
     (function() {
       "use strict";
-      
+
       // DOM elements
       const elements = {
         scene1: document.getElementById('scene1'),
@@ -766,42 +581,39 @@
         audio: document.getElementById('bgMusic'),
         audioControl: document.getElementById('audioControl'),
         playIcon: document.getElementById('playIcon'),
-        trackName: document.getElementById('trackName')
+        trackName: document.getElementById('trackName'),
+        albumArt: document.getElementById('albumArt')
       };
 
-      // State
-      let constellationTimer = null;
-      const TRANSITION_MS = 1200;
+      // state
       let isPlaying = false;
       let audioInitialized = false;
-      
-      // Micro-responses pool
+      const TRANSITION_MS = 1200;
+      let constellationTimer = null;
+
+      // ===== HUMAN WRITTEN MICRO‑RESPONSES ===== (no emoji, complete sentences)
       const microResponses = [
-        "Take all the time you need, my heart is patient.",
-        "Even your hesitation feels gentle to me.",
-        "No rush, Sara. I'll be here, always.",
-        "Every moment waiting for you is sweet.",
-        "Your presence is worth every moment of patience.",
-        "The moon waits for no one, but I'll wait for you.",
-        "Your hesitation only makes your presence more precious."
+        "Your hesitation does not diminish the depth of what I feel; my heart remains open and steady.",
+        "I will hold this question gently in my hands until the moment you feel ready to answer.",
+        "There is no rush, Sara. The affection I carry for you is patient and knows how to wait.",
+        "Even a 'no' today would not erase the tenderness I hold for you; it would simply wait for tomorrow.",
+        "Knowing you has already given me more than I could have asked for; your comfort matters above all.",
+        "Every moment we share, even this one, is precious to me, and I will not let it pass without gratitude.",
+        "Your presence in my life is a gift I never take for granted, regardless of the answer you give."
       ];
 
-      // ===== PARTICLE SYSTEM =====
+      // particles (unchanged)
       function initParticles() {
         if (!elements.particleField) return;
-        
         elements.particleField.innerHTML = '';
-        
         const particles = [
           { top: '5%', left: '5%', width: 180, height: 180, duration: 18, color: '#d9b0e8', delay: 0 },
           { bottom: '10%', right: '0%', width: 240, height: 240, duration: 22, color: '#b887cf', opacity: 0.4, delay: -3 },
           { top: '30%', right: '15%', width: 110, height: 110, duration: 14, color: '#f2d9ff', delay: 0 }
         ];
-        
         particles.forEach(config => {
           const orb = document.createElement('div');
           orb.className = 'orb';
-          
           Object.assign(orb.style, {
             top: config.top || 'auto',
             left: config.left || 'auto',
@@ -814,86 +626,70 @@
             animationDuration: config.duration + 's',
             animationDelay: config.delay + 's'
           });
-          
           elements.particleField.appendChild(orb);
         });
       }
 
-      // ===== AUDIO CONTROL =====
+      // AUDIO + album spin
+      function toggleAudio() {
+        if (!elements.audio) return;
+        if (isPlaying) {
+          elements.audio.pause();
+          if (elements.playIcon) elements.playIcon.textContent = '▶';
+          if (elements.albumArt) elements.albumArt.classList.remove('playing');
+          elements.audioControl.setAttribute('aria-label', 'Play background music');
+        } else {
+          const playPromise = elements.audio.play();
+          if (playPromise !== undefined) {
+            playPromise.then(() => {
+              if (elements.playIcon) elements.playIcon.textContent = '⏸';
+              if (elements.albumArt) elements.albumArt.classList.add('playing');
+              elements.audioControl.setAttribute('aria-label', 'Pause background music');
+            }).catch(e => console.log('playback prevented:', e));
+          }
+        }
+        isPlaying = !isPlaying;
+      }
+
       function initAudio() {
         if (!elements.audio || !elements.audioControl) return;
-        
-        if (elements.trackName) {
-          elements.trackName.textContent = "Die With A Smile";
-        }
-        
+        if (elements.trackName) elements.trackName.textContent = "Die With A Smile";
+
+        // autoplay attempt (likely blocked)
         const playPromise = elements.audio.play();
-        
         if (playPromise !== undefined) {
           playPromise.then(() => {
             isPlaying = true;
             if (elements.playIcon) elements.playIcon.textContent = '⏸';
+            if (elements.albumArt) elements.albumArt.classList.add('playing');
             elements.audioControl.setAttribute('aria-label', 'Pause background music');
-            elements.audioControl.setAttribute('title', 'Pause background music');
           }).catch(() => {
             isPlaying = false;
             if (elements.playIcon) elements.playIcon.textContent = '▶';
+            if (elements.albumArt) elements.albumArt.classList.remove('playing');
             elements.audioControl.setAttribute('aria-label', 'Play background music');
-            elements.audioControl.setAttribute('title', 'Play background music');
           });
         }
-        
         elements.audioControl.addEventListener('click', toggleAudio);
-        
         elements.audio.addEventListener('ended', () => {
           if (isPlaying) {
             elements.audio.currentTime = 0;
             elements.audio.play();
           }
         });
-        
         audioInitialized = true;
       }
-      
-      function toggleAudio() {
-        if (!elements.audio) return;
-        
-        if (isPlaying) {
-          elements.audio.pause();
-          if (elements.playIcon) elements.playIcon.textContent = '▶';
-          elements.audioControl.setAttribute('aria-label', 'Play background music');
-          elements.audioControl.setAttribute('title', 'Play background music');
-        } else {
-          const playPromise = elements.audio.play();
-          if (playPromise !== undefined) {
-            playPromise.then(() => {
-              if (elements.playIcon) elements.playIcon.textContent = '⏸';
-              elements.audioControl.setAttribute('aria-label', 'Pause background music');
-              elements.audioControl.setAttribute('title', 'Pause background music');
-            }).catch(e => {
-              console.log('Playback failed:', e);
-            });
-          }
-        }
-        isPlaying = !isPlaying;
-      }
 
-      // ===== SCENE MANAGEMENT =====
+      // scene management
       function showScene(targetScene, hideScene) {
-        if (targetScene === elements.scene2) {
-          elements.scene1.setAttribute('aria-hidden', 'true');
-          elements.scene2.setAttribute('aria-hidden', 'false');
-        }
-        
+        targetScene.setAttribute('aria-hidden', 'false');
+        hideScene.setAttribute('aria-hidden', 'true');
         targetScene.classList.remove('scene--hidden');
-        
         void hideScene.offsetWidth;
-        
         hideScene.style.opacity = '0';
         hideScene.style.transform = 'scale(0.96)';
         targetScene.style.opacity = '1';
         targetScene.style.transform = 'scale(1)';
-        
         setTimeout(() => {
           if (hideScene.style.opacity === '0') {
             hideScene.classList.add('scene--hidden');
@@ -901,10 +697,9 @@
         }, TRANSITION_MS * 0.8);
       }
 
-      // ===== SHIMMER CONTROL =====
+      // shimmer
       function activateShimmer(event) {
         if (!elements.shimmer) return;
-        
         if (event) {
           const rect = event.target.getBoundingClientRect();
           const x = ((rect.left + rect.width/2) / window.innerWidth) * 100;
@@ -915,92 +710,75 @@
           elements.shimmer.style.setProperty('--x', '50%');
           elements.shimmer.style.setProperty('--y', '70%');
         }
-        
         elements.shimmer.classList.add('active');
-        
         if (constellationTimer) clearTimeout(constellationTimer);
         constellationTimer = setTimeout(() => {
           elements.shimmer.classList.remove('active');
         }, 1800);
       }
 
-      function animateButton(button, scale = 1.08, color = 'var(--wisteria)') {
-        if (!button) return;
-        
-        button.style.transform = `scale(${scale})`;
-        if (color) button.style.color = color;
-        
-        setTimeout(() => {
-          button.style.transform = 'scale(1)';
-          button.style.color = '';
-        }, 300);
+      function hideMicroResponse() {
+        if (elements.micro) elements.micro.classList.remove('micro-response--visible');
       }
-
       function showMicroResponse() {
         if (!elements.micro) return;
-        
         const randomIdx = Math.floor(Math.random() * microResponses.length);
         elements.micro.textContent = '✦ ' + microResponses[randomIdx] + ' ✦';
         elements.micro.classList.add('micro-response--visible');
       }
 
-      function hideMicroResponse() {
-        if (!elements.micro) return;
-        elements.micro.classList.remove('micro-response--visible');
-      }
-
+      // handlers
       function handleYes() {
-        if (elements.shimmer) elements.shimmer.classList.remove('active');
         hideMicroResponse();
-        
+        if (elements.shimmer) elements.shimmer.classList.remove('active');
         showScene(elements.scene2, elements.scene1);
-        
-        const announcement = document.createElement('div');
-        announcement.setAttribute('role', 'status');
-        announcement.setAttribute('aria-live', 'polite');
-        announcement.textContent = 'Showing Valentine\'s letter for Sara';
-        document.body.appendChild(announcement);
-        setTimeout(() => announcement.remove(), 1000);
+        // screen reader announcement
+        const ann = document.createElement('div');
+        ann.setAttribute('role', 'status');
+        ann.textContent = 'Showing Valentine letter for Sara';
+        document.body.appendChild(ann);
+        setTimeout(() => ann.remove(), 1000);
       }
 
       function handleNo(event) {
         if (elements.scene1.classList.contains('scene--hidden')) return;
-        
         showMicroResponse();
         activateShimmer(event);
-        animateButton(elements.noBtn);
+        if (elements.noBtn) {
+          elements.noBtn.style.transform = 'scale(1.08)';
+          elements.noBtn.style.color = 'var(--wisteria)';
+          setTimeout(() => {
+            elements.noBtn.style.transform = 'scale(1)';
+            elements.noBtn.style.color = '';
+          }, 300);
+        }
       }
 
-      function handleKeyDown(event) {
-        if (event.key === 'Escape') {
+      function handleKeyDown(e) {
+        if (e.key === 'Escape') {
           hideMicroResponse();
           if (elements.shimmer) elements.shimmer.classList.remove('active');
         }
-        
-        if (event.key === 'm' || event.key === 'M') {
-          if (audioInitialized) {
-            toggleAudio();
-          }
+        if (e.key === 'm' || e.key === 'M') {
+          if (audioInitialized) toggleAudio();
         }
       }
 
+      // init
       function init() {
         initParticles();
         initAudio();
-        
+
         elements.scene1.style.opacity = '1';
         elements.scene1.style.transform = 'scale(1)';
         elements.scene2.style.opacity = '0';
         elements.scene2.style.transform = 'scale(0.96)';
-        
         elements.scene1.setAttribute('aria-hidden', 'false');
         elements.scene2.setAttribute('aria-hidden', 'true');
-        
+
         elements.yesBtn.addEventListener('click', handleYes);
         elements.noBtn.addEventListener('click', handleNo);
-        
         document.addEventListener('keydown', handleKeyDown);
-        
         window.addEventListener('touchstart', () => {}, { passive: true });
       }
 
